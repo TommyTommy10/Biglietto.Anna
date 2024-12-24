@@ -345,5 +345,52 @@
             }
         }
     </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        loadComments();
+    });
+
+    function loadComments() {
+        fetch('http://localhost:3000/comments')
+            .then(response => {
+                console.log('Risposta ricevuta:', response);
+                return response.json();
+            })
+            .then(comments => {
+                var commentsContainer = document.getElementById('comments');
+                commentsContainer.innerHTML = '';
+                comments.forEach(function(comment) {
+                    var newComment = document.createElement('div');
+                    newComment.className = 'comment';
+                    newComment.textContent = comment.text;
+                    commentsContainer.appendChild(newComment);
+                });
+            })
+            .catch(error => console.error('Errore nel caricamento dei commenti:', error));
+    }
+
+    function submitComment() {
+        var commentInput = document.getElementById('commentInput');
+        var commentText = commentInput.value;
+        if (commentText) {
+            fetch('http://localhost:3000/comments', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ text: commentText })
+            })
+            .then(response => {
+                console.log('Risposta POST ricevuta:', response);
+                return response.json();
+            })
+            .then(comment => {
+                loadComments();
+                commentInput.value = '';
+            })
+            .catch(error => console.error('Errore nell\'invio del commento:', error));
+        }
+    }
+</script>
 </body>
 </html>
