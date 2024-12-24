@@ -52,8 +52,8 @@
         .settings {
             display: none;
             position: fixed;
-            top: 10px;
-            right: 10px;
+            top: 20px;
+            right: 20px;
             background-color: #eee;
             padding: 15px;
             border-radius: 10px;
@@ -62,11 +62,11 @@
         }
         .settings-button {
             position: fixed;
-            top: 10px;
-            right: 10px;
+            top: 20px;
+            right: 20px;
             background-color: #007bff;
             color: #fff;
-            padding: 10px 15px;
+            padding: 10px;
             border-radius: 50%;
             cursor: pointer;
             text-align: center;
@@ -171,7 +171,8 @@
             var container = document.querySelector('.container');
             if (settings.style.display === 'none' || settings.style.display === '') {
                 settings.style.display = 'block';
-                container.style.filter = 'blur(3px)';
+                container.style.filter = 'blur(2px)';
+                settings.style.filter = 'none';  // Ensure settings are not blurred
             } else {
                 settings.style.display = 'none';
                 container.style.filter = 'none';
