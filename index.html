@@ -23,7 +23,6 @@
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-            transition: filter 0.3s ease;
         }
         .entry {
             margin-bottom: 40px;
@@ -130,7 +129,7 @@
         <div class="settings-button" onclick="toggleSettings()">⚙️</div>
         
         <!-- Interfaccia per cambiare font e colori -->
-        <div class="settings" id="settings">
+        <div class="settings">
             <h2>Personalizza il Sito</h2>
             <label for="fontSelect">Seleziona Font:</label>
             <select id="fontSelect">
@@ -173,14 +172,10 @@
     <script>
         function toggleSettings() {
             var settings = document.querySelector('.settings');
-            var container = document.querySelector('.container');
             if (settings.style.display === 'none' || settings.style.display === '') {
                 settings.style.display = 'block';
-                container.style.filter = 'blur(2px)';
-                settings.style.zIndex = '101'; // Porta le impostazioni in primo piano
             } else {
                 settings.style.display = 'none';
-                container.style.filter = 'none';
             }
         }
 
