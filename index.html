@@ -74,23 +74,23 @@
             display: block;
             font-weight: bold;
         }
-        .settings select, .settings input[type="color"], .music input[type="file"] {
+        .settings select, .settings input[type="color"] {
             width: 100%;
             padding: 10px;
             border-radius: 5px;
             border: 1px solid #ddd;
             margin-top: 5px;
         }
-        .settings input[type="color"], .music input[type="file"] {
+        .settings input[type="color"] {
             -webkit-appearance: none;
             border: none;
             height: 40px;
             cursor: pointer;
         }
-        .settings input[type="color"]::-webkit-color-swatch-wrapper, .music input[type="file"]::-webkit-color-swatch-wrapper {
+        .settings input[type="color"]::-webkit-color-swatch-wrapper {
             padding: 0;
         }
-        .settings input[type="color"]::-webkit-color-swatch, .music input[type="file"]::-webkit-color-swatch {
+        .settings input[type="color"]::-webkit-color-swatch {
             border: none;
             border-radius: 5px;
         }
@@ -131,15 +131,16 @@
             display: flex;
             align-items: center;
             margin-top: 20px;
+            flex-direction: column;
         }
         .music-container img {
-            max-width: 100px;
+            max-width: 100%;
             height: auto;
             border-radius: 10px;
-            margin-right: 20px;
+            margin-bottom: 10px;
         }
         .music-container audio {
-            width: 300px;
+            width: 100%;
             height: 50px;
             border-radius: 10px;
         }
@@ -187,18 +188,14 @@
         <!-- Lettore musicale -->
         <div class="music">
             <h2>Gestisci la Musica</h2>
-            <label for="audioFile">File Audio:</label>
-            <input type="file" id="audioFile" accept="audio/*">
-            
-            <label for="songImage">Immagine della Canzone:</label>
-            <input type="file" id="songImage" accept="image/*">
-            
+            <div class="music-container">
+                <img src="URL-della-tua-immagine.jpg" alt="Copertina della canzone">
+                <audio controls>
+                    <source src="URL-del-tuo-file-audio.mp3" type="audio/mpeg">
+                    Il tuo browser non supporta l'elemento audio.
+                </audio>
+            </div>
             <button class="close-music" onclick="toggleMusic()">Chiudi</button>
-        </div>
-
-        <!-- Visualizzatore musicale -->
-        <div class="music-container" id="musicContainer">
-            <!-- Contenuto dinamico della musica qui -->
         </div>
 
         <!-- Interfaccia per cambiare font e colori -->
@@ -273,22 +270,16 @@
             document.body.style.color = this.value;
         });
 
-        document.getElementById('audioFile').addEventListener('change', function() {
-            updateMusicPlayer();
-        });
-
-        document.getElementById('songImage').addEventListener('change', function() {
-            updateMusicPlayer();
-        });
-
-        function updateMusicPlayer() {
-            var songImage = document.getElementById('songImage').files[0];
-            var audioFile = document.getElementById('audioFile').files[0];
-            var musicContainer = document.getElementById('musicContainer');
-            if (audioFile && songImage) {
-                var audioURL = URL.createObjectURL(audioFile);
-                var imageURL = URL.createObjectURL(songImage);
-                musicContainer.innerHTML = '<img src="' + imageURL + '" alt="Copertina della canzone"><audio controls src="' + audioURL + '"></audio>';
+        function submitComment() {
+            var commentInput = document.getElementById('commentInput');
+            var commentText = commentInput.value;
+            if (commentText) {
+                var commentsContainer = document.getElementById('comments');
+                var newComment = document.createElement('div');
+                newComment.className = 'comment';
+                newComment.textContent = commentText;
+                commentsContainer.appendChild(newComment);
+                commentInput.value = '';
             }
         }
     </script>
