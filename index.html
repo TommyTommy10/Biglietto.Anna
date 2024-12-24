@@ -5,8 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ricordi Speciali</title>
     <style>
+        @font-face {
+            font-family: 'Apple Chancery';
+            src: url('https://example.com/path-to-apple-chancery.woff') format('woff');
+        }
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Apple Chancery', cursive;
             background-color: #f4f4f9;
             margin: 0;
             padding: 20px;
@@ -44,10 +48,21 @@
             text-decoration: underline;
         }
         .settings {
+            display: none;
             margin-bottom: 20px;
             padding: 10px;
             border-radius: 10px;
             background-color: #eee;
+        }
+        .settings-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            border-radius: 10px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            text-align: center;
         }
     </style>
 </head>
@@ -55,11 +70,15 @@
     <div class="container">
         <h1>Ricordi Speciali</h1>
         
+        <!-- Pulsante per mostrare/nascondere le impostazioni -->
+        <div class="settings-button" onclick="toggleSettings()">Impostazioni</div>
+        
         <!-- Interfaccia per cambiare font e colori -->
         <div class="settings">
             <h2>Personalizza il Sito</h2>
             <label for="fontSelect">Seleziona Font:</label>
             <select id="fontSelect">
+                <option value="Apple Chancery">Apple Chancery</option>
                 <option value="Arial">Arial</option>
                 <option value="Georgia">Georgia</option>
                 <option value="Times New Roman">Times New Roman</option>
@@ -85,6 +104,15 @@
     </div>
 
     <script>
+        function toggleSettings() {
+            var settings = document.querySelector('.settings');
+            if (settings.style.display === 'none' || settings.style.display === '') {
+                settings.style.display = 'block';
+            } else {
+                settings.style.display = 'none';
+            }
+        }
+
         document.getElementById('fontSelect').addEventListener('change', function() {
             document.body.style.fontFamily = this.value;
         });
