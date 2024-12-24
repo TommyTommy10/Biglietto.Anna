@@ -14,6 +14,7 @@
             background-color: #f4f4f9;
             margin: 0;
             padding: 20px;
+            transition: filter 0.3s ease;
         }
         .container {
             max-width: 800px;
@@ -52,9 +53,9 @@
             position: fixed;
             top: 20px;
             right: 20px;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 15px;
+            background-color: #eee;
+            padding: 15px;
+            border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             z-index: 100;
         }
@@ -78,29 +79,10 @@
             margin-top: 10px;
             background-color: #f44336;
             color: #fff;
-            padding: 10px 15px;
+            padding: 5px 10px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            display: block;
-            text-align: center;
-        }
-        .settings h2 {
-            margin-top: 0;
-            color: #007bff;
-        }
-        .settings label {
-            display: block;
-            margin-top: 10px;
-            font-weight: bold;
-        }
-        .settings select, .settings input[type="color"] {
-            display: block;
-            width: 100%;
-            padding: 5px;
-            margin-top: 5px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
         }
         .color-picker {
             border-radius: 5px;
@@ -175,13 +157,7 @@
             <p>Abbiamo visitato quel magnifico parco e passeggiato tra gli alberi innevati. È stato un giorno indimenticabile. <span class="highlight" onclick="window.location.href='https://example.com/link1';">Clicca qui</span> per vedere la mappa del parco.</p>
             <img src="https://example.com/immagine1.jpg" alt="Parco innevato">
         </div>
-        
-        <div class="entry">
-            <h2>12 Dicembre</h2>
-            <p>Abbiamo visitato quel magnifico parco e passeggiato tra gli alberi innevati. È stato un giorno indimenticabile. <span class="highlight" onclick="window.location.href='https://example.com/link1';">Clicca qui</span> per vedere la mappa del parco.</p>
-            <img src="https://example.com/immagine1.jpg" alt="Parco innevato">
-        </div>
-        
+
         <!-- Sezione commenti -->
         <div class="comment-section">
             <textarea id="commentInput" placeholder="Aggiungi un commento..."></textarea>
@@ -203,4 +179,30 @@
             }
         }
 
-        document.getElementById('fontSelect').addEventListener
+        document.getElementById('fontSelect').addEventListener('change', function() {
+            document.body.style.fontFamily = this.value;
+        });
+
+        document.getElementById('colorPicker').addEventListener('input', function() {
+            document.body.style.backgroundColor = this.value;
+        });
+
+        document.getElementById('textColorPicker').addEventListener('input', function() {
+            document.body.style.color = this.value;
+        });
+
+        function submitComment() {
+            var commentInput = document.getElementById('commentInput');
+            var commentText = commentInput.value;
+            if (commentText) {
+                var commentsContainer = document.getElementById('comments');
+                var newComment = document.createElement('div');
+                newComment.className = 'comment';
+                newComment.textContent = commentText;
+                commentsContainer.appendChild(newComment);
+                commentInput.value = '';
+            }
+        }
+    </script>
+</body>
+</html>
