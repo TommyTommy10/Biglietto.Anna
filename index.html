@@ -173,12 +173,25 @@
             border-radius: 10px;
             background-color: #f9f9f9;
         }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 99;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Ricordi Speciali</h1>
         
+        <!-- Overlay -->
+        <div class="overlay" id="overlay" onclick="closeWindows()"></div>
+
         <!-- Pulsante per mostrare/nascondere le impostazioni -->
         <div class="settings-button" id="settingsButton" onclick="toggleSettings()">⚙️</div>
         
@@ -243,25 +256,52 @@
         function toggleSettings() {
             var settings = document.getElementById('settings');
             var settingsButton = document.getElementById('settingsButton');
+            var overlay = document.getElementById('overlay');
+            var music = document.getElementById('music');
+            var musicButton = document.getElementById('musicButton');
             if (settings.style.display === 'none' || settings.style.display === '') {
                 settings.style.display = 'block';
                 settingsButton.style.display = 'none';
+                overlay.style.display = 'block';
+                music.style.display = 'none';
+                musicButton.style.display = 'flex';
             } else {
                 settings.style.display = 'none';
                 settingsButton.style.display = 'flex';
+                overlay.style.display = 'none';
             }
         }
 
         function toggleMusic() {
             var music = document.getElementById('music');
             var musicButton = document.getElementById('musicButton');
+            var overlay = document.getElementById('overlay');
+            var settings = document.getElementById('settings');
+            var settingsButton = document.getElementById('settingsButton');
             if (music.style.display === 'none' || music.style.display === '') {
                 music.style.display = 'block';
                 musicButton.style.display = 'none';
+                overlay.style.display = 'block';
+                settings.style.display = 'none';
+                settingsButton.style.display = 'flex';
             } else {
                 music.style.display = 'none';
                 musicButton.style.display = 'flex';
+                overlay.style.display = 'none';
             }
+        }
+
+        function closeWindows() {
+            var settings = document.getElementById('settings');
+            var settingsButton = document.getElementById('settingsButton');
+            var music = document.getElementById('music');
+            var musicButton = document.getElementById('musicButton');
+            var overlay = document.getElementById('overlay');
+            settings.style.display = 'none';
+            settingsButton.style.display = 'flex';
+            music.style.display = 'none';
+            musicButton.style.display = 'flex';
+            overlay.style.display = 'none';
         }
 
         document.getElementById('fontSelect').addEventListener('change', function() {
