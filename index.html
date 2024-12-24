@@ -43,12 +43,36 @@
             cursor: pointer;
             text-decoration: underline;
         }
+        .settings {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #eee;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Ricordi Speciali</h1>
         
+        <!-- Interfaccia per cambiare font e colori -->
+        <div class="settings">
+            <h2>Personalizza il Sito</h2>
+            <label for="fontSelect">Seleziona Font:</label>
+            <select id="fontSelect">
+                <option value="Arial">Arial</option>
+                <option value="Georgia">Georgia</option>
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="Courier New">Courier New</option>
+            </select>
+
+            <label for="colorPicker">Seleziona Colore Sfondo:</label>
+            <input type="color" id="colorPicker" value="#f4f4f9">
+
+            <label for="textColorPicker">Seleziona Colore Testo:</label>
+            <input type="color" id="textColorPicker" value="#000000">
+        </div>
+
         <!-- Esempio di post del blog -->
         <div class="entry">
             <h2>12 Dicembre</h2>
@@ -59,5 +83,19 @@
         <!-- Aggiungi altri post del blog qui -->
 
     </div>
+
+    <script>
+        document.getElementById('fontSelect').addEventListener('change', function() {
+            document.body.style.fontFamily = this.value;
+        });
+
+        document.getElementById('colorPicker').addEventListener('input', function() {
+            document.body.style.backgroundColor = this.value;
+        });
+
+        document.getElementById('textColorPicker').addEventListener('input', function() {
+            document.body.style.color = this.value;
+        });
+    </script>
 </body>
 </html>
