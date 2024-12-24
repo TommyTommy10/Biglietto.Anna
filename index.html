@@ -14,7 +14,6 @@
             background-color: #f4f4f9;
             margin: 0;
             padding: 20px;
-            transition: filter 0.3s ease;
         }
         .container {
             max-width: 800px;
@@ -53,11 +52,29 @@
             position: fixed;
             top: 20px;
             right: 20px;
-            background-color: #eee;
-            padding: 15px;
+            background-color: #f9f9f9;
+            padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
             z-index: 100;
+            width: 300px;
+        }
+        .settings h2 {
+            margin-top: 0;
+            font-size: 1.5em;
+            color: #007bff;
+        }
+        .settings label {
+            margin-top: 10px;
+            display: block;
+            font-weight: bold;
+        }
+        .settings select, .settings input[type="color"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-top: 5px;
         }
         .settings-button {
             position: fixed;
@@ -74,21 +91,18 @@
             align-items: center;
             justify-content: center;
             z-index: 101;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         .close-settings {
-            margin-top: 10px;
+            margin-top: 15px;
             background-color: #f44336;
             color: #fff;
-            padding: 5px 10px;
+            padding: 10px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-        }
-        .color-picker {
-            border-radius: 5px;
-            padding: 5px;
-            margin-top: 10px;
-            display: block;
+            width: 100%;
+            text-align: center;
         }
         .comment-section {
             margin-top: 20px;
@@ -143,10 +157,10 @@
             </select>
 
             <label for="colorPicker">Seleziona Colore Sfondo:</label>
-            <input type="color" id="colorPicker" class="color-picker" value="#f4f4f9">
+            <input type="color" id="colorPicker" value="#f4f4f9">
 
             <label for="textColorPicker">Seleziona Colore Testo:</label>
-            <input type="color" id="textColorPicker" class="color-picker" value="#000000">
+            <input type="color" id="textColorPicker" value="#000000">
 
             <button class="close-settings" onclick="toggleSettings()">Chiudi</button>
         </div>
