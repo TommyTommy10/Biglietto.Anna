@@ -49,20 +49,28 @@
         }
         .settings {
             display: none;
-            margin-bottom: 20px;
-            padding: 10px;
-            border-radius: 10px;
+            position: fixed;
+            top: 10px;
+            right: 10px;
             background-color: #eee;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         .settings-button {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 10px 20px;
-            border-radius: 10px;
+            position: fixed;
+            top: 10px;
+            right: 10px;
             background-color: #007bff;
             color: #fff;
+            padding: 10px 15px;
+            border-radius: 50%;
             cursor: pointer;
             text-align: center;
+        }
+        .color-picker {
+            border-radius: 5px;
+            padding: 5px;
         }
     </style>
 </head>
@@ -71,25 +79,27 @@
         <h1>Ricordi Speciali</h1>
         
         <!-- Pulsante per mostrare/nascondere le impostazioni -->
-        <div class="settings-button" onclick="toggleSettings()">Impostazioni</div>
+        <div class="settings-button" onclick="toggleSettings()">⚙️</div>
         
         <!-- Interfaccia per cambiare font e colori -->
         <div class="settings">
             <h2>Personalizza il Sito</h2>
             <label for="fontSelect">Seleziona Font:</label>
             <select id="fontSelect">
-                <option value="Apple Chancery">Apple Chancery</option>
                 <option value="Arial">Arial</option>
+                <option value="Apple Chancery">Apple Chancery</option>
+                <option value="Courier New">Courier New</option>
                 <option value="Georgia">Georgia</option>
                 <option value="Times New Roman">Times New Roman</option>
-                <option value="Courier New">Courier New</option>
+                <option value="Verdana">Verdana</option>
+                <!-- Aggiungi altri font qui in ordine alfabetico -->
             </select>
 
             <label for="colorPicker">Seleziona Colore Sfondo:</label>
-            <input type="color" id="colorPicker" value="#f4f4f9">
+            <input type="color" id="colorPicker" class="color-picker" value="#f4f4f9">
 
             <label for="textColorPicker">Seleziona Colore Testo:</label>
-            <input type="color" id="textColorPicker" value="#000000">
+            <input type="color" id="textColorPicker" class="color-picker" value="#000000">
         </div>
 
         <!-- Esempio di post del blog -->
