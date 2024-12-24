@@ -94,7 +94,7 @@
             border: none;
             border-radius: 5px;
         }
-        .settings-button, .music-button[type="color"] {
+        .settings-button, .music-button {
             position: fixed;
             top: 20px;
             background-color: #007bff;
@@ -188,9 +188,17 @@
 <body>
     <div class="container">
         <h1>Ricordi Speciali</h1>
+        
+        <!-- Overlay -->
         <div class="overlay" id="overlay" onclick="closeWindows()"></div>
+
+        <!-- Pulsante per mostrare/nascondere le impostazioni -->
         <div class="settings-button" id="settingsButton" onclick="toggleSettings()">⚙️</div>
+        
+        <!-- Pulsante per mostrare/nascondere la musica -->
         <div class="music-button" id="musicButton" onclick="toggleMusic()">🎵</div>
+
+        <!-- Lettore musicale -->
         <div class="music" id="music">
             <h2>Gestisci la Musica</h2>
             <div class="music-container">
@@ -202,8 +210,10 @@
             </div>
             <button class="close-music" onclick="toggleMusic()">Chiudi</button>
         </div>
+
+        <!-- Interfaccia per cambiare font e colori -->
         <div class="settings" id="settings">
-            <h2>Personalizza la Lettura</h2>
+            <h2>Personalizza il Sito</h2>
             <label for="fontSelect">Seleziona Font:</label>
             <select id="fontSelect">
                 <option value="Arial">Arial</option>
@@ -212,79 +222,29 @@
                 <option value="Georgia">Georgia</option>
                 <option value="Times New Roman">Times New Roman</option>
                 <option value="Verdana">Verdana</option>
-                <option value="Baskerville">Baskerville</option>
-                <option value="Book Antiqua">Book Antiqua</option>
-                <option value="Calibri">Calibri</option>
-                <option value="Candara">Candara</option>
-                <option value="Comic Sans MS">Comic Sans MS</option>
-                <option value="Consolas">Consolas</option>
-                <option value="Constantia">Constantia</option>
-                <option value="Copperplate">Copperplate</option>
-                <option value="Corbel">Corbel</option>
-                <option value="Didot">Didot</option>
-                <option value="Franklin Gothic Medium">Franklin Gothic Medium</option>
-                <option value="Garamond">Garamond</option>
-                <option value="Gill Sans">Gill Sans</option>
-                <option value="Helvetica">Helvetica</option>
-                <option value="Impact">Impact</option>
-                <option value="Lato">Lato</option>
-                <option value="Lucida Bright">Lucida Bright</option>
-                <option value="Lucida Sans Unicode">Lucida Sans Unicode</option>
-                <option value="Monaco">Monaco</option>
-                <option value="Montserrat">Montserrat</option>
-                <option value="Palatino">Palatino</option>
-                <option value="Roboto">Roboto</option>
-                <option value="Segoe UI">Segoe UI</option>
-                <option value="Source Sans Pro">Source Sans Pro</option>
-                <option value="Tahoma">Tahoma</option>
-                <option value="Trebuchet MS">Trebuchet MS</option>
-                <option value="Ubuntu">Ubuntu</option>
-                <option value="Zapfino">Zapfino</option>
-                <option value="Algerian">Algerian</option>
-                <option value="Arial Black">Arial Black</option>
-                <option value="Arial Narrow">Arial Narrow</option>
-                <option value="Bookman Old Style">Bookman Old Style</option>
-                <option value="Century Gothic">Century Gothic</option>
-                <option value="Courier">Courier</option>
-                <option value="Franklin Gothic Book">Franklin Gothic Book</option>
-                <option value="Futura">Futura</option>
-                <option value="Geneva">Geneva</option>
-                <option value="Gill Sans MT">Gill Sans MT</option>
-                <option value="Goudy Old Style">Goudy Old Style</option>
-                <option value="Lucida Console">Lucida Console</option>
-                <option value="Lucida Handwriting">Lucida Handwriting</option>
-                <option value="Optima">Optima</option>
-                <option value="Perpetua">Perpetua</option>
-                <option value="Rockwell">Rockwell</option>
-                <option value="Script MT Bold">Script MT Bold</option>
-                <option value="Silom">Silom</option>
-                <option value="Tahoma">Tahoma</option>
-                <option value="Tekton Pro">Tekton Pro</option>
-                <option value="Times">Times</option>
-                <option value="Verdana Pro">Verdana Pro</option>
-                <option value="Wide Latin">Wide Latin</option>
-                <option value="Wingdings">Wingdings</option>
-                <option value="Yu Gothic">Yu Gothic</option>
+                <!-- Aggiungi altri font qui in ordine alfabetico -->
             </select>
-            <label for="colorPicker">Seleziona il Colore dello Sfondo:</label>
+
+            <label for="colorPicker">Seleziona Colore Sfondo:</label>
             <input type="color" id="colorPicker" value="#f4f4f9">
-            <label for="textColorPicker">Seleziona il Colore del Testo:</label>
+
+            <label for="textColorPicker">Seleziona Colore Testo:</label>
             <input type="color" id="textColorPicker" value="#000000">
-            <label for="buttonColorPicker">Seleziona il Colore dei Pulsanti:</label>
-            <input type="color" id="buttonColorPicker" value="#007bff">
+
             <button class="close-settings" onclick="toggleSettings()">Chiudi</button>
         </div>
+
+        <!-- Esempio di post del blog -->
         <div class="entry">
             <h2>12 Dicembre</h2>
             <p>Abbiamo visitato quel magnifico parco e passeggiato tra gli alberi innevati. È stato un giorno indimenticabile. <span class="highlight" onclick="window.location.href='https://example.com/link1';">Clicca qui</span> per vedere la mappa del parco.</p>
             <img src="https://example.com/immagine1.jpg" alt="Parco innevato">
         </div>
-        <div class="comment-section">
-            <textarea id="commentInput" placeholder="Aggiungi un commento..."></textarea>
-            <button onclick="submitComment()">Invia</button>
-            <div class="comments" id="comments"></div>
-        </div>
+
+        <!-- Aggiungi altri post del blog qui -->
+
     </div>
+
     <script>
         function toggleSettings() {
             var settings = document.getElementById('settings');
@@ -349,12 +309,6 @@
             document.body.style.color = this.value;
         });
 
-        document.getElementById('buttonColorPicker').addEventListener('input', function() {
-            var buttons = document.querySelectorAll('button');
-            buttons.forEach(function(button) {
-                button.style.backgroundColor = document.getElementById('buttonColorPicker').value;
-            });
-        });
     </script>
 </body>
 </html>
