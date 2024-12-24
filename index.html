@@ -352,11 +352,8 @@
     });
 
     function loadComments() {
-        fetch('https://95ea-188-216-166-30.ngrok-free.app/comments')
-            .then(response => {
-                console.log('Risposta ricevuta:', response);
-                return response.json();
-            })
+        fetch('https://721c-188-216-166-30.ngrok-free.app/comments')
+            .then(response => response.json())
             .then(comments => {
                 var commentsContainer = document.getElementById('comments');
                 commentsContainer.innerHTML = '';
@@ -374,17 +371,14 @@
         var commentInput = document.getElementById('commentInput');
         var commentText = commentInput.value;
         if (commentText) {
-            fetch('https://95ea-188-216-166-30.ngrok-free.app/comments', {
+            fetch('https://721c-188-216-166-30.ngrok-free.app/comments', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ text: commentText })
             })
-            .then(response => {
-                console.log('Risposta POST ricevuta:', response);
-                return response.json();
-            })
+            .then(response => response.json())
             .then(comment => {
                 loadComments();
                 commentInput.value = '';
