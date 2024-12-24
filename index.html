@@ -5,117 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ricordi Speciali</title>
     <style>
-        @font-face {
-            font-family: 'Apple Chancery';
-            src: url('https://example.com/path-to-apple-chancery.woff') format('woff');
-        }
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-        }
-        .entry {
-            margin-bottom: 40px;
-            padding: 20px;
-            border-bottom: 1px solid #ddd;
-            border-radius: 10px;
-            background-color: #fafafa;
-        }
-        .entry h2 {
-            margin-top: 0;
-        }
-        .entry p {
-            line-height: 1.6;
-        }
-        .entry img {
-            max-width: 100%;
-            height: auto;
-            margin-top: 20px;
-            border-radius: 10px;
-        }
-        .highlight {
-            color: #007bff;
-            cursor: pointer;
-            text-decoration: underline;
-        }
-        .settings, .music {
-            display: none;
-            position: fixed;
-            top: 20px;
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-            z-index: 100;
-            width: 300px;
-        }
-        .settings {
-            right: 20px;
-        }
-        .music {
-            left: 20px;
-        }
-        .settings h2, .music h2 {
-            margin-top: 0;
-            font-size: 1.5em;
-            color: #007bff;
-        }
-        .settings label, .music label {
-            margin-top: 10px;
-            display: block;
-            font-weight: bold;
-        }
-        .settings select, .settings input[type="color"] {
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            margin-top: 5px;
-        }
-        .settings input[type="color"] {
-            -webkit-appearance: none;
-            border: none;
-            height: 40px;
-            cursor: pointer;
-        }
-        .settings input[type="color"]::-webkit-color-swatch-wrapper {
-            padding: 0;
-        }
-        .settings input[type="color"]::-webkit-color-swatch {
-            border: none;
-            border-radius: 5px;
-        }
-        .settings-button, .music-button {
-            position: fixed;
-            top: 20px;
-            background-color: #007bff;
-            color: #fff;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 101;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .settings-button {
-            right: 20px;
-        }
-        .music-button {
-            left: 20px;
-        }
         .close-settings, .close-music {
             margin-top: 15px;
             background-color: #f44336;
@@ -188,17 +77,9 @@
 <body>
     <div class="container">
         <h1>Ricordi Speciali</h1>
-        
-        <!-- Overlay -->
         <div class="overlay" id="overlay" onclick="closeWindows()"></div>
-
-        <!-- Pulsante per mostrare/nascondere le impostazioni -->
         <div class="settings-button" id="settingsButton" onclick="toggleSettings()">⚙️</div>
-        
-        <!-- Pulsante per mostrare/nascondere la musica -->
         <div class="music-button" id="musicButton" onclick="toggleMusic()">🎵</div>
-
-        <!-- Lettore musicale -->
         <div class="music" id="music">
             <h2>Gestisci la Musica</h2>
             <div class="music-container">
@@ -210,8 +91,6 @@
             </div>
             <button class="close-music" onclick="toggleMusic()">Chiudi</button>
         </div>
-
-        <!-- Interfaccia per cambiare font e colori -->
         <div class="settings" id="settings">
             <h2>Personalizza il Sito</h2>
             <label for="fontSelect">Seleziona Font:</label>
@@ -222,37 +101,24 @@
                 <option value="Georgia">Georgia</option>
                 <option value="Times New Roman">Times New Roman</option>
                 <option value="Verdana">Verdana</option>
-                <!-- Aggiungi altri font qui in ordine alfabetico -->
             </select>
-
             <label for="colorPicker">Seleziona Colore Sfondo:</label>
             <input type="color" id="colorPicker" value="#f4f4f9">
-
             <label for="textColorPicker">Seleziona Colore Testo:</label>
             <input type="color" id="textColorPicker" value="#000000">
-
             <button class="close-settings" onclick="toggleSettings()">Chiudi</button>
         </div>
-
-        <!-- Esempio di post del blog -->
         <div class="entry">
             <h2>12 Dicembre</h2>
             <p>Abbiamo visitato quel magnifico parco e passeggiato tra gli alberi innevati. È stato un giorno indimenticabile. <span class="highlight" onclick="window.location.href='https://example.com/link1';">Clicca qui</span> per vedere la mappa del parco.</p>
             <img src="https://example.com/immagine1.jpg" alt="Parco innevato">
         </div>
-
-       <!-- HTML per il pulsante "Invia" -->
-<div class="comment-section">
-    <textarea id="commentInput" placeholder="Aggiungi un commento..."></textarea>
-    <button onclick="submitComment()">Invia</button>
-    <div class="comments" id="comments"></div>
-</div>
-
-
-        <!-- Aggiungi altri post del blog qui -->
-
+        <div class="comment-section">
+            <textarea id="commentInput" placeholder="Aggiungi un commento..."></textarea>
+            <button onclick="submitComment()">Invia</button>
+            <div class="comments" id="comments"></div>
+        </div>
     </div>
-
     <script>
         function toggleSettings() {
             var settings = document.getElementById('settings');
@@ -317,73 +183,45 @@
             document.body.style.color = this.value;
         });
 
-        // Aggiunta della logica per localStorage
         document.addEventListener('DOMContentLoaded', function() {
             loadComments();
         });
 
         function loadComments() {
-            var comments = JSON.parse(localStorage.getItem('comments')) || [];
-            var commentsContainer = document.getElementById('comments');
-            commentsContainer.innerHTML = '';
-            comments.forEach(function(comment) {
-                var newComment = document.createElement('div');
-                newComment.className = 'comment';
-                newComment.textContent = comment.text;
-                commentsContainer.appendChild(newComment);
-            });
+            fetch('https://721c-188-216-166-30.ngrok-free.app/comments')
+                .then(response => response.json())
+                .then(comments => {
+                    var commentsContainer = document.getElementById('comments');
+                    commentsContainer.innerHTML = '';
+                    comments.forEach(function(comment) {
+                        var newComment = document.createElement('div');
+                        newComment.className = 'comment';
+                        newComment.textContent = comment.text;
+                        commentsContainer.appendChild(newComment);
+                    });
+                })
+                .catch(error => console.error('Errore nel caricamento dei commenti:', error));
         }
 
         function submitComment() {
             var commentInput = document.getElementById('commentInput');
             var commentText = commentInput.value;
             if (commentText) {
-                var comments = JSON.parse(localStorage.getItem('comments')) || [];
-                comments.push({ text: commentText });
-                localStorage.setItem('comments', JSON.stringify(comments));
-                loadComments();
-                commentInput.value = '';
+                fetch('https://721c-188-216-166-30.ngrok-free.app/comments', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ text: commentText })
+                })
+                .then(response => response.json())
+                .then(comment => {
+                    loadComments();
+                    commentInput.value = '';
+                })
+                .catch(error => console.error('Errore nell\'invio del commento:', error));
             }
         }
-    document.addEventListener('DOMContentLoaded', function() {
-        loadComments();
-    });
-
-    function loadComments() {
-        fetch('https://721c-188-216-166-30.ngrok-free.app/comments')
-            .then(response => response.json())
-            .then(comments => {
-                var commentsContainer = document.getElementById('comments');
-                commentsContainer.innerHTML = '';
-                comments.forEach(function(comment) {
-                    var newComment = document.createElement('div');
-                    newComment.className = 'comment';
-                    newComment.textContent = comment.text;
-                    commentsContainer.appendChild(newComment);
-                });
-            })
-            .catch(error => console.error('Errore nel caricamento dei commenti:', error));
-    }
-
-    function submitComment() {
-        var commentInput = document.getElementById('commentInput');
-        var commentText = commentInput.value;
-        if (commentText) {
-            fetch('https://721c-188-216-166-30.ngrok-free.app/comments', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ text: commentText })
-            })
-            .then(response => response.json())
-            .then(comment => {
-                loadComments();
-                commentInput.value = '';
-            })
-            .catch(error => console.error('Errore nell\'invio del commento:', error));
-        }
-    }
-</script>
+    </script>
 </body>
 </html>
