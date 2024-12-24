@@ -71,6 +71,15 @@
             cursor: pointer;
             text-align: center;
         }
+        .close-settings {
+            margin-top: 10px;
+            background-color: #f44336;
+            color: #fff;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
         .color-picker {
             border-radius: 5px;
             padding: 5px;
@@ -94,6 +103,17 @@
             border: none;
             border-radius: 10px;
             cursor: pointer;
+        }
+        .comments {
+            margin-top: 20px;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+        .comment {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #f9f9f9;
         }
     </style>
 </head>
@@ -123,6 +143,8 @@
 
             <label for="textColorPicker">Seleziona Colore Testo:</label>
             <input type="color" id="textColorPicker" class="color-picker" value="#000000">
+
+            <button class="close-settings" onclick="toggleSettings()">Chiudi</button>
         </div>
 
         <!-- Esempio di post del blog -->
@@ -134,8 +156,9 @@
 
         <!-- Sezione commenti -->
         <div class="comment-section">
-            <textarea placeholder="Aggiungi un commento..."></textarea>
+            <textarea id="commentInput" placeholder="Aggiungi un commento..."></textarea>
             <button onclick="submitComment()">Invia</button>
+            <div class="comments" id="comments"></div>
         </div>
 
         <!-- Aggiungi altri post del blog qui -->
@@ -148,7 +171,7 @@
             var container = document.querySelector('.container');
             if (settings.style.display === 'none' || settings.style.display === '') {
                 settings.style.display = 'block';
-                container.style.filter = 'blur(5px)';
+                container.style.filter = 'blur(3px)';
             } else {
                 settings.style.display = 'none';
                 container.style.filter = 'none';
@@ -168,7 +191,16 @@
         });
 
         function submitComment() {
-            alert('Commento inviato!');
+            var commentInput = document.getElementById('commentInput');
+            var commentText = commentInput.value;
+            if (commentText) {
+                var commentsContainer = document.getElementById('comments');
+                var newComment = document.createElement('div');
+                newComment.className = 'comment';
+                newComment.textContent = commentText;
+                commentsContainer.appendChild(newComment);
+                commentInput.value = '';
+            }
         }
     </script>
 </body>
