@@ -10,7 +10,7 @@
             src: url('https://example.com/path-to-apple-chancery.woff') format('woff');
         }
         body {
-            font-family: 'Arial', sans-serif';
+            font-family: 'Arial', sans-serif;
             background-color: #f4f4f9;
             margin: 0;
             padding: 20px;
@@ -62,7 +62,7 @@
             right: 20px;
         }
         .music {
-            left: 60px; /* Spostata leggermente più a destra */
+            left: 20px;
         }
         .settings h2, .music h2 {
             margin-top: 0;
@@ -180,13 +180,13 @@
         <h1>Ricordi Speciali</h1>
         
         <!-- Pulsante per mostrare/nascondere le impostazioni -->
-        <div class="settings-button" onclick="toggleSettings()">⚙️</div>
+        <div class="settings-button" id="settingsButton" onclick="toggleSettings()">⚙️</div>
         
         <!-- Pulsante per mostrare/nascondere la musica -->
-        <div class="music-button" onclick="toggleMusic()">🎵</div>
+        <div class="music-button" id="musicButton" onclick="toggleMusic()">🎵</div>
 
         <!-- Lettore musicale -->
-        <div class="music">
+        <div class="music" id="music">
             <h2>Gestisci la Musica</h2>
             <div class="music-container">
                 <img src="URL-della-tua-immagine.jpg" alt="Copertina della canzone">
@@ -199,7 +199,7 @@
         </div>
 
         <!-- Interfaccia per cambiare font e colori -->
-        <div class="settings">
+        <div class="settings" id="settings">
             <h2>Personalizza il Sito</h2>
             <label for="fontSelect">Seleziona Font:</label>
             <select id="fontSelect">
@@ -241,20 +241,26 @@
 
     <script>
         function toggleSettings() {
-            var settings = document.querySelector('.settings');
+            var settings = document.getElementById('settings');
+            var settingsButton = document.getElementById('settingsButton');
             if (settings.style.display === 'none' || settings.style.display === '') {
                 settings.style.display = 'block';
+                settingsButton.style.display = 'none';
             } else {
                 settings.style.display = 'none';
+                settingsButton.style.display = 'flex';
             }
         }
 
         function toggleMusic() {
-            var music = document.querySelector('.music');
+            var music = document.getElementById('music');
+            var musicButton = document.getElementById('musicButton');
             if (music.style.display === 'none' || music.style.display === '') {
                 music.style.display = 'block';
+                musicButton.style.display = 'none';
             } else {
                 music.style.display = 'none';
+                musicButton.style.display = 'flex';
             }
         }
 
