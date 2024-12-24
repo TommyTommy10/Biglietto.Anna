@@ -58,8 +58,7 @@
             padding: 15px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            z-index: 10;
-            filter: none;
+            z-index: 100;
         }
         .settings-button {
             position: fixed;
@@ -75,6 +74,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            z-index: 101;
         }
         .close-settings {
             margin-top: 10px;
@@ -130,7 +130,7 @@
         <div class="settings-button" onclick="toggleSettings()">⚙️</div>
         
         <!-- Interfaccia per cambiare font e colori -->
-        <div class="settings">
+        <div class="settings" id="settings">
             <h2>Personalizza il Sito</h2>
             <label for="fontSelect">Seleziona Font:</label>
             <select id="fontSelect">
@@ -177,6 +177,7 @@
             if (settings.style.display === 'none' || settings.style.display === '') {
                 settings.style.display = 'block';
                 container.style.filter = 'blur(2px)';
+                settings.style.zIndex = '101'; // Porta le impostazioni in primo piano
             } else {
                 settings.style.display = 'none';
                 container.style.filter = 'none';
