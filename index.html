@@ -316,15 +316,31 @@
             document.body.style.color = this.value;
         });
 
+        // Aggiunta della logica per localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            loadComments();
+        });
+
+        function loadComments() {
+            var comments = JSON.parse(localStorage.getItem('comments')) || [];
+            var commentsContainer = document.getElementById('comments');
+            commentsContainer.innerHTML = '';
+            comments.forEach(function(comment) {
+                var newComment = document.createElement('div');
+                newComment.className = 'comment';
+                newComment.textContent = comment.text;
+                commentsContainer.appendChild(newComment);
+            });
+        }
+
         function submitComment() {
             var commentInput = document.getElementById('commentInput');
             var commentText = commentInput.value;
             if (commentText) {
-                var commentsContainer = document.getElementById('comments');
-                var newComment = document.createElement('div');
-                newComment.className = 'comment';
-                newComment.textContent = commentText;
-                commentsContainer.appendChild(newComment);
+                var comments = JSON.parse(localStorage.getItem('comments')) || [];
+                comments.push({ text: commentText });
+                localStorage.setItem('comments', JSON.stringify(comments));
+                loadComments();
                 commentInput.value = '';
             }
         }
