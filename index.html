@@ -97,7 +97,7 @@
         .settings-button, .music-button {
             position: fixed;
             top: 20px;
-            background-color: #007bff;
+            background-color: var(--button-color);
             color: #fff;
             width: 40px;
             height: 40px;
@@ -118,7 +118,7 @@
         }
         .close-settings, .close-music {
             margin-top: 15px;
-            background-color: #f44336;
+            background-color: var(--button-color);
             color: #fff;
             padding: 10px;
             border: none;
@@ -256,13 +256,16 @@
             <label for="textColorPicker">Seleziona Colore Testo:</label>
             <input type="color" id="textColorPicker" value="#000000">
 
+            <label for="buttonColorPicker">Seleziona Colore Bottoni:</label>
+            <input type="color" id="buttonColorPicker" value="#007bff">
+
             <button class="close-settings" onclick="toggleSettings()">Chiudi</button>
         </div>
 
         <!-- Esempio di post del blog -->
         <div class="entry">
             <h2>12 Dicembre</h2>
-            <p>Abbiamo visitato quel magnifico parco e passeggiato tra gli alberi innevati. È stato un giorno indimenticabile. <span class="highlight" onclick="window.location.href='https://example.com/link1';">Clicca qui</span> per vedere la mappa del parco.</p>
+            <p>Abbiamo visitato quel magnifico parco e passeggiato tra gli alberi innevati. È stato un giorno indimenticabile. <span class="highlight" onclick="window.location.href='https://example.c[...]
             <img src="https://example.com/immagine1.jpg" alt="Parco innevato">
         </div>
 
@@ -332,6 +335,10 @@
 
         document.getElementById('textColorPicker').addEventListener('input', function() {
             document.body.style.color = this.value;
+        });
+
+        document.getElementById('buttonColorPicker').addEventListener('input', function() {
+            document.documentElement.style.setProperty('--button-color', this.value);
         });
     </script>
 </body>
