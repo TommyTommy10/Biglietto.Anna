@@ -74,23 +74,23 @@
             display: block;
             font-weight: bold;
         }
-        .settings select, .settings input[type="color"], .music input[type="url"], .music input[type="text"] {
+        .settings select, .settings input[type="color"], .music input[type="url"], .music input[type="text"], .music input[type="file"] {
             width: 100%;
             padding: 10px;
             border-radius: 5px;
             border: 1px solid #ddd;
             margin-top: 5px;
         }
-        .settings input[type="color"], .music input[type="url"], .music input[type="text"] {
+        .settings input[type="color"], .music input[type="url"], .music input[type="text"], .music input[type="file"] {
             -webkit-appearance: none;
             border: none;
             height: 40px;
             cursor: pointer;
         }
-        .settings input[type="color"]::-webkit-color-swatch-wrapper, .music input[type="url"]::-webkit-color-swatch-wrapper, .music input[type="text"]::-webkit-color-swatch-wrapper {
+        .settings input[type="color"]::-webkit-color-swatch-wrapper, .music input[type="url"]::-webkit-color-swatch-wrapper, .music input[type="text"]::-webkit-color-swatch-wrapper, .music input[type="file"]::-webkit-color-swatch-wrapper {
             padding: 0;
         }
-        .settings input[type="color"]::-webkit-color-swatch, .music input[type="url"]::-webkit-color-swatch, .music input[type="text"]::-webkit-color-swatch {
+        .settings input[type="color"]::-webkit-color-swatch, .music input[type="url"]::-webkit-color-swatch, .music input[type="text"]::-webkit-color-swatch, .music input[type="file"]::-webkit-color-swatch {
             border: none;
             border-radius: 5px;
         }
@@ -138,14 +138,10 @@
             border-radius: 10px;
             margin-right: 20px;
         }
-        .music-container a {
-            display: inline-block;
-            background-color: #1db954;
-            color: #fff;
-            padding: 10px 15px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
+        .music-container audio {
+            width: 300px;
+            height: 50px;
+            border-radius: 10px;
         }
         .comment-section {
             margin-top: 20px;
@@ -191,11 +187,11 @@
         <!-- Lettore musicale -->
         <div class="music">
             <h2>Gestisci la Musica</h2>
-            <label for="spotifyUrl">URL della Canzone su Spotify:</label>
-            <input type="url" id="spotifyUrl" placeholder="Inserisci l'URL della canzone su Spotify">
-            
             <label for="songImage">Immagine della Canzone:</label>
             <input type="text" id="songImage" placeholder="URL dell'immagine della canzone">
+            
+            <label for="audioFile">File Audio:</label>
+            <input type="file" id="audioFile" accept="audio/*">
             
             <button class="close-music" onclick="toggleMusic()">Chiudi</button>
         </div>
@@ -277,20 +273,7 @@
             document.body.style.color = this.value;
         });
 
-        function submitComment() {
-            var commentInput = document.getElementById('commentInput');
-            var commentText = commentInput.value;
-            if (commentText) {
-                var commentsContainer = document.getElementById('comments');
-                var newComment = document.createElement('div');
-                newComment.className = 'comment';
-                newComment.textContent = commentText;
-                commentsContainer.appendChild(newComment);
-                commentInput.value = '';
-            }
-        }
-
-        document.getElementById('spotifyUrl').addEventListener('input', function() {
+        document.getElementById('audioFile').addEventListener('change', function() {
             updateMusicPlayer();
         });
 
@@ -299,10 +282,13 @@
         });
 
         function updateMusicPlayer() {
-            var spotifyUrl = document.getElementById('spotifyUrl').value;
             var songImage = document.getElementById('songImage').value;
+            var audioFile = document.getElementById('audioFile').files[0];
             var musicContainer = document.getElementById('musicContainer');
-            musicContainer.innerHTML = '<img src="' + songImage + '" alt="Copertina della canzone"><a href="' + spotifyUrl + '" target="_blank">Ascolta su Spotify</a>';
+            if (audioFile) {
+                var audioURL = URL.createObjectURL(audioFile);
+                musicContainer.innerHTML = '<img src="' + songImage + '" alt="Copertina della canzone"><audio controls src="' + audioURL + '"></audio>';
+            }
         }
     </script>
 </body>
