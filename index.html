@@ -94,7 +94,7 @@
             border: none;
             border-radius: 5px;
         }
-        .settings-button, .music-button {
+        .settings-button, .music-button[type="color"] {
             position: fixed;
             top: 20px;
             background-color: #007bff;
@@ -144,35 +144,7 @@
             height: 50px;
             border-radius: 10px;
         }
-        .comment-section {
-            margin-top: 20px;
-        }
-        .comment-section textarea {
-            width: 100%;
-            padding: 10px;
-            border-radius: 10px;
-            border: 1px solid #ddd;
-            margin-bottom: 10px;
-        }
-        .comment-section button {
-            background-color: #007bff;
-            color: #fff;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-        .comments {
-            margin-top: 20px;
-            border-top: 1px solid #ddd;
-            padding-top: 10px;
-        }
-        .comment {
-            margin-bottom: 10px;
-            padding: 10px;
-            border-radius: 10px;
-            background-color: #f9f9f9;
-        }
+        
         .overlay {
             display: none;
             position: fixed;
@@ -308,7 +280,12 @@
         document.getElementById('textColorPicker').addEventListener('input', function() {
             document.body.style.color = this.value;
         });
-
+        document.getElementById('buttonColorPicker').addEventListener('input', function() {
+            var buttons = document.querySelectorAll('button');
+            buttons.forEach(function(button) {
+                button.style.backgroundColor = document.getElementById('buttonColorPicker').value;
+    });
+});
     </script>
 </body>
 </html>
