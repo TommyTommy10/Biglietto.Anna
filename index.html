@@ -47,11 +47,10 @@
             cursor: pointer;
             text-decoration: underline;
         }
-        .settings {
+        .settings, .music {
             display: none;
             position: fixed;
             top: 20px;
-            right: 20px;
             background-color: #f9f9f9;
             padding: 20px;
             border-radius: 10px;
@@ -59,40 +58,45 @@
             z-index: 100;
             width: 300px;
         }
-        .settings h2 {
+        .settings {
+            right: 20px;
+        }
+        .music {
+            left: 20px;
+        }
+        .settings h2, .music h2 {
             margin-top: 0;
             font-size: 1.5em;
             color: #007bff;
         }
-        .settings label {
+        .settings label, .music label {
             margin-top: 10px;
             display: block;
             font-weight: bold;
         }
-        .settings select, .settings input[type="color"] {
+        .settings select, .settings input[type="color"], .music input[type="url"], .music input[type="text"] {
             width: 100%;
             padding: 10px;
             border-radius: 5px;
             border: 1px solid #ddd;
             margin-top: 5px;
         }
-        .settings input[type="color"] {
+        .settings input[type="color"], .music input[type="url"], .music input[type="text"] {
             -webkit-appearance: none;
             border: none;
             height: 40px;
             cursor: pointer;
         }
-        .settings input[type="color"]::-webkit-color-swatch-wrapper {
+        .settings input[type="color"]::-webkit-color-swatch-wrapper, .music input[type="url"]::-webkit-color-swatch-wrapper, .music input[type="text"]::-webkit-color-swatch-wrapper {
             padding: 0;
         }
-        .settings input[type="color"]::-webkit-color-swatch {
+        .settings input[type="color"]::-webkit-color-swatch, .music input[type="url"]::-webkit-color-swatch, .music input[type="text"]::-webkit-color-swatch {
             border: none;
             border-radius: 5px;
         }
-        .settings-button {
+        .settings-button, .music-button {
             position: fixed;
             top: 20px;
-            right: 20px;
             background-color: #007bff;
             color: #fff;
             width: 40px;
@@ -106,7 +110,13 @@
             z-index: 101;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        .close-settings {
+        .settings-button {
+            right: 20px;
+        }
+        .music-button {
+            left: 20px;
+        }
+        .close-settings, .close-music {
             margin-top: 15px;
             background-color: #f44336;
             color: #fff;
@@ -116,6 +126,26 @@
             cursor: pointer;
             width: 100%;
             text-align: center;
+        }
+        .music-container {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .music-container img {
+            max-width: 100px;
+            height: auto;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+        .music-container a {
+            display: inline-block;
+            background-color: #1db954;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
         }
         .comment-section {
             margin-top: 20px;
@@ -152,15 +182,29 @@
     <div class="container">
         <h1>Ricordi Speciali</h1>
         
-        <!-- Lettore musicale -->
-        <audio controls>
-            <source src="path-to-your-favorite-song.mp3" type="audio/mpeg">
-            Il tuo browser non supporta l'elemento audio.
-        </audio>
-
         <!-- Pulsante per mostrare/nascondere le impostazioni -->
         <div class="settings-button" onclick="toggleSettings()">⚙️</div>
         
+        <!-- Pulsante per mostrare/nascondere la musica -->
+        <div class="music-button" onclick="toggleMusic()">🎵</div>
+
+        <!-- Lettore musicale -->
+        <div class="music">
+            <h2>Gestisci la Musica</h2>
+            <label for="spotifyUrl">URL della Canzone su Spotify:</label>
+            <input type="url" id="spotifyUrl" placeholder="Inserisci l'URL della canzone su Spotify">
+            
+            <label for="songImage">Immagine della Canzone:</label>
+            <input type="text" id="songImage" placeholder="URL dell'immagine della canzone">
+            
+            <button class="close-music" onclick="toggleMusic()">Chiudi</button>
+        </div>
+
+        <!-- Visualizzatore musicale -->
+        <div class="music-container" id="musicContainer">
+            <!-- Contenuto dinamico della musica qui -->
+        </div>
+
         <!-- Interfaccia per cambiare font e colori -->
         <div class="settings">
             <h2>Personalizza il Sito</h2>
@@ -212,6 +256,15 @@
             }
         }
 
+        function toggleMusic() {
+            var music = document.querySelector('.music');
+            if (music.style.display === 'none' || music.style.display === '') {
+                music.style.display = 'block';
+            } else {
+                music.style.display = 'none';
+            }
+        }
+
         document.getElementById('fontSelect').addEventListener('change', function() {
             document.body.style.fontFamily = this.value;
         });
@@ -235,6 +288,21 @@
                 commentsContainer.appendChild(newComment);
                 commentInput.value = '';
             }
+        }
+
+        document.getElementById('spotifyUrl').addEventListener('input', function() {
+            updateMusicPlayer();
+        });
+
+        document.getElementById('songImage').addEventListener('input', function() {
+            updateMusicPlayer();
+        });
+
+        function updateMusicPlayer() {
+            var spotifyUrl = document.getElementById('spotifyUrl').value;
+            var songImage = document.getElementById('songImage').value;
+            var musicContainer = document.getElementById('musicContainer');
+            musicContainer.innerHTML = '<img src="' + songImage + '" alt="Copertina della canzone"><a href="' + spotifyUrl + '" target="_blank">Ascolta su Spotify</a>';
         }
     </script>
 </body>
