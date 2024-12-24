@@ -59,6 +59,7 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             z-index: 10;
+            filter: none;
         }
         .settings-button {
             position: fixed;
@@ -176,7 +177,6 @@
             if (settings.style.display === 'none' || settings.style.display === '') {
                 settings.style.display = 'block';
                 container.style.filter = 'blur(2px)';
-                settings.style.filter = 'none';  // Ensure settings are not blurred
             } else {
                 settings.style.display = 'none';
                 container.style.filter = 'none';
