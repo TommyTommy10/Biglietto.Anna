@@ -116,3 +116,181 @@
         .music-button {
             left: 20px;
         }
+        .close-settings, .close-music {
+            margin-top: 15px;
+            background-color: #f44336;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+        }
+        .music-container {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .music-container img {
+            max-width: 100px;
+            height: auto;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+        .music-container audio {
+            width: 300px;
+            height: 50px;
+            border-radius: 10px;
+        }
+        .comment-section {
+            margin-top: 20px;
+        }
+        .comment-section textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        .comment-section button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .comments {
+            margin-top: 20px;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+        .comment {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ricordi Speciali</h1>
+        
+        <!-- Pulsante per mostrare/nascondere le impostazioni -->
+        <div class="settings-button" onclick="toggleSettings()">⚙️</div>
+        
+        <!-- Pulsante per mostrare/nascondere la musica -->
+        <div class="music-button" onclick="toggleMusic()">🎵</div>
+
+        <!-- Lettore musicale -->
+        <div class="music">
+            <h2>Gestisci la Musica</h2>
+            <label for="audioFile">File Audio:</label>
+            <input type="file" id="audioFile" accept="audio/*">
+            
+            <label for="songImage">Immagine della Canzone:</label>
+            <input type="file" id="songImage" accept="image/*">
+            
+            <button class="close-music" onclick="toggleMusic()">Chiudi</button>
+        </div>
+
+        <!-- Visualizzatore musicale -->
+        <div class="music-container" id="musicContainer">
+            <!-- Contenuto dinamico della musica qui -->
+        </div>
+
+        <!-- Interfaccia per cambiare font e colori -->
+        <div class="settings">
+            <h2>Personalizza il Sito</h2>
+            <label for="fontSelect">Seleziona Font:</label>
+            <select id="fontSelect">
+                <option value="Arial">Arial</option>
+                <option value="Apple Chancery">Apple Chancery</option>
+                <option value="Courier New">Courier New</option>
+                <option value="Georgia">Georgia</option>
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="Verdana">Verdana</option>
+                <!-- Aggiungi altri font qui in ordine alfabetico -->
+            </select>
+
+            <label for="colorPicker">Seleziona Colore Sfondo:</label>
+            <input type="color" id="colorPicker" value="#f4f4f9">
+
+            <label for="textColorPicker">Seleziona Colore Testo:</label>
+            <input type="color" id="textColorPicker" value="#000000">
+
+            <button class="close-settings" onclick="toggleSettings()">Chiudi</button>
+        </div>
+
+        <!-- Esempio di post del blog -->
+        <div class="entry">
+            <h2>12 Dicembre</h2>
+            <p>Abbiamo visitato quel magnifico parco e passeggiato tra gli alberi innevati. È stato un giorno indimenticabile. <span class="highlight" onclick="window.location.href='https://example.com/link1';">Clicca qui</span> per vedere la mappa del parco.</p>
+            <img src="https://example.com/immagine1.jpg" alt="Parco innevato">
+        </div>
+
+        <!-- Sezione commenti -->
+        <div class="comment-section">
+            <textarea id="commentInput" placeholder="Aggiungi un commento..."></textarea>
+            <button onclick="submitComment()">Invia</button>
+            <div class="comments" id="comments"></div>
+        </div>
+
+        <!-- Aggiungi altri post del blog qui -->
+
+    </div>
+
+    <script>
+        function toggleSettings() {
+            var settings = document.querySelector('.settings');
+            if (settings.style.display === 'none' || settings.style.display === '') {
+                settings.style.display = 'block';
+            } else {
+                settings.style.display = 'none';
+            }
+        }
+
+        function toggleMusic() {
+            var music = document.querySelector('.music');
+            if (music.style.display === 'none' || music.style.display === '') {
+                music.style.display = 'block';
+            } else {
+                music.style.display = 'none';
+            }
+        }
+
+        document.getElementById('fontSelect').addEventListener('change', function() {
+            document.body.style.fontFamily = this.value;
+        });
+
+        document.getElementById('colorPicker').addEventListener('input', function() {
+            document.body.style.backgroundColor = this.value;
+        });
+
+        document.getElementById('textColorPicker').addEventListener('input', function() {
+            document.body.style.color = this.value;
+        });
+
+        document.getElementById('audioFile').addEventListener('change', function() {
+            updateMusicPlayer();
+        });
+
+        document.getElementById('songImage').addEventListener('change', function() {
+            updateMusicPlayer();
+        });
+
+        function updateMusicPlayer() {
+            var songImage = document.getElementById('songImage').files[0];
+            var audioFile = document.getElementById('audioFile').files[0];
+            var musicContainer = document.getElementById('musicContainer');
+            if (audioFile && songImage) {
+                var audioURL = URL.createObjectURL(audioFile);
+                var imageURL = URL.createObjectURL(songImage);
+                musicContainer.innerHTML = '<img src="' + imageURL + '" alt="Copertina della canzone"><audio controls src="' + audioURL + '"></audio>';
+            }
+        }
+    </script>
+</body>
+</html>
