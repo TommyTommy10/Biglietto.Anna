@@ -6,7 +6,7 @@
     <title>Ricordi Speciali</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             background-color: #f4f4f9;
             margin: 0;
             padding: 20px;
@@ -19,12 +19,20 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         .entry {
-            margin-bottom: 20px;
-            padding: 10px;
+            margin-bottom: 40px;
+            padding: 20px;
             border-bottom: 1px solid #ddd;
+        }
+        .entry h2 {
+            margin-top: 0;
         }
         .entry p {
             line-height: 1.6;
+        }
+        .entry img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
         }
         .highlight {
             color: #007bff;
@@ -36,12 +44,14 @@
     <div class="container">
         <h1>Ricordi Speciali</h1>
         
-        <!-- Esempio di paragrafo con un link -->
+        <!-- Esempio di post del blog -->
         <div class="entry">
-            <p>Il <span class="highlight" onclick="window.location.href='https://example.com/link1';">12 dicembre</span> abbiamo visitato quel magnifico parco e passeggiato tra gli alberi innevati. È stato un giorno indimenticabile.</p>
+            <h2>12 Dicembre</h2>
+            <p>Abbiamo visitato quel magnifico parco e passeggiato tra gli alberi innevati. È stato un giorno indimenticabile. <span class="highlight" onclick="window.location.href='https://example.com/link1';">Clicca qui</span> per vedere la mappa del parco.</p>
+            <img src="https://example.com/immagine1.jpg" alt="Parco innevato">
         </div>
 
-        <!-- Aggiungi altri paragrafi qui -->
+        <!-- Aggiungi altri post del blog qui -->
 
     </div>
 </body>
