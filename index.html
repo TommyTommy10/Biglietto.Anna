@@ -241,13 +241,6 @@
             <img src="https://example.com/immagine1.jpg" alt="Parco innevato">
         </div>
 
-        <!-- Sezione commenti -->
-        <div class="comment-section">
-            <textarea id="commentInput" placeholder="Aggiungi un commento..."></textarea>
-            <button onclick="submitComment()">Invia</button>
-            <div class="comments" id="comments"></div>
-        </div>
-
         <!-- Aggiungi altri post del blog qui -->
 
     </div>
@@ -315,19 +308,7 @@
         document.getElementById('textColorPicker').addEventListener('input', function() {
             document.body.style.color = this.value;
         });
-
-        function submitComment() {
-            var commentInput = document.getElementById('commentInput');
-            var commentText = commentInput.value;
-            if (commentText) {
-                var commentsContainer = document.getElementById('comments');
-                var newComment = document.createElement('div');
-                newComment.className = 'comment';
-                newComment.textContent = commentText;
-                commentsContainer.appendChild(newComment);
-                commentInput.value = '';
-            }
-        }
+        
     </script>
 </body>
 </html>
