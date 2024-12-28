@@ -160,6 +160,33 @@
         :root {
             --button-color: #007bff;
         }
+
+         /* Media queries for different devices */
+    @media (max-width: 768px) {
+        .container {
+            width: 100%;
+            padding: 10px;
+        }
+        .settings, .music {
+            width: 90%;
+        }
+    }
+    @media (max-width: 480px) {
+        .container {
+            width: 100%;
+            padding: 5px;
+        }
+        .entry {
+            padding: 10px;
+        }
+        .settings, .music {
+            width: 100%;
+        }
+        .settings-button, .music-button {
+            width: 30px;
+            height: 30px;
+        }
+    }
     </style>
 </head>
 <body>
