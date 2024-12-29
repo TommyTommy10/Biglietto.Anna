@@ -8,7 +8,7 @@
     <link rel="icon" href="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/2.png" type="image/png">
     <link href="https://fonts.googleapis.com/css?family=Alex+Brush|Allura|Amatic+SC|Arial|Bilbo+Swash+Caps|Brush+Script+MT|Comic+Sans+MS|Courier+New|Dancing+Script|Edwardian+Script+ITC|Euphoria+Script|Fondamento|Gabriola|Garamond|Georgia|Great+Vibes|Herr+Von+Muellerhoff|Indie+Flower|Italianno|Just+Another+Hand|Kunstler+Script|League+Script|Lobster|Lucida+Handwriting|Meddon|Merienda|Monotype+Corsiva|Monsieur+La+Doulaise|Niconne|Norican|Oleo+Script|Over+the+Rainbow|Pacifico|Palace+Script+MT|Papyrus|Parisienne|Permanent+Marker|Pangolin|Pinyon+Script|Poiret+One|Segoe+Script|Snell+Roundhand|Times+New+Roman|Trebuchet+MS|Verdana&display=swap" rel="stylesheet">
     <title>Ricordi Speciali</title>
-    <style>
+<style>
     @font-face {
         font-family: 'Apple Chancery';
         src: url('https://example.com/path-to-apple-chancery.woff') format('woff');
@@ -215,6 +215,44 @@
         border-bottom: 1px solid var(--colore-link); /* Sottolinea con il colore del link */
     }
 
+    /* Aggiunte per il menu musicale */
+    .music-menu {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .music-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .music-icon {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .back-button {
+        background: none;
+        border: none;
+        font-size: 2em;
+        cursor: pointer;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+    }
+
+    .music-player {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
     /* Media queries per dispositivi diversi */
     @media (max-width: 768px) {
         .container {
@@ -258,22 +296,31 @@
         <!-- Pulsante per mostrare le impostazioni -->
         <div class="settings-button" id="settingsButton" onclick="toggleSettings()">⚙️</div>
         
-        <!-- Pulsante per mostrare la musica -->
-        <div class="music-button" id="musicButton" onclick="toggleMusic()">🎵</div>
+     <!-- Pulsante per mostrare la musica -->
+<div class="music-button" id="musicButton" onclick="toggleMusic()">🎵</div>
 
-        <!-- Lettore musicale -->
-        <div class="music" id="music">
-            <h2>Gestisci la Musica</h2>
-            <div class="music-container">
-                <img src="URL-della-tua-immagine.jpg" alt="Copertina della canzone">
-                <audio controls>
-                    <source src="URL-del-tuo-file-audio.mp3" type="audio/mpeg">
-                    Il tuo browser non supporta l'elemento audio.
-                </audio>
-            </div>
-            <button class="close-music" onclick="toggleMusic()">Chiudi</button>
+<!-- Finestra della musica -->
+<div class="music" id="music">
+    <div class="music-menu" id="musicMenu">
+        <div class="music-item" onclick="playSong('song1')">
+            <img src="path-to-icon1.png" alt="Song 1 Icon" class="music-icon">
+            <p>Song 1</p>
         </div>
-
+        <div class="music-item" onclick="playSong('song2')">
+            <img src="path-to-icon2.png" alt="Song 2 Icon" class="music-icon">
+            <p>Song 2</p>
+        </div>
+        <!-- Aggiungi altre canzoni come desideri -->
+    </div>
+    <div class="music-player" id="musicPlayer" style="display:none;">
+        <button class="back-button" onclick="showMenu()">←</button>
+        <audio id="audioPlayer" controls>
+            <source id="audioSource" src="" type="audio/mpeg">
+            Il tuo browser non supporta l'elemento audio.
+        </audio>
+    </div>
+    <button class="close-music" onclick="toggleMusic()">Chiudi</button>
+</div>
         <!-- Interfaccia per cambiare font e colori -->
         <div class="settings" id="settings">
             <h2>Personalizza il Sito</h2>
@@ -377,7 +424,7 @@
 
     </div>
 
-    <script>
+<script>
     function toggleSettings() {
         var settings = document.getElementById('settings');
         var settingsButton = document.getElementById('settingsButton');
@@ -427,6 +474,31 @@
         music.style.display = 'none';
         musicButton.style.display = 'flex';
         overlay.style.display = 'none';
+    }
+
+    function playSong(songId) {
+        var audioPlayer = document.getElementById('audioPlayer');
+        var audioSource = document.getElementById('audioSource');
+        var musicMenu = document.getElementById('musicMenu');
+        var musicPlayer = document.getElementById('musicPlayer');
+
+        // Imposta il percorso della canzone da riprodurre
+        audioSource.src = 'path-to-' + songId + '.mp3';
+        audioPlayer.load();
+        audioPlayer.play();
+
+        // Mostra il lettore musicale e nascondi il menu
+        musicMenu.style.display = 'none';
+        musicPlayer.style.display = 'flex';
+    }
+
+    function showMenu() {
+        var musicMenu = document.getElementById('musicMenu');
+        var musicPlayer = document.getElementById('musicPlayer');
+
+        // Mostra il menu e nascondi il lettore musicale
+        musicMenu.style.display = 'flex';
+        musicPlayer.style.display = 'none';
     }
 
     document.addEventListener('DOMContentLoaded', function() {
