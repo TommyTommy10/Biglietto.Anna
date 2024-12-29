@@ -249,7 +249,7 @@
         font-size: 2em;
         cursor: pointer;
         position: absolute; /* Impostato come assoluto per precisione */
-        top: 0; /* Allinea la parte superiore della freccia con l'immagine */
+        top: 20px; /* Allinea la freccia con l'immagine della canzone */
         left: 20px;
         z-index: 102; /* Assicurati che il pulsante sia sopra altri elementi */
         color: #fff;
@@ -315,6 +315,7 @@
         .back-button {
             font-size: 1.5em; /* Ridotto il font size per dispositivi più piccoli */
             padding: 5px; /* Ridotto il padding per dispositivi più piccoli */
+            top: 0; /* Allinea la punta della freccia con l'inizio della foto */
         }
     }
 </style>
@@ -347,7 +348,7 @@
     </div>
     <div class="music-player" id="musicPlayer" style="display:none;">
         <img id="currentSongImage" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/2.png" alt="Current Song Icon" class="current-song-icon">
-        <button id="backButton" class="back-button" onclick="showMenu()">←</button>
+        <button id="backButton" class="back-button" onclick="showMenu()"></button>
         <audio id="audioPlayer" controls>
             <source id="audioSource" src="" type="audio/mpeg">
             Il tuo browser non supporta l'elemento audio.
@@ -452,7 +453,7 @@
                 
         <div class="entry">
             <h2>... Dicembre 2024</h2>
-            <p>Da scrivere<span
+            <p>Da scrivere...<span
         </div>
         <!-- Aggiungi altri post del blog qui -->
 
