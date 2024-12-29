@@ -246,7 +246,11 @@
         top: 20px;
         left: 20px;
         z-index: 102; /* Assicurati che il pulsante sia sopra altri elementi */
-        color: #fff;
+        color: var(--colore-titolo);
+        background-color: var(--colore-button); /* Aggiunto uno sfondo per migliorare la visibilità */
+        border-radius: 50%; /* Aggiunto un bordo arrotondato per l'estetica */
+        padding: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Aggiunto un'ombra per far risaltare il pulsante */
     }
 
     .music-player {
@@ -284,6 +288,11 @@
         .settings-button, .music-button {
             width: 30px;
             height: 30px;
+        }
+
+        .back-button {
+            font-size: 1.5em; /* Ridotto il font size per dispositivi più piccoli */
+            padding: 5px; /* Ridotto il padding per dispositivi più piccoli */
         }
     }
 </style>
