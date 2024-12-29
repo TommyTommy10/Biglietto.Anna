@@ -248,11 +248,12 @@
         border: none;
         font-size: 2em;
         cursor: pointer;
-        position: fixed; /* Migliorato l'allineamento */
-        top: 20px;
+        position: fixed;
+        top: 70px; /* Abbassata la posizione della freccia */
         left: 20px;
         z-index: 102; /* Assicurati che il pulsante sia sopra altri elementi */
         color: #fff;
+        background-color: var(--colore-button);
         border-radius: 50%; /* Bordi arrotondati */
         width: 40px;
         height: 40px;
@@ -262,7 +263,7 @@
     }
 
     .back-button::before {
-        content: "\2190"; /* Freccia */
+        content: "←"; /* Freccia */
     }
 
     .current-song-icon {
