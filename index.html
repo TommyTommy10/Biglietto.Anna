@@ -161,14 +161,21 @@
         :root {
             --button-color: #007bff;
         }
-
+        
         .link-style {
-            text-decoration: none; /* Rimuove la sottolineatura */
-            color: inherit; /* Mantiene il colore del testo */
-            transition: font-size 0.3s; /* Effetto di transizione per l'ingrandimento */
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            transition: font-size 0.3s, color 0.3s;
         }
         .link-style:hover {
-            font-size: 1.2em; /* Ingrandisce il testo quando ci si passa sopra */
+            font-size: 1.2em;
+            color: #0073e6; /* Colore cambiato al passaggio del mouse */
+        }
+        .link-style:hover::after {
+            content: ' 🔗'; /* Aggiunge un'icona di collegamento */
+            font-size: 1em;
+            position: absolute;
         }
 
          /* Media queries for different devices */
