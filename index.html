@@ -7,7 +7,241 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/2.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Arial&family=Courier+New&family=Georgia&family=Times+New+Roman&family=Verdana&display=swap" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="stile.css">
+  <style>
+    @font-face {
+        font-family: 'Apple Chancery';
+        src: url('https://example.com/path-to-apple-chancery.woff') format('woff');
+    }
+
+    :root {
+        --colore-primario: #2F4F4F; /* Grigio Scuro */
+        --colore-secondario: #FAF3E0; /* Bianco Panna */
+        --colore-accento: #DAA520; /* Oro */
+        --colore-sfondo: #FAF3E0; /* Bianco Panna */
+        --colore-texto: #2F4F4F; /* Grigio Scuro */
+        --colore-button: #4682B4; /* Blu Petrolio */
+        --colore-link: #2F4F4F; /* Stesso colore del testo */
+    }
+
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: var(--colore-sfondo);
+        margin: 0;
+        padding: 20px;
+        color: var(--colore-texto);
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: var(--colore-secondario);
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .entry {
+        margin-bottom: 40px;
+        padding: 20px;
+        border-bottom: 1px solid #ddd;
+        border-radius: 10px;
+        background-color: var(--colore-secondario); /* Colore riquadro principale */
+    }
+
+    .entry.alt {
+        background-color: var(--colore-button); /* Colore riquadro alternativo */
+    }
+
+    .entry h2 {
+        margin-top: 0;
+        color: var(--colore-accento);
+    }
+
+    .entry p {
+        line-height: 1.6;
+        color: var(--colore-primario); /* Grigio Scuro per il testo */
+    }
+
+    .entry img {
+        max-width: 100%;
+        height: auto;
+        margin-top: 20px;
+        border-radius: 10px;
+    }
+
+    .highlight {
+        color: var(--colore-accento);
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    .settings, .music {
+        display: none;
+        position: fixed;
+        top: 20px;
+        background-color: var(--colore-sfondo);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        z-index: 100;
+        width: 300px;
+    }
+
+    .settings {
+        right: 20px;
+    }
+
+    .music {
+        left: 20px;
+    }
+
+    .settings h2, .music h2 {
+        margin-top: 0;
+        font-size: 1.5em;
+        color: var(--colore-link);
+    }
+
+    .settings label, .music label {
+        margin-top: 10px;
+        display: block;
+        font-weight: bold;
+    }
+
+    .settings select, .settings input[type="color"] {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        margin-top: 5px;
+    }
+
+    .settings input[type="color"] {
+        -webkit-appearance: none;
+        border: none;
+        height: 40px;
+        cursor: pointer;
+    }
+
+    .settings input[type="color"]::-webkit-color-swatch-wrapper {
+        padding: 0;
+    }
+
+    .settings input[type="color"]::-webkit-color-swatch {
+        border: none;
+        border-radius: 5px;
+    }
+
+    .settings-button, .music-button {
+        position: fixed;
+        top: 20px;
+        background-color: var(--colore-button);
+        color: #fff;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 101;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .settings-button {
+        right: 20px;
+    }
+
+    .music-button {
+        left: 20px;
+    }
+
+    .close-settings, .close-music {
+        margin-top: 15px;
+        background-color: #f44336;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        text-align: center;
+    }
+
+    .music-container {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+        flex-direction: column;
+    }
+
+    .music-container img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+
+    .music-container audio {
+        width: 100%;
+        height: 50px;
+        border-radius: 10px;
+    }
+
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 99;
+    }
+
+    .link-style {
+        text-decoration: none;
+        color: var(--colore-link);
+        border-bottom: 1px solid transparent;
+        transition: border-bottom 0.3s;
+    }
+
+    .link-style:hover {
+        border-bottom: 1px solid var(--colore-link); /* Sottolinea con il colore del link */
+    }
+
+    /* Media queries per dispositivi diversi */
+    @media (max-width: 768px) {
+        .container {
+            width: 100%;
+            padding: 10px;
+        }
+
+        .settings, .music {
+            width: 90%;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .container {
+            width: 100%;
+            padding: 5px;
+        }
+
+        .entry {
+            padding: 10px;
+        }
+
+        .settings, .music {
+            width: 100%;
+        }
+
+        .settings-button, .music-button {
+            width: 30px;
+            height: 30px;
+        }
+    }
+</style>
 </head>
 <body>
     <div class="container">
