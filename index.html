@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/2.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Arial&family=Courier+New&family=Georgia&family=Times+New+Roman&family=Verdana&display=swap" rel="stylesheet">
-   <style>
+  <style>
     @font-face {
         font-family: 'Apple Chancery';
         src: url('https://example.com/path-to-apple-chancery.woff') format('woff');
@@ -20,8 +20,7 @@
         --colore-sfondo: #FAF3E0; /* Bianco Panna */
         --colore-texto: #2F4F4F; /* Grigio Scuro */
         --colore-button: #4682B4; /* Blu Petrolio */
-        --colore-link: #4682B4; /* Blu Petrolio */
-        --colore-bordo: #A9A9A9; /* Grigio Chiaro */
+        --colore-link: #2F4F4F; /* Stesso colore del testo */
     }
 
     body {
@@ -39,16 +38,18 @@
         padding: 20px;
         border-radius: 15px;
         box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-        border: 1px solid var(--colore-bordo);
     }
 
     .entry {
         margin-bottom: 40px;
         padding: 20px;
-        border-bottom: 1px solid var(--colore-bordo);
+        border-bottom: 1px solid #ddd;
         border-radius: 10px;
-        background-color: var(--colore-secondario);
-        border: 1px solid var(--colore-bordo);
+        background-color: var(--colore-secondario); /* Colore riquadro principale */
+    }
+
+    .entry.alt {
+        background-color: var(--colore-button); /* Colore riquadro alternativo */
     }
 
     .entry h2 {
@@ -58,6 +59,7 @@
 
     .entry p {
         line-height: 1.6;
+        color: var(--colore-primario); /* Grigio Scuro per il testo */
     }
 
     .entry img {
@@ -83,7 +85,6 @@
         box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
         z-index: 100;
         width: 300px;
-        border: 1px solid var(--colore-bordo);
     }
 
     .settings {
@@ -110,7 +111,7 @@
         width: 100%;
         padding: 10px;
         border-radius: 5px;
-        border: 1px solid var(--colore-bordo);
+        border: 1px solid #ddd;
         margin-top: 5px;
     }
 
@@ -240,7 +241,7 @@
             height: 30px;
         }
     }
-   </style>
+  </style>
 </head>
 <body>
     <div class="container">
