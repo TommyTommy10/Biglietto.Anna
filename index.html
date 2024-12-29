@@ -8,7 +8,7 @@
     <link rel="icon" href="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/2.png" type="image/png">
     <link href="https://fonts.googleapis.com/css?family=Alex+Brush|Allura|Amatic+SC|Arial|Bilbo+Swash+Caps|Brush+Script+MT|Comic+Sans+MS|Courier+New|Dancing+Script|Edwardian+Script+ITC|Euphoria+Script|Fondamento|Gabriola|Garamond|Georgia|Great+Vibes|Herr+Von+Muellerhoff|Indie+Flower|Italianno|Just+Another+Hand|Kunstler+Script|League+Script|Lobster|Lucida+Handwriting|Meddon|Merienda|Monotype+Corsiva|Monsieur+La+Doulaise|Niconne|Norican|Oleo+Script|Over+the+Rainbow|Pacifico|Palace+Script+MT|Papyrus|Parisienne|Permanent+Marker|Pangolin|Pinyon+Script|Poiret+One|Segoe+Script|Snell+Roundhand|Times+New+Roman|Trebuchet+MS|Verdana&display=swap" rel="stylesheet">
     <title>Ricordi Speciali</title>
-    <style>
+    </style>
         @font-face {
             font-family: 'Apple Chancery';
             src: url('https://example.com/path-to-apple-chancery.woff') format('woff');
@@ -25,7 +25,7 @@
             --colore-riquadro: #5c7d3b; /* Verde Oliva Scuro */
             --colore-riquadro-alt: #D3D3D3; /* Grigio Chiaro */
             --colore-titolo: #5C7D3B; /* Verde Oliva Scuro */
-            --colore-testo-impostazioni: #4682B4; /* Blu Petrolio */
+            --colore-testo-impostazioni: #2F4F4F; /* Blu Petrolio */
         }
 
         body {
@@ -33,13 +33,13 @@
             background-color: var(--colore-sfondo);
             margin: 0;
             padding: 20px;
-            color: var(--colore-texto);
+            color: var(--colore-titolo);
         }
 
         .container {
             max-width: 800px;
             margin: 0 auto;
-            background-color: var(--colore-secondario);
+            background-color: var(--colore-primario);
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
@@ -49,7 +49,7 @@
             margin-bottom: 40px;
             padding: 20px;
             border-radius: 10px;
-            background-color: var(--colore-secondario); /* Colore riquadro principale */
+            background-color: var(--colore-riquadro); /* Colore riquadro principale */
         }
 
         .entry.alt {
@@ -83,7 +83,7 @@
             display: none;
             position: fixed;
             top: 20px;
-            background-color: var(--colore-sfondo);
+            background-color: var(--colore-riquadro);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
@@ -246,7 +246,7 @@
                 height: 30px;
             }
         }
-    </style>
+</style>
 </head>
 <body>
     <div class="container">
