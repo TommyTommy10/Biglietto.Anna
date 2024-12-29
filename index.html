@@ -242,19 +242,21 @@
         border: none;
         font-size: 2em;
         cursor: pointer;
-        position: fixed; /* Cambiato da absolute a fixed */
-        top: 20px; /* Migliorato l'allineamento verticale */
-        left: 20px; /* Migliorato l'allineamento orizzontale */
+        position: fixed; /* Migliorato l'allineamento */
+        top: 20px;
+        left: 20px;
         z-index: 102; /* Assicurati che il pulsante sia sopra altri elementi */
         color: #fff;
-        background-color: transparent; /* Rimosso lo sfondo */
-        border-radius: 50%; /* Aggiunto un bordo arrotondato per l'estetica */
-        padding: 10px;
-        line-height: 1; /* Aggiunto per centrare verticalmente il contenuto */
-        content: "\2190"; /* Usa il carattere della freccia */
+        border-radius: 50%; /* Bordi arrotondati */
+        width: 40px;
+        height: 40px;
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+
+    .back-button::before {
+        content: "\2190"; /* Freccia */
     }
 
     .music-player {
@@ -294,8 +296,6 @@
             height: 30px;
         }
 
-        .back-button {
-            font-size: 1.5em; /* Ridotto il font size per dispositivi più piccoli */
         .back-button {
             font-size: 1.5em; /* Ridotto il font size per dispositivi più piccoli */
             padding: 5px; /* Ridotto il padding per dispositivi più piccoli */
