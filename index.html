@@ -237,6 +237,12 @@
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     }
 
+    .music-item p {
+        margin-top: 5px;
+        font-size: 0.9em;
+        color: var(--colore-primario); /* Colore del testo */
+    }
+
     .back-button {
         background: none;
         border: none;
@@ -257,6 +263,15 @@
 
     .back-button::before {
         content: "\2190"; /* Freccia */
+    }
+
+    .current-song-icon {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     }
 
     .music-player {
@@ -330,6 +345,7 @@
         <!-- Aggiungi altre canzoni come desideri -->
     </div>
     <div class="music-player" id="musicPlayer" style="display:none;">
+        <img id="currentSongImage" src="path-to-current-song.png" alt="Current Song Icon" class="current-song-icon">
         <button id="backButton" class="back-button" onclick="showMenu()">←</button>
         <audio id="audioPlayer" controls>
             <source id="audioSource" src="" type="audio/mpeg">
