@@ -248,9 +248,10 @@
         border: none;
         font-size: 2em;
         cursor: pointer;
-        position: fixed;
-        top: 70px; /* Abbassata la posizione della freccia */
+        position: absolute; /* Impostato come assoluto per precisione */
+        top: 50%; /* Allinea la freccia con l'immagine della canzone */
         left: 20px;
+        transform: translateY(-50%);
         z-index: 102; /* Assicurati che il pulsante sia sopra altri elementi */
         color: #fff;
         background-color: var(--colore-button);
@@ -293,7 +294,7 @@
         }
     }
 
-    @media (max-width: 480px) {
+    @media (max-width:
         .container {
             width: 100%;
             padding: 5px;
