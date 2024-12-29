@@ -135,7 +135,7 @@
         border: none;
         border-radius: 5px;
     }
-    
+
     .settings-button, .music-button {
         position: fixed;
         top: 20px;
@@ -246,18 +246,13 @@
         top: 20px;
         left: 20px;
         z-index: 102; /* Assicurati che il pulsante sia sopra altri elementi */
-        color: var(--colore-texto);
-        background-color: var(--colore-sfondo); /* Aggiunto uno sfondo per migliorare la visibilità */
+        color: #fff;
+        background-color: var(--colore-button); /* Aggiunto uno sfondo per migliorare la visibilità */
         border-radius: 50%; /* Aggiunto un bordo arrotondato per l'estetica */
         padding: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Aggiunto un'ombra per far risaltare il pulsante */
         line-height: 1; /* Aggiunto per centrare verticalmente il contenuto */
-        border: 2px solid var(--colore-primario); /* Aggiunto bordo per estetica */
-    }
-
-    .back-button::before {
-        content: "←"; /* Modifica il contenuto per assomigliare alla freccia su Safari */
-        font-size: 1.5em; /* Regola la dimensione del font per la freccia */
+        content: "\2190"; /* Usa il carattere della freccia */
     }
 
     .music-player {
