@@ -21,6 +21,7 @@
         --colore-texto: #2F4F4F; /* Grigio Scuro */
         --colore-button: #4682B4; /* Blu Petrolio */
         --colore-link: #4682B4; /* Blu Petrolio */
+        --colore-bordo: #A9A9A9; /* Grigio Chiaro */
     }
 
     body {
@@ -38,14 +39,16 @@
         padding: 20px;
         border-radius: 15px;
         box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        border: 1px solid var(--colore-bordo);
     }
 
     .entry {
         margin-bottom: 40px;
         padding: 20px;
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid var(--colore-bordo);
         border-radius: 10px;
         background-color: var(--colore-secondario);
+        border: 1px solid var(--colore-bordo);
     }
 
     .entry h2 {
@@ -80,6 +83,7 @@
         box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
         z-index: 100;
         width: 300px;
+        border: 1px solid var(--colore-bordo);
     }
 
     .settings {
@@ -106,7 +110,7 @@
         width: 100%;
         padding: 10px;
         border-radius: 5px;
-        border: 1px solid #ddd;
+        border: 1px solid var(--colore-bordo);
         margin-top: 5px;
     }
 
@@ -196,13 +200,13 @@
 
     .link-style {
         text-decoration: none;
-        color: var(--colore-texto:);
+        color: var(--colore-link);
         border-bottom: 1px solid transparent;
         transition: border-bottom 0.3s;
     }
 
     .link-style:hover {
-        border-bottom: 1px solid var(--colore-texto:); /* Sottolinea con il colore del link */
+        border-bottom: 1px solid var(--colore-link); /* Sottolinea con il colore del link */
     }
 
     /* Media queries per dispositivi diversi */
