@@ -161,21 +161,15 @@
         :root {
             --button-color: #007bff;
         }
-        
+
         .link-style {
             text-decoration: none;
             color: inherit;
-            position: relative;
-            transition: font-size 0.3s, color 0.3s;
+            border-bottom: 1px solid transparent;
+            transition: border-bottom 0.3s;
         }
         .link-style:hover {
-            font-size: 1.2em;
-            color: #0073e6; /* Colore cambiato al passaggio del mouse */
-        }
-        .link-style:hover::after {
-            content: ' 🔗'; /* Aggiunge un'icona di collegamento */
-            font-size: 1em;
-            position: absolute;
+            border-bottom: 1px solid currentColor; /* Sottolinea con il colore del testo */
         }
 
          /* Media queries for different devices */
