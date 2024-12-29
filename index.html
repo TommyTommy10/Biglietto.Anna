@@ -245,6 +245,8 @@
         position: absolute;
         top: 20px;
         left: 20px;
+        z-index: 102; /* Assicurati che il pulsante sia sopra altri elementi */
+        color: #fff;
     }
 
     .music-player {
@@ -313,7 +315,7 @@
         <!-- Aggiungi altre canzoni come desideri -->
     </div>
     <div class="music-player" id="musicPlayer" style="display:none;">
-        <button class="back-button" onclick="showMenu()">←</button>
+        <button id="backButton" class="back-button" onclick="showMenu()">←</button>
         <audio id="audioPlayer" controls>
             <source id="audioSource" src="" type="audio/mpeg">
             Il tuo browser non supporta l'elemento audio.
