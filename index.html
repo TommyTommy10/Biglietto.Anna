@@ -235,8 +235,9 @@
 }
 
 .music-item {
-    width: calc(50% - 20px); /* Utilizza calc per assicurare due icone per riga con spaziatura */
+    width: calc(50% - 10px); /* Assicura due icone per riga con spaziatura */
     margin-bottom: 20px;
+    box-sizing: border-box;
 }
 
 .music-icon {
@@ -297,6 +298,7 @@
 .back-button::before {
     content: "←"; /* Freccia */
 }
+
 
     .current-song-icon {
         width: 100%;
