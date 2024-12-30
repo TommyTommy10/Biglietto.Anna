@@ -231,18 +231,18 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: space-between;
+    justify-content: space-between; /* Distribuisci le icone uniformemente */
 }
 
 .music-item {
-    width: 48%;
+    width: calc(50% - 20px); /* Utilizza calc per assicurare due icone per riga con spaziatura */
     margin-bottom: 20px;
 }
 
 .music-icon {
     width: 100%;
     height: auto;
-    border-radius: 50%;
+    border-radius: 50%; /* Arrotonda le immagini */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -274,32 +274,29 @@
     animation: scrolling-text 10s linear infinite;
 }
 
-.music-item p:hover span {
-    animation-play-state: running;
+/* Posizionamento corretto della freccia */
+.back-button {
+    background: none;
+    border: none;
+    font-size: 2em;
+    cursor: pointer;
+    position: absolute;
+    top: 20px; /* Allinea la parte superiore della freccia con l'inizio della foto */
+    left: 20px;
+    z-index: 102; /* Assicurati che il pulsante sia sopra altri elementi */
+    color: #fff;
+    background-color: transparent;
+    border-radius: 50%; /* Bordi arrotondati */
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-    .back-button {
-        background: none;
-        border: none;
-        font-size: 2em;
-        cursor: pointer;
-        position: absolute; /* Impostato come assoluto per precisione */
-        top: 5px; /* Ridotto il margine tra la freccia e la foto */
-        left: 20px;
-        z-index: 102; /* Assicurati che il pulsante sia sopra altri elementi */
-        color: #fff;
-        background-color: transparent; /* Rimosso il contorno */
-        border-radius: 50%; /* Bordi arrotondati */
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .back-button::before {
-        content: "←"; /* Freccia */
-    }
+.back-button::before {
+    content: "←"; /* Freccia */
+}
 
     .current-song-icon {
         width: 100%;
@@ -400,7 +397,7 @@
     </div>
     <div class="music-player" id="musicPlayer" style="display:none;">
         <img id="currentSongImage" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/2.png" alt="Current Song Icon" class="current-song-icon">
-        <button id="backButton" class="back-button" onclick="showMenu()">←</button>
+        <button id="backButton" class="back-button" onclick="showMenu()"></button>
         <audio id="audioPlayer" controls>
             <source id="audioSource" src="" type="audio/mpeg">
             Il tuo browser non supporta l'elemento audio.
