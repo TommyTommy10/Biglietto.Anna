@@ -216,28 +216,23 @@
     }
 
     /* Aggiunte per il menu musicale */
-    .music-menu {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        justify-content: space-between; /* Spaziatura tra le icone */
-    }
+.music-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Assicura che le icone siano distribuite uniformemente */
+}
 
-    .music-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        cursor: pointer;
-        width: 48%; /* Allarga le icone per occupare lo spazio in orizzontale */
-    }
+.music-item {
+    width: 48%; /* Assicura che ci siano due icone per riga */
+    margin-bottom: 20px; /* Aggiungi un po' di spazio sotto ogni icona */
+}
 
-    .music-icon {
-        width: 100%;
-        height: auto;
-        margin-bottom: 10px;
-        border-radius: 50%; /* Cambiato da 10px a 50% per rendere l'immagine rotonda */
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    }
+.music-icon {
+    width: 100%;
+    height: auto; /* Mantieni le proporzioni corrette */
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
 
     .music-item p {
         margin-top: 5px;
