@@ -222,6 +222,18 @@
     justify-content: space-between; /* Assicura che le icone siano distribuite uniformemente */
 }
 
+.music-item {
+    width: 48%; /* Assicura che ci siano due icone per riga */
+    margin-bottom: 20px; /* Aggiungi un po' di spazio sotto ogni icona */
+}
+
+.music-icon {
+    width: 100%;
+    height: auto; /* Mantieni le proporzioni corrette */
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
 @keyframes scrolling-text {
     0% {
         transform: translateX(100%);
@@ -349,13 +361,13 @@
 <body>
     <div class="container">
         <h1>Ricordi Speciali</h1>
-        
+
         <!-- Overlay -->
         <div class="overlay" id="overlay" onclick="closeWindows()"></div>
 
         <!-- Pulsante per mostrare le impostazioni -->
         <div class="settings-button" id="settingsButton" onclick="toggleSettings()">⚙️</div>
-        
+
 <!-- Pulsante per mostrare la musica -->
 <div class="music-button" id="musicButton" onclick="toggleMusic()">🎵</div>
 
@@ -464,12 +476,12 @@
             <h2>12 Dicembre 2024</h2>
             <p>Oggi evidentemente non è giornata per te. E per questo ti prometto che ti prenderò un magnifico peluche. Adesso vorrei poter essere li per abbracciarti. Ma non ci sono. Ricordati sempre che per te ci sono sempre. Se non riesci a dormire scrivimi, svegliami, mi fa solo piacere. Quindi non esitare mai. Preferisco stare sveglio tutta notte che lasciarti sola.
         </div>
-        
+
          <div class="entry">
             <h2>16 Dicembre 2024</h2>
             <p>Oggi è stata una bella giornata. Hai risposto a Marrado Caurizio. Hai fatto dei disegni traumatici per chiedere quanto ce l’avessi lungo, ma va bene. Poi sono stato azzannato a un braccio. Che poi non ti ho detto niente, ma essenzialemente è un succhiotto. Ma va bene. A parte il male che ho alla spalla, oggi è stata una bella giornata. Anche se il male è stato risarcito da un abbraccio. Ora vado a dormire. Notte. Tvb🩶
         </div>
-        
+
         <div class="entry">
             <h2>17 Dicembre 2024</h2>
             <p>Oggi ne ho un altro, so di non averti detto niente, ma perchè finché sorridi mi va bene. Puoi anche riempirmi le braccia, a me va bene, basta che tu sorrida. Perchè quando mi mordi, fai un sorriso bellissimo. Comunque credo che Ryan sia invidiosissimo. Sempre il primo a dirti su se mi mordi. Ma credo che se sentisse il mio stesso dolore cambierebbe idea. Si, fa molto male, ma per te, soffrirei 1000 volte di più. E poi, neanche me lo devi chiedere per una chiamata, al massimo di chiedo di aspettare massimo massimo 20 minuti. Se proprio è il momento sbagliato. Se va peggio ti dico di no, ma è raro. Poi te ancora non lo sai, ma ho già il tuo regalo nello zaino, sono sicuro che ti piacerà. In aggiunta, ho lasciato un bigliettino (orribile, ma di meglio non riuscivo a fare quando l’ho incartato, sorry, l’importante è il significato). So che il pacco non è bellissimo, ma è fatto con tanto amore, perchè ti voglio tanto tanto bene. Bye bye tata🩶
@@ -477,6 +489,7 @@
 
         <div class="entry">
             <h2>20 Dicembre 2024</h2>
+            <p>Anche se sono stato azzannato nei peggio modi, oggi è stat una bella giornata. Hai finalmente scritto a Bok, anche se hai paura. Mal che vada, io sono qui, per te libero anche quando non ho tempo. Ubi tu ubi ego (si, sono fissato con sta frase. Che poi è latina, non greca). Spero tutto vada bene…
             <p>Anche se sono stato azzannato nei peggio modi, oggi è stata una bella giornata. Hai finalmente scritto a Bok, anche se hai paura. Mal che vada, io sono qui, per te libero anche quando non ho tempo. Ubi tu ubi ego (si, sono fissato con sta frase. Che poi è latina, non greca). Spero tutto vada bene…
         </div>
 
@@ -484,7 +497,7 @@
             <h2>24 Dicembre 2024</h2>
             <p>Siamo già al terzo giorno di vacanze. È la vigilia ma neanche me ne ero reso conto. Con te i giorni si riempiono sempre di bei ricordi che non puoi neanche pensare che sia passato così poco tempo. Poi ieri sono stato in discoteca per la prima volta. Mentre aspettavo in fila, mi è arrivata una foto di un abitante della Mongolia che sta viaggiando per il deserto del Gobi. Con una felpa nera sulla bocca, gli occhi talmente socchiusi che sembrava volesse uccidere qualcuno dalla rabbia. Ovviamente eri bellissima in quella foto. Poi, dopo un po’, me ne arriva un’altra che non può essere descritta, non è family frienldy, ma proprio per niente. <a href="https://www.instagram.com/reel/DDkhFdCtqbv/?igsh=MWppYm92enZpeXpjeA==" class="link-style">Ti dico solo una cosa: sei bellissima, sempre, non dubitarne mai.</a> Ti voglio bene🩶</p>
         </div>
-                
+
         <div class="entry">
             <h2>29 Dicembre 2024</h2>
             <p>Adesso qualcuno mi deve dire come non si fa ad adorare una ragazza così. Non centra l’essere bella, simpatica, quelle cose lì… Quelle sono caratteristiche che possono avere tutti, chi più e chi meno. Si, sei splendida, sei simpaticissima, parlare con te mi fa sorridere. Ma questo non è il punto di oggi. Oggi voglio parlare di come sia facile parlare di tutto con te. Ma tutto tutto. Ceh, io non credo di aver mai avuto conversazioni di questo genere con nessuno. Un ora e un quarto a parlare di come si viene. Non sono cose che di solito succedono. Concludo con questo: io di ste cose non parlo a nessuno, ma se succede, o mi stanno puntando una pistola alla tempia, o so che chi mi ascolta è una persona affidabile, che non ti giudica e che se hai bisogno ti aiuta. Notte, mia sceneggiatrice🩶<span
@@ -606,7 +619,7 @@
             return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
         }
     });
-    
+
     document.querySelectorAll('.music-item p span').forEach(span => {
     const parentWidth = span.parentElement.offsetWidth;
     const spanWidth = span.offsetWidth;
