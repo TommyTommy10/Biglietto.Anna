@@ -220,6 +220,12 @@
     border-radius: 15px;
 }
 
+/* Abilitare lo scorrimento verticale */
+.music {
+    overflow-y: auto;
+    max-height: 400px;
+}
+
 /* Disporre le icone in due per riga */
 .music-menu {
     display: flex;
@@ -236,7 +242,7 @@
 .music-icon {
     width: 100%;
     height: auto;
-    border-radius: 50%; /* Arrotonda le immagini */
+    border-radius: 50%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -376,7 +382,7 @@
     <div class="music-menu" id="musicMenu">
         <div class="music-item" onclick="playSong('song1')">
             <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/2.png" alt="Song 1 Icon" class="music-icon">
-            <p><span>Song 3,14159 26535 89793 23846 26433 83279 50288</span></p>
+            <p><span>Song 1</span></p>
         </div>
         <div class="music-item" onclick="playSong('song2')">
             <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/2.png" alt="Song 2 Icon" class="music-icon">
