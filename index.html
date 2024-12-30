@@ -3,373 +3,326 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Per la De Prettiest</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ricordi Speciali</title>
     <link rel="icon" href="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/2.png" type="image/png">
     <link href="https://fonts.googleapis.com/css?family=Alex+Brush|Allura|Amatic+SC|Arial|Bilbo+Swash+Caps|Brush+Script+MT|Comic+Sans+MS|Courier+New|Dancing+Script|Edwardian+Script+ITC|Euphoria+Script|Fondamento|Gabriola|Garamond|Georgia|Great+Vibes|Herr+Von+Muellerhoff|Indie+Flower|Italianno|Just+Another+Hand|Kunstler+Script|League+Script|Lobster|Lucida+Handwriting|Meddon|Merienda|Monotype+Corsiva|Monsieur+La+Doulaise|Niconne|Norican|Oleo+Script|Over+the+Rainbow|Pacifico|Palace+Script+MT|Papyrus|Parisienne|Permanent+Marker|Pangolin|Pinyon+Script|Poiret+One|Segoe+Script|Snell+Roundhand|Times+New+Roman|Trebuchet+MS|Verdana&display=swap" rel="stylesheet">
-    <title>Ricordi Speciali</title>
-<style>
-    @font-face {
-        font-family: 'Apple Chancery';
-        src: url('https://example.com/path-to-apple-chancery.woff') format('woff');
-    }
-
-    :root {
-        --colore-primario: #2F4F4F; /* Grigio Scuro */
-        --colore-secondario: #FAF3E0; /* Bianco Panna */
-        --colore-accento: #DAA520; /* Oro */
-        --colore-sfondo: #FAF3E0; /* Bianco Panna */
-        --colore-texto: #2F4F4F; /* Grigio Scuro */
-        --colore-button: #4682B4; /* Blu Petrolio */
-        --colore-link: #2F4F4F; /* Stesso colore del testo */
-        --colore-riquadro: #5c7d3b; /* Verde Oliva Scuro */
-        --colore-riquadro-alt: #D3D3D3; /* Grigio Chiaro */
-        --colore-titolo: #5C7D3B; /* Verde Oliva Scuro */
-        --colore-testo-impostazioni: #2F4F4F; /* Blu Petrolio */
-    }
-
-    body {
-        font-family: 'Arial', sans-serif;
-        background-color: var(--colore-sfondo);
-        margin: 0;
-        padding: 20px;
-        color: var(--colore-titolo);
-    }
-
-    .container {
-        max-width: 800px;
-        margin: 0 auto;
-        background-color: var(--colore-primario);
-        padding: 20px;
-        border-radius: 15px;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    }
-
-    .entry {
-        margin-bottom: 40px;
-        padding: 20px;
-        border-radius: 10px;
-        background-color: var(--colore-riquadro); /* Colore riquadro principale */
-    }
-
-    .entry.alt {
-        background-color: var(--colore-riquadro-alt); /* Colore riquadro alternativo */
-    }
-
-    .entry h2 {
-        margin-top: 0;
-        color: var(--colore-accento);
-    }
-
-    .entry p {
-        line-height: 1.6;
-        color: var(--colore-primario); /* Grigio Scuro per il testo */
-    }
-
-    .entry img {
-        max-width: 100%;
-        height: auto;
-        margin-top: 20px;
-        border-radius: 10px;
-    }
-
-    .highlight {
-        color: var(--colore-accento);
-        cursor: pointer;
-        text-decoration: underline;
-    }
-
-    .settings, .music {
-        display: none;
-        position: fixed;
-        top: 20px;
-        background-color: var(--colore-riquadro);
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-        z-index: 100;
-        width: 300px;
-    }
-
-    .settings {
-        right: 20px;
-    }
-
-    .music {
-        left: 20px;
-    }
-
-    .settings h2, .music h2 {
-        margin-top: 0;
-        font-size: 1.5em;
-        color: var(--colore-testo-impostazioni); /* Colore del titolo "Impostazioni" e "Musica" */
-    }
-
-    .settings label, .music label {
-        margin-top: 10px;
-        display: block;
-        font-weight: bold;
-        color: var(--colore-testo-impostazioni); /* Colore del testo "Impostazioni" e "Musica" */
-    }
-
-    .settings select, .settings input[type="color"] {
-        width: 100%;
-        padding: 10px;
-        border-radius: 5px;
-        border: 1px solid #ddd;
-        margin-top: 5px;
-    }
-
-    .settings input[type="color"] {
-        -webkit-appearance: none;
-        border: none;
-        height: 40px;
-        cursor: pointer;
-    }
-
-    .settings input[type="color"]::-webkit-color-swatch-wrapper {
-        padding: 0;
-    }
-
-    .settings input[type="color"]::-webkit-color-swatch {
-        border: none;
-        border-radius: 5px;
-    }
-
-    .settings-button, .music-button {
-        position: fixed;
-        top: 20px;
-        background-color: var(--colore-button);
-        color: #fff;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        cursor: pointer;
-        text-align: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 101;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .settings-button {
-        right: 20px;
-    }
-
-    .music-button {
-        left: 20px;
-    }
-
-    .close-settings, .close-music {
-        margin-top: 15px;
-        background-color: #f44336;
-        color: #fff;
-        padding: 10px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        width: 100%;
-        text-align: center;
-    }
-
-    .music-container {
-        display: flex;
-        align-items: center;
-        margin-top: 20px;
-        flex-direction: column;
-    }
-
-    .music-container img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 10px;
-        margin-bottom: 10px;
-    }
-
-    .music-container audio {
-        width: 100%;
-        height: 50px;
-        border-radius: 10px;
-    }
-
-    .overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 99;
-    }
-
-    .link-style {
-        text-decoration: none;
-        color: var(--colore-link);
-        border-bottom: 1px solid transparent;
-        transition: border-bottom 0.3s; /* Aumentato il tempo di transizione */
-    }
-
-    .link-style:hover {
-        border-bottom: 1px solid var(--colore-link); /* Sottolinea con il colore del link */
-    }
-
-/* Arrotondare tutti i bordi */
-.music, .music-item, .music-icon, .current-song-icon, .close-music, .music-button, .settings-button, .container {
-    border-radius: 15px;
-}
-
-/* Abilitare lo scorrimento verticale */
-.music {
-    overflow-y: auto;
-    max-height: 400px;
-}
-/* Disporre le icone in due per riga */
-.music-menu {
-    display: flex;
-@@ -236,7 +242,7 @@
-.music-icon {
-    width: 100%;
-    height: auto;
-    border-radius: 50%; /* Arrotonda le immagini */
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-@@ -376,258 +382,258 @@
-    <div class="music-menu" id="musicMenu">
-        <div class="music-item" onclick="playSong('song1')">
-            <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/2.png" alt="Song 1 Icon" class="music-icon">
-            <p><span>Song 3,14159 26535 89793 23846 26433 83279 50288</span></p>
-            <p><span>Song 1</span></p>
-        </div>
-        <div class="music-item" onclick="playSong('song2')">
-            <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/2.png" alt="Song 2 Icon" class="music-icon">
-            <p><span>Song 2</span></p>
-        </div>
-        <div class="music-item" onclick="playSong('song3')">
-            <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/2.png" alt="Song 3 Icon" class="music-icon">
-            <p><span>Song 3</span></p>
-        </div>
-        <div class="music-item" onclick="playSong('song4')">
-            <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/2.png" alt="Song 4 Icon" class="music-icon">
-            <p><span>Song 4</span></p>
-        </div>
-        <!-- Aggiungi altre canzoni come desideri -->
-    </div>
-    <div class="music-player" id="musicPlayer" style="display:none;">
-        <img id="currentSongImage" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/2.png" alt="Current Song Icon" class="current-song-icon">
-        <button id="backButton" class="back-button" onclick="showMenu()"></button>
-        <audio id="audioPlayer" controls>
-            <source id="audioSource" src="" type="audio/mpeg">
-            Il tuo browser non supporta l'elemento audio.
-        </audio>
-    </div>
-    <button class="close-music" onclick="toggleMusic()">Chiudi</button>
-</div>
-        <!-- Interfaccia per cambiare font e colori -->
-        <div class="settings" id="settings">
-            <h2>Personalizza il Sito</h2>
-            <label for="fontSelect">Seleziona Font:</label>
-            <select id="fontSelect">
-                <option value="Arial">Arial</option>
-                <option value="Apple Chancery">Apple Chancery</option>
-                <option value="Brush Script MT">Brush Script MT</option>
-                <option value="Comic Sans MS">Comic Sans MS</option>
-                <option value="Courier New">Courier New</option>
-                <option value="Dancing Script">Dancing Script</option>
-                <option value="Edwardian Script ITC">Edwardian Script ITC</option>
-                <option value="Gabriola">Gabriola</option>
-                <option value="Georgia">Georgia</option>
-                <option value="Garamond">Garamond</option>
-                <option value="Great Vibes">Great Vibes</option>
-                <option value="Italic">Italic</option>
-                <option value="Kunstler Script">Kunstler Script</option>
-                <option value="Lobster">Lobster</option>
-                <option value="Lucida Handwriting">Lucida Handwriting</option>
-                <option value="Monotype Corsiva">Monotype Corsiva</option>
-                <option value="Pacifico">Pacifico</option>
-                <option value="Palace Script MT">Palace Script MT</option>
-                <option value="Papyrus">Papyrus</option>
-                <option value="Parisienne">Parisienne</option>
-                <option value="Permanent Marker">Permanent Marker</option>
-                <option value="Poiret One">Poiret One</option>
-                <option value="Segoe Script">Segoe Script</option>
-                <option value="Snell Roundhand">Snell Roundhand</option>
-                <option value="Times New Roman">Times New Roman</option>
-                <option value="Trebuchet MS">Trebuchet MS</option>
-                <option value="Verdana">Verdana</option>
-                <option value="Alex Brush">Alex Brush</option>
-                <option value="Allura">Allura</option>
-                <option value="Amatic SC">Amatic SC</option>
-                <option value="Bilbo Swash Caps">Bilbo Swash Caps</option>
-                <option value="Dancing Script">Dancing Script</option>
-                <option value="Euphoria Script">Euphoria Script</option>
-                <option value="Fondamento">Fondamento</option>
-                <option value="Herr Von Muellerhoff">Herr Von Muellerhoff</option>
-                <option value="Indie Flower">Indie Flower</option>
-                <option value="Italianno">Italianno</option>
-                <option value="Just Another Hand">Just Another Hand</option>
-                <option value="League Script">League Script</option>
-                <option value="Meddon">Meddon</option>
-                <option value="Merienda">Merienda</option>
-                <option value="Monsieur La Doulaise">Monsieur La Doulaise</option>
-                <option value="Niconne">Niconne</option>
-                <option value="Norican">Norican</option>
-                <option value="Oleo Script">Oleo Script</option>
-                <option value="Over the Rainbow">Over the Rainbow</option>
-                <option value="Pacifico">Pacifico</option>
-                <option value="Pangolin">Pangolin</option>
-                <option value="Pinyon Script">Pinyon Script</option>
-                <!-- Aggiungi altri font qui -->
-            </select>
-
-            <label for="colorPicker">Seleziona il colore dello sfondo:</label>
-            <input type="color" id="colorPicker" value="#f4f4f9">
-
-            <label for="textColorPicker">Seleziona il colore del testo:</label>
-            <input type="color" id="textColorPicker" value="#000000">
-
-            <label for="buttonColorPicker">Seleziona il colore dei pulsanti:</label>
-            <input type="color" id="buttonColorPicker" value="#007bff">
-
-            <button class="close-settings" onclick="toggleSettings()">Chiudi</button>
-        </div>
-
-        <!-- Esempio di post del blog -->
+    <style>
+        @font-face {
+            font-family: 'Apple Chancery';
+            src: url('https://example.com/path-to-apple-chancery.woff') format('woff');
+        }
+        :root {
+            --colore-primario: #2F4F4F; /* Grigio Scuro */
+            --colore-secondario: #FAF3E0; /* Bianco Panna */
+            --colore-accento: #DAA520; /* Oro */
+            --colore-sfondo: #FAF3E0; /* Bianco Panna */
+            --colore-texto: #2F4F4F; /* Grigio Scuro */
+            --colore-button: #4682B4; /* Blu Petrolio */
+            --colore-link: #2F4F4F; /* Stesso colore del testo */
+            --colore-riquadro: #5c7d3b; /* Verde Oliva Scuro */
+            --colore-riquadro-alt: #D3D3D3; /* Grigio Chiaro */
+            --colore-titolo: #5C7D3B; /* Verde Oliva Scuro */
+            --colore-testo-impostazioni: #2F4F4F; /* Blu Petrolio */
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--colore-sfondo);
+            margin: 0;
+            padding: 20px;
+            color: var(--colore-titolo);
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--colore-primario);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+        .entry {
+            margin-bottom: 40px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: var(--colore-riquadro); /* Colore riquadro principale */
+        }
+        .entry.alt {
+            background-color: var(--colore-riquadro-alt); /* Colore riquadro alternativo */
+        }
+        .entry h2 {
+            margin-top: 0;
+            color: var(--colore-accento);
+        }
+        .entry p {
+            line-height: 1.6;
+            color: var(--colore-primario); /* Grigio Scuro per il testo */
+        }
+        .entry img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+        .highlight {
+            color: var(--colore-accento);
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        .settings, .music {
+            display: none;
+            position: fixed;
+            top: 20px;
+            background-color: var(--colore-riquadro);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            width: 300px;
+        }
+        .settings {
+            right: 20px;
+        }
+        .music {
+            left: 20px;
+        }
+        .settings h2, .music h2 {
+            margin-top: 0;
+            font-size: 1.5em;
+            color: var(--colore-testo-impostazioni); /* Colore del titolo "Impostazioni" e "Musica" */
+        }
+        .settings label, .music label {
+            margin-top: 10px;
+            display: block;
+            font-weight: bold;
+            color: var(--colore-testo-impostazioni); /* Colore del testo "Impostazioni" e "Musica" */
+        }
+        .settings select, .settings input[type="color"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-top: 5px;
+        }
+        .settings input[type="color"] {
+            -webkit-appearance: none;
+            border: none;
+            height: 40px;
+            cursor: pointer;
+        }
+        .settings input[type="color"]::-webkit-color-swatch-wrapper {
+            padding: 0;
+        }
+        .settings input[type="color"]::-webkit-color-swatch {
+            border: none;
+            border-radius: 5px;
+        }
+        .settings-button, .music-button {
+            position: fixed;
+            top: 20px;
+            background-color: var(--colore-button);
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 101;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .settings-button {
+            right: 20px;
+        }
+        .music-button {
+            left: 20px;
+        }
+        .close-settings, .close-music {
+            margin-top: 15px;
+            background-color: #f44336;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+        }
+        .music-container {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+            flex-direction: column;
+        }
+        .music-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .music-container audio {
+            width: 100%;
+            height: 50px;
+            border-radius: 10px;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 99;
+        }
+        .link-style {
+            text-decoration: none;
+            color: var(--colore-link);
+            border-bottom: 1px solid transparent;
+            transition: border-bottom 0.3s; /* Aumentato il tempo di transizione */
+        }
+        .link-style:hover {
+            border-bottom: 1px solid var(--colore-link); /* Sottolinea con il colore del link */
+        }
+        /* Arrotondare tutti i bordi */
+        .music, .music-item, .music-icon, .current-song-icon, .close-music, .music-button, .settings-button, .container {
+            border-radius: 15px;
+        }
+        /* Abilitare lo scorrimento verticale */
+        .music {
+            overflow-y: auto;
+            max-height: 400px;
+        }
+        /* Disporre le icone in due per riga */
+        .music-menu {
+            display: flex;
+        }
+        .music-icon {
+            width: 100%;
+            height: auto;
+            border-radius: 50%; /* Arrotonda le immagini */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Add your content here -->
         <div class="entry">
             <h2>12 Dicembre 2024</h2>
-            <p>Oggi evidentemente non è giornata per te. E per questo ti prometto che ti prenderò un magnifico peluche. Adesso vorrei poter essere li per abbracciarti. Ma non ci sono. Ricordati sempre che per te ci sono sempre. Se non riesci a dormire scrivimi, svegliami, mi fa solo piacere. Quindi non esitare mai. Preferisco stare sveglio tutta notte che lasciarti sola.
+            <p>Oggi evidentemente non è giornata per te. E per questo ti prometto che ti prenderò un magnifico peluche. Adesso vorrei poter essere lì per abbracciarti. Ma non ci sono. Ricordati sempre che...</p>
+            <img src="https://example.com/your-image.jpg" alt="Descrizione dell'immagine">
         </div>
-
-         <div class="entry">
-            <h2>16 Dicembre 2024</h2>
-            <p>Oggi è stata una bella giornata. Hai risposto a Marrado Caurizio. Hai fatto dei disegni traumatici per chiedere quanto ce l’avessi lungo, ma va bene. Poi sono stato azzannato a un braccio. Che poi non ti ho detto niente, ma essenzialemente è un succhiotto. Ma va bene. A parte il male che ho alla spalla, oggi è stata una bella giornata. Anche se il male è stato risarcito da un abbraccio. Ora vado a dormire. Notte. Tvb🩶
+          <div class="entry">
+            <h2>12 Dicembre 2024</h2>
+            <p>Oggi evidentemente non è giornata per te. E per questo ti prometto che ti prenderò un magnifico peluche. Adesso vorrei poter essere lì per abbracciarti. Ma non ci sono. Ricordati sempre che...</p>
+            <img src="https://example.com/your-image.jpg" alt="Descrizione dell'immagine">
         </div>
-
-        <div class="entry">
-            <h2>17 Dicembre 2024</h2>
-            <p>Oggi ne ho un altro, so di non averti detto niente, ma perchè finché sorridi mi va bene. Puoi anche riempirmi le braccia, a me va bene, basta che tu sorrida. Perchè quando mi mordi, fai un sorriso bellissimo. Comunque credo che Ryan sia invidiosissimo. Sempre il primo a dirti su se mi mordi. Ma credo che se sentisse il mio stesso dolore cambierebbe idea. Si, fa molto male, ma per te, soffrirei 1000 volte di più. E poi, neanche me lo devi chiedere per una chiamata, al massimo di chiedo di aspettare massimo massimo 20 minuti. Se proprio è il momento sbagliato. Se va peggio ti dico di no, ma è raro. Poi te ancora non lo sai, ma ho già il tuo regalo nello zaino, sono sicuro che ti piacerà. In aggiunta, ho lasciato un bigliettino (orribile, ma di meglio non riuscivo a fare quando l’ho incartato, sorry, l’importante è il significato). So che il pacco non è bellissimo, ma è fatto con tanto amore, perchè ti voglio tanto tanto bene. Bye bye tata🩶
+          <div class="entry">
+            <h2>12 Dicembre 2024</h2>
+            <p>Oggi evidentemente non è giornata per te. E per questo ti prometto che ti prenderò un magnifico peluche. Adesso vorrei poter essere lì per abbracciarti. Ma non ci sono. Ricordati sempre che...</p>
+            <img src="https://example.com/your-image.jpg" alt="Descrizione dell'immagine">
         </div>
-
-        <div class="entry">
-            <h2>20 Dicembre 2024</h2>
-            <p>Anche se sono stato azzannato nei peggio modi, oggi è stat una bella giornata. Hai finalmente scritto a Bok, anche se hai paura. Mal che vada, io sono qui, per te libero anche quando non ho tempo. Ubi tu ubi ego (si, sono fissato con sta frase. Che poi è latina, non greca). Spero tutto vada bene…
-            <p>Anche se sono stato azzannato nei peggio modi, oggi è stata una bella giornata. Hai finalmente scritto a Bok, anche se hai paura. Mal che vada, io sono qui, per te libero anche quando non ho tempo. Ubi tu ubi ego (si, sono fissato con sta frase. Che poi è latina, non greca). Spero tutto vada bene…
+          <div class="entry">
+            <h2>12 Dicembre 2024</h2>
+            <p>Oggi evidentemente non è giornata per te. E per questo ti prometto che ti prenderò un magnifico peluche. Adesso vorrei poter essere lì per abbracciarti. Ma non ci sono. Ricordati sempre che...</p>
+            <img src="https://example.com/your-image.jpg" alt="Descrizione dell'immagine">
         </div>
-
-        <div class="entry">
-            <h2>24 Dicembre 2024</h2>
-            <p>Siamo già al terzo giorno di vacanze. È la vigilia ma neanche me ne ero reso conto. Con te i giorni si riempiono sempre di bei ricordi che non puoi neanche pensare che sia passato così poco tempo. Poi ieri sono stato in discoteca per la prima volta. Mentre aspettavo in fila, mi è arrivata una foto di un abitante della Mongolia che sta viaggiando per il deserto del Gobi. Con una felpa nera sulla bocca, gli occhi talmente socchiusi che sembrava volesse uccidere qualcuno dalla rabbia. Ovviamente eri bellissima in quella foto. Poi, dopo un po’, me ne arriva un’altra che non può essere descritta, non è family frienldy, ma proprio per niente. <a href="https://www.instagram.com/reel/DDkhFdCtqbv/?igsh=MWppYm92enZpeXpjeA==" class="link-style">Ti dico solo una cosa: sei bellissima, sempre, non dubitarne mai.</a> Ti voglio bene🩶</p>
+        <!-- Repeat similar blocks for other entries -->
+    </div>
+    <div class="settings" id="settings">
+        <h2>Personalizza il Sito</h2>
+        <label for="fontSelect">Seleziona Font:</label>
+        <select id="fontSelect">
+            <option value="Arial">Arial</option>
+            <option value="Apple Chancery">Apple Chancery</option>
+            <option value="Brush Script MT">Brush Script MT</option>
+            <option value="Comic Sans MS">Comic Sans MS</option>
+            <option value="Courier New">Courier New</option>
+            <option value="Dancing Script">Dancing Script</option>
+            <option value="Edwardian Script ITC">Edwardian Script ITC</option>
+            <option value="Gabriola">Gabriola</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Garamond">Garamond</option>
+            <option value="Great Vibes">Great Vibes</option>
+            <option value="Italic">Italic</option>
+            <option value="Kunstler Script">Kunstler Script</option>
+            <option value="Lobster">Lobster</option>
+            <option value="Lucida Handwriting">Lucida Handwriting</option>
+            <option value="Monotype Corsiva">Monotype Corsiva</option>
+            <option value="Pacifico">Pacifico</option>
+            <option value="Palace Script MT">Palace Script MT</option>
+            <option value="Papyrus">Papyrus</option>
+            <option value="Parisienne">Parisienne</option>
+            <option value="Permanent Marker">Permanent Marker</option>
+            <option value="Poiret One">Poiret One</option>
+            <option value="Segoe Script">Segoe Script</option>
+            <option value="Snell Roundhand">Snell Roundhand</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Trebuchet MS">Trebuchet MS</option>
+            <option value="Verdana">Verdana</option>
+            <option value="Alex Brush">Alex Brush</option>
+            <option value="Allura">Allura</option>
+            <option value="Amatic SC">Amatic SC</option>
+            <option value="Bilbo Swash Caps">Bilbo Swash Caps</option>
+            <option value="Dancing Script">Dancing Script</option>
+            <option value="Euphoria Script">Euphoria Script</option>
+            <option value="Fondamento">Fondamento</option>
+            <option value="Herr Von Muellerhoff">Herr Von Muellerhoff</option>
+            <option value="Indie Flower">Indie Flower</option>
+            <option value="Italianno">Italianno</option>
+            <option value="Just Another Hand">Just Another Hand</option>
+            <option value="League Script">League Script</option>
+            <option value="Meddon">Meddon</option>
+            <option value="Merienda">Merienda</option>
+            <option value="Monsieur La Doulaise">Monsieur La Doulaise</option>
+            <option value="Niconne">Niconne</option>
+            <option value="Norican">Norican</option>
+            <option value="Oleo Script">Oleo Script</option>
+            <option value="Over the Rainbow">Over the Rainbow</option>
+            <option value="Pacifico">Pacifico</option>
+            <option value="Pangolin">Pangolin</option>
+            <option value="Pinyon Script">Pinyon Script</option>
+            <!-- Aggiungi altri font qui -->
+        </select>
+        <label for="colorPicker">Seleziona il colore dello sfondo:</label>
+        <input type="color" id="colorPicker" value="#f4f4f9">
+        <label for="textColorPicker">Seleziona il colore del testo:</label>
+        <input type="color" id="textColorPicker" value="#000000">
+        <label for="buttonColorPicker">Seleziona il colore dei pulsanti:</label>
+        <input type="color" id="buttonColorPicker" value="#007bff">
+        <button class="close-settings" onclick="toggleSettings()">Chiudi</button>
+    </div>
+    <div class="music" id="music">
+        <h2>Musica</h2>
+        <div class="music-menu" id="musicMenu">
+            <div class="music-item" onclick="playSong('song1')">
+                <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/2.png" alt="Song 1 Icon" class="music-icon">
+                <p><span>Song 1</span></p>
+            </div>
+            <div class="music-item" onclick="playSong('song2')">
+                <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/2.png" alt="Song 2 Icon" class="music-icon">
+                <p><span>Song 2</span></p>
+            </div>
+            <div class="music-item" onclick="playSong('song3')">
+                <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/2.png" alt="Song 3 Icon" class="music-icon">
+                <p><span>Song 3</span></p>
+            </div>
+            <div class="music-item" onclick="playSong('song4')">
+                <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/2.png" alt="Song 4 Icon" class="music-icon">
+                <p><span>Song 4</span></p>
+            </div>
+            <!-- Aggiungi altre canzoni come desideri -->
         </div>
-
-        <div class="entry">
-            <h2>29 Dicembre 2024</h2>
-            <p>Adesso qualcuno mi deve dire come non si fa ad adorare una ragazza così. Non centra l’essere bella, simpatica, quelle cose lì… Quelle sono caratteristiche che possono avere tutti, chi più e chi meno. Si, sei splendida, sei simpaticissima, parlare con te mi fa sorridere. Ma questo non è il punto di oggi. Oggi voglio parlare di come sia facile parlare di tutto con te. Ma tutto tutto. Ceh, io non credo di aver mai avuto conversazioni di questo genere con nessuno. Un ora e un quarto a parlare di come si viene. Non sono cose che di solito succedono. Concludo con questo: io di ste cose non parlo a nessuno, ma se succede, o mi stanno puntando una pistola alla tempia, o so che chi mi ascolta è una persona affidabile, che non ti giudica e che se hai bisogno ti aiuta. Notte, mia sceneggiatrice🩶<span
+        <div class="music-player" id="musicPlayer" style="display:none;">
+            <img id="currentSongImage" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/2.png" alt="Current Song Icon" class="current-song-icon">
+            <button id="backButton" class="back-button" onclick="showMenu()"></button>
+            <audio id="audioPlayer" controls>
+                <source id="audioSource" src="" type="audio/mpeg">
+                Il tuo browser non supporta l'elemento audio.
+            </audio>
         </div>
-        <!-- Aggiungi altri post del blog qui -->
-
+        <button class="close-music" onclick="toggleMusic()">Chiudi</button>
     </div>
 
 <script>
