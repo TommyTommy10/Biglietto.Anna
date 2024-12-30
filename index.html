@@ -225,182 +225,23 @@
     overflow-y: auto;
     max-height: 400px;
 }
-
-/* Arrotondare tutti i bordi */
-.music, .music-item, .music-icon, .current-song-icon, .close-music, .music-button, .settings-button, .container {
-    border-radius: 15px;
-}
-
-/* Abilitare lo scorrimento verticale */
-.music {
-    overflow-y: auto;
-    max-height: 400px;
-}
-
-/* Arrotondare tutti i bordi */
-.music, .music-item, .music-icon, .current-song-icon, .close-music, .music-button, .settings-button, .container {
-    border-radius: 15px;
-}
-
-/* Abilitare lo scorrimento verticale */
-.music {
-    overflow-y: auto;
-    max-height: 400px;
-}
-
 /* Disporre le icone in due per riga */
 .music-menu {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: space-between; /* Distribuisci le icone uniformemente */
-}
-
-.music-item {
-    width: 48%;
-    margin-bottom: 20px;
-}
-
+@@ -236,7 +242,7 @@
 .music-icon {
     width: 100%;
     height: auto;
     border-radius: 50%; /* Arrotonda le immagini */
+    border-radius: 50%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.music-item p {
-    margin-top: 5px;
-    font-size: 0.9em;
-    color: var(--colore-primario);
-    text-align: center;
-    overflow: hidden;
-    white-space: nowrap;
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-    position: relative;
-}
-
-@keyframes scrolling-text {
-    0% {
-        transform: translateX(100%);
-    }
-    100% {
-        transform: translateX(-100%);
-    }
-}
-
-.music-item p span {
-    display: inline-block;
-    padding-left: 100%;
-    animation: scrolling-text 10s linear infinite;
-}
-
-/* Posizionamento corretto della freccia */
-.back-button {
-    background: none;
-    border: none;
-    font-size: 2em;
-    cursor: pointer;
-    position: absolute; /* Impostato come assoluto per precisione */
-    top: 20px; /* Allinea la parte superiore della freccia con l'inizio della foto */
-    left: 20px;
-    z-index: 102; /* Assicurati che il pulsante sia sopra altri elementi */
-    color: #fff;
-    background-color: transparent; /* Rimosso il contorno */
-    border-radius: 50%; /* Bordi arrotondati */
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.back-button::before {
-    content: "←"; /* Freccia */
-}
-
-    .current-song-icon {
-        width: 100%;
-        max-width: 300px;
-        height: auto;
-        margin-bottom: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    }
-
-    .music-player {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 30px; /* Aggiunto margine superiore per evitare la sovrapposizione */
-    }
-
-    /* Media queries per dispositivi diversi */
-    @media (max-width: 768px) {
-        .container {
-            padding: 10px;
-        }
-
-        .settings, .music {
-            width: 100%;
-        }
-
-        .settings-button, .music-button {
-            width: 30px;
-            height: 30px;
-        }
-
-        .back-button {
-            font-size: 1.5em; /* Ridotto il font size per dispositivi più piccoli */
-            padding: 5px; /* Ridotto il padding per dispositivi più piccoli */
-        }
-    }
-
-    @media (max-width: 480px) {
-        .container {
-            width: 100%;
-            padding: 5px;
-        }
-
-        .entry {
-            padding: 10px;
-        }
-
-        .settings, .music {
-            width: 100%;
-        }
-
-        .settings-button, .music-button {
-            width: 30px;
-            height: 30px;
-        }
-
-        .back-button {
-            font-size: 1.5em; /* Ridotto il font size per dispositivi più piccoli */
-            padding: 5px; /* Ridotto il padding per dispositivi più piccoli */
-        }
-    }
-</style>
-</head>
-<body>
-    <div class="container">
-        <h1>Ricordi Speciali</h1>
-
-        <!-- Overlay -->
-        <div class="overlay" id="overlay" onclick="closeWindows()"></div>
-
-        <!-- Pulsante per mostrare le impostazioni -->
-        <div class="settings-button" id="settingsButton" onclick="toggleSettings()">⚙️</div>
-
-<!-- Pulsante per mostrare la musica -->
-<div class="music-button" id="musicButton" onclick="toggleMusic()">🎵</div>
-
-<!-- Finestra della musica -->
-<div class="music" id="music">
+@@ -376,258 +382,258 @@
     <div class="music-menu" id="musicMenu">
         <div class="music-item" onclick="playSong('song1')">
             <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/2.png" alt="Song 1 Icon" class="music-icon">
+            <p><span>Song 3,14159 26535 89793 23846 26433 83279 50288</span></p>
             <p><span>Song 1</span></p>
         </div>
         <div class="music-item" onclick="playSong('song2')">
