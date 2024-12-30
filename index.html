@@ -226,12 +226,34 @@
     max-height: 400px;
 }
 
+/* Arrotondare tutti i bordi */
+.music, .music-item, .music-icon, .current-song-icon, .close-music, .music-button, .settings-button, .container {
+    border-radius: 15px;
+}
+
+/* Abilitare lo scorrimento verticale */
+.music {
+    overflow-y: auto;
+    max-height: 400px;
+}
+
+/* Arrotondare tutti i bordi */
+.music, .music-item, .music-icon, .current-song-icon, .close-music, .music-button, .settings-button, .container {
+    border-radius: 15px;
+}
+
+/* Abilitare lo scorrimento verticale */
+.music {
+    overflow-y: auto;
+    max-height: 400px;
+}
+
 /* Disporre le icone in due per riga */
 .music-menu {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: space-between;
+    justify-content: space-between; /* Distribuisci le icone uniformemente */
 }
 
 .music-item {
@@ -242,7 +264,7 @@
 .music-icon {
     width: 100%;
     height: auto;
-    border-radius: 50%;
+    border-radius: 50%; /* Arrotonda le immagini */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -274,32 +296,29 @@
     animation: scrolling-text 10s linear infinite;
 }
 
-.music-item p:hover span {
-    animation-play-state: running;
+/* Posizionamento corretto della freccia */
+.back-button {
+    background: none;
+    border: none;
+    font-size: 2em;
+    cursor: pointer;
+    position: absolute; /* Impostato come assoluto per precisione */
+    top: 20px; /* Allinea la parte superiore della freccia con l'inizio della foto */
+    left: 20px;
+    z-index: 102; /* Assicurati che il pulsante sia sopra altri elementi */
+    color: #fff;
+    background-color: transparent; /* Rimosso il contorno */
+    border-radius: 50%; /* Bordi arrotondati */
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-    .back-button {
-        background: none;
-        border: none;
-        font-size: 2em;
-        cursor: pointer;
-        position: absolute; /* Impostato come assoluto per precisione */
-        top: 5px; /* Ridotto il margine tra la freccia e la foto */
-        left: 20px;
-        z-index: 102; /* Assicurati che il pulsante sia sopra altri elementi */
-        color: #fff;
-        background-color: transparent; /* Rimosso il contorno */
-        border-radius: 50%; /* Bordi arrotondati */
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .back-button::before {
-        content: "←"; /* Freccia */
-    }
+.back-button::before {
+    content: "←"; /* Freccia */
+}
 
     .current-song-icon {
         width: 100%;
