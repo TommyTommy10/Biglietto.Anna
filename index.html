@@ -220,6 +220,7 @@
         display: flex;
         flex-wrap: wrap;
         gap: 20px;
+        justify-content: space-between; /* Spaziatura tra le icone */
     }
 
     .music-item {
@@ -227,11 +228,12 @@
         flex-direction: column;
         align-items: center;
         cursor: pointer;
+        width: 48%; /* Allarga le icone per occupare lo spazio in orizzontale */
     }
 
     .music-icon {
-        width: 100px;
-        height: 100px;
+        width: 100%;
+        height: auto;
         margin-bottom: 10px;
         border-radius: 50%; /* Cambiato da 10px a 50% per rendere l'immagine rotonda */
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -285,7 +287,6 @@
     /* Media queries per dispositivi diversi */
     @media (max-width: 768px) {
         .container {
-            width: 100%;
             padding: 10px;
         }
 
@@ -301,7 +302,31 @@
         .back-button {
             font-size: 1.5em; /* Ridotto il font size per dispositivi più piccoli */
             padding: 5px; /* Ridotto il padding per dispositivi più piccoli */
-            top: 0; /* Allinea la punta della freccia con l'inizio della foto */
+        }
+    }
+
+    @media (max-width: 480px) {
+        .container {
+            width: 100%;
+            padding: 5px;
+        }
+
+        .entry {
+            padding: 10px;
+        }
+
+        .settings, .music {
+            width: 100%;
+        }
+
+        .settings-button, .music-button {
+            width: 30px;
+            height: 30px;
+        }
+
+        .back-button {
+            font-size: 1.5em; /* Ridotto il font size per dispositivi più piccoli */
+            padding: 5px; /* Ridotto il padding per dispositivi più piccoli */
         }
     }
 </style>
