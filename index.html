@@ -215,41 +215,36 @@
         border-bottom: 1px solid var(--colore-link); /* Sottolinea con il colore del link */
     }
 
-    /* Aggiunte per il menu musicale */
-.music {
-    overflow-y: auto; /* Abilita lo scorrimento verticale */
-    max-height: 400px; /* Imposta un'altezza massima per la finestra della musica */
+/* Arrotondare tutti i bordi */
+.music, .music-item, .music-icon, .current-song-icon, .close-music, .music-button, .settings-button, .container {
+    border-radius: 15px;
 }
 
+/* Disporre le icone in due per riga */
 .music-menu {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: space-between; /* Distribuisci le icone uniformemente */
+    justify-content: space-between;
 }
 
-    @keyframes scrolling-text {
-        0% { transform: translateX(100%);
-           } 100% { transform: translateX(-100%);
-                  }
-    }
 .music-item {
-    width: 48%; /* Imposta due icone per riga */
-    margin-bottom: 20px; /* Aggiungi un po' di spazio sotto ogni icona */
+    width: 48%;
+    margin-bottom: 20px;
 }
 
 .music-icon {
     width: 100%;
     height: auto;
-    border-radius: 50%; /* Mantieni le immagini rotonde */
+    border-radius: 50%; /* Arrotonda le immagini */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .music-item p {
     margin-top: 5px;
     font-size: 0.9em;
-    color: var(--colore-primario); /* Colore del testo */
-    text-align: center; /* Centra il testo */
+    color: var(--colore-primario);
+    text-align: center;
     overflow: hidden;
     white-space: nowrap;
     display: block;
@@ -258,6 +253,14 @@
     position: relative;
 }
 
+@keyframes scrolling-text {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
 
 .music-item p span {
     display: inline-block;
