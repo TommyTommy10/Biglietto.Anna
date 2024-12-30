@@ -246,12 +246,29 @@
 .music-item p {
     margin-top: 5px;
     font-size: 0.9em;
-    color: var(--colore-primario); /* Colore del testo */
-    text-align: center; /* Centra il testo */
-    overflow: hidden; /* Nasconde il testo che esce dai bordi */
-    white-space: nowrap; /* Impedisce al testo di andare a capo */
+    color: var(--colore-primario);
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.music-item p span {
     display: inline-block;
-    animation: scrolling-text 10s linear infinite; /* Applica l'animazione di scorrimento */
+    padding-left: 100%;
+    animation: scrolling-text 10s linear infinite;
+}
+
+@keyframes scrolling-text {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
 }
 
     .back-button {
