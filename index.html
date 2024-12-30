@@ -617,6 +617,15 @@
             return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
         }
     });
+    
+    document.querySelectorAll('.music-item p span').forEach(span => {
+    const parentWidth = span.parentElement.offsetWidth;
+    const spanWidth = span.offsetWidth;
+
+    if (spanWidth > parentWidth) {
+        span.style.animation = 'scrolling-text 10s linear infinite';
+    }
+});
 </script>
 </body>
 </html>
