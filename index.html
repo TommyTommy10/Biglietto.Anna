@@ -216,44 +216,40 @@
     }
 
     /* Aggiunte per il menu musicale */
+.music {
+    overflow-y: auto; /* Abilita lo scorrimento verticale */
+    max-height: 400px; /* Imposta un'altezza massima per la finestra della musica */
+}
+
 .music-menu {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between; /* Assicura che le icone siano distribuite uniformemente */
+    gap: 20px;
+    justify-content: space-between; /* Distribuisci le icone uniformemente */
 }
 
+    @keyframes scrolling-text {
+        0% { transform: translateX(100%);
+           } 100% { transform: translateX(-100%);
+                  }
+    }
 .music-item {
-    width: 48%; /* Assicura che ci siano due icone per riga */
+    width: 48%; /* Imposta due icone per riga */
     margin-bottom: 20px; /* Aggiungi un po' di spazio sotto ogni icona */
 }
 
 .music-icon {
     width: 100%;
-    height: auto; /* Mantieni le proporzioni corrette */
-    border-radius: 50%;
+    height: auto;
+    border-radius: 50%; /* Mantieni le immagini rotonde */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-@keyframes scrolling-text {
-    0% {
-        transform: translateX(100%);
-    }
-    100% {
-        transform: translateX(-100%);
-    }
-}
-
-.music-item {
-    width: 48%;
-    overflow: hidden; /* Assicura che il testo non esca dai confini */
-    position: relative;
 }
 
 .music-item p {
     margin-top: 5px;
     font-size: 0.9em;
-    color: var(--colore-primario);
-    text-align: center;
+    color: var(--colore-primario); /* Colore del testo */
+    text-align: center; /* Centra il testo */
     overflow: hidden;
     white-space: nowrap;
     display: block;
@@ -261,6 +257,7 @@
     box-sizing: border-box;
     position: relative;
 }
+
 
 .music-item p span {
     display: inline-block;
@@ -376,25 +373,25 @@
     <div class="music-menu" id="musicMenu">
         <div class="music-item" onclick="playSong('song1')">
             <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/2.png" alt="Song 1 Icon" class="music-icon">
-            <p>Ciaoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo</p>
+            <p><span>Song 3,14159 26535 89793 23846 26433 83279 50288</span></p>
         </div>
         <div class="music-item" onclick="playSong('song2')">
             <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/2.png" alt="Song 2 Icon" class="music-icon">
-            <p>Song 2</p>
+            <p><span>Song 2</span></p>
         </div>
         <div class="music-item" onclick="playSong('song3')">
             <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/2.png" alt="Song 3 Icon" class="music-icon">
-            <p>Song 3</p>
+            <p><span>Song 3</span></p>
         </div>
         <div class="music-item" onclick="playSong('song4')">
             <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/2.png" alt="Song 4 Icon" class="music-icon">
-            <p>Song 4</p>
+            <p><span>Song 4</span></p>
         </div>
         <!-- Aggiungi altre canzoni come desideri -->
     </div>
     <div class="music-player" id="musicPlayer" style="display:none;">
         <img id="currentSongImage" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/2.png" alt="Current Song Icon" class="current-song-icon">
-        <button id="backButton" class="back-button" onclick="showMenu()"></button>
+        <button id="backButton" class="back-button" onclick="showMenu()">←</button>
         <audio id="audioPlayer" controls>
             <source id="audioSource" src="" type="audio/mpeg">
             Il tuo browser non supporta l'elemento audio.
