@@ -249,7 +249,7 @@
         font-size: 2em;
         cursor: pointer;
         position: absolute; /* Impostato come assoluto per precisione */
-        top: 0; /* Allinea la parte superiore della freccia con l'inizio della foto */
+        top: 5px; /* Ridotto il margine tra la freccia e la foto */
         left: 20px;
         z-index: 102; /* Assicurati che il pulsante sia sopra altri elementi */
         color: #fff;
@@ -279,7 +279,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-top: 60px; /* Aggiunto margine superiore per evitare la sovrapposizione */
+        margin-top: 30px; /* Aggiunto margine superiore per evitare la sovrapposizione */
     }
 
     /* Media queries per dispositivi diversi */
@@ -301,6 +301,7 @@
         .back-button {
             font-size: 1.5em; /* Ridotto il font size per dispositivi più piccoli */
             padding: 5px; /* Ridotto il padding per dispositivi più piccoli */
+            top: 0; /* Allinea la punta della freccia con l'inizio della foto */
         }
     }
 </style>
@@ -329,11 +330,19 @@
             <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/2.png" alt="Song 2 Icon" class="music-icon">
             <p>Song 2</p>
         </div>
+        <div class="music-item" onclick="playSong('song3')">
+            <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/2.png" alt="Song 3 Icon" class="music-icon">
+            <p>Song 3</p>
+        </div>
+        <div class="music-item" onclick="playSong('song4')">
+            <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/2.png" alt="Song 4 Icon" class="music-icon">
+            <p>Song 4</p>
+        </div>
         <!-- Aggiungi altre canzoni come desideri -->
     </div>
     <div class="music-player" id="musicPlayer" style="display:none;">
         <img id="currentSongImage" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/2.png" alt="Current Song Icon" class="current-song-icon">
-        <button id="backButton" class="back-button" onclick="showMenu()">←</button>
+        <button id="backButton" class="back-button" onclick="showMenu()"></button>
         <audio id="audioPlayer" controls>
             <source id="audioSource" src="" type="audio/mpeg">
             Il tuo browser non supporta l'elemento audio.
@@ -341,7 +350,6 @@
     </div>
     <button class="close-music" onclick="toggleMusic()">Chiudi</button>
 </div>
-        
         <!-- Interfaccia per cambiare font e colori -->
         <div class="settings" id="settings">
             <h2>Personalizza il Sito</h2>
