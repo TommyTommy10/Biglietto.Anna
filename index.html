@@ -160,7 +160,6 @@
     .music-button {
         left: 20px;
     }
-
 /* Arrotondare tutti i bordi */
 .music, .music-item, .music-icon, .current-song-icon, .close-music, .music-button, .settings-button, .container, .close-settings {
     border-radius: 15px;
@@ -190,7 +189,6 @@
     overflow: hidden; /* Assicurarsi che il colore rimanga all'interno dei bordi arrotondati */
     padding: 0; /* Rimuovere padding per bordi arrotondati */
     background-color: #fff; /* Imposta uno sfondo bianco per migliorare la visibilità */
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2); /* Aggiungi un'ombreggiatura interna per il contorno */
 }
 
 .settings input[type="color"]::-webkit-color-swatch-wrapper {
@@ -202,6 +200,12 @@
     border: none;
     border-radius: 15px; /* Arrotondare il colore swatch */
     background-color: transparent; /* Rimuovi lo sfondo predefinito per vedere il colore effettivo */
+}
+
+/* Aggiungere una linea di contorno per la visibilità */
+.settings input[type="color"] {
+    border: 2px solid #ddd; /* Aggiungi una linea di contorno sottile */
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2); /* Ombreggiatura interna */
 }
     
     .music-container {
