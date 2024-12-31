@@ -189,6 +189,8 @@
     border-radius: 15px; /* Arrotondare i picker */
     overflow: hidden; /* Assicurarsi che il colore rimanga all'interno dei bordi arrotondati */
     padding: 0; /* Rimuovere padding per bordi arrotondati */
+    background-color: #fff; /* Imposta uno sfondo bianco per migliorare la visibilità */
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2); /* Aggiungi un'ombreggiatura interna per il contorno */
 }
 
 .settings input[type="color"]::-webkit-color-swatch-wrapper {
@@ -199,7 +201,9 @@
 .settings input[type="color"]::-webkit-color-swatch {
     border: none;
     border-radius: 15px; /* Arrotondare il colore swatch */
+    background-color: transparent; /* Rimuovi lo sfondo predefinito per vedere il colore effettivo */
 }
+    
     .music-container {
         display: flex;
         align-items: center;
