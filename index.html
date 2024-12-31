@@ -288,19 +288,35 @@
     }
     .song-info {
     text-align: center; /* Centra il testo */
-    margin-top: 10px; /* Spazio tra l'immagine e il testo */
+    margin-top: 5px; /* Riduci lo spazio tra l'immagine e il testo */
 }
 
 .song-title {
-    font-size: 1.5em;
+    font-size: 1.2em; /* Riduci la dimensione del font */
     color: var(--colore-primario); /* Usare il colore principale */
     margin: 0; /* Rimuovere margine predefinito */
+    font-weight: bold; /* Aggiungi grassetto per il titolo della canzone */
 }
 
 .song-artist {
-    font-size: 1em;
+    font-size: 0.9em; /* Riduci ulteriormente la dimensione del font */
     color: var(--colore-secondario); /* Usare il colore secondario */
     margin: 0; /* Rimuovere margine predefinito */
+    font-style: italic; /* Aggiungi corsivo per il nome del cantante/band */
+}
+
+/* Stile del pulsante di chiusura */
+.close-music {
+    background-color: #f44336; /* Colore rosso */
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 15px; /* Arrotondare i bordi */
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Aggiungi ombreggiatura */
+    margin-top: 10px; /* Riduci lo spazio tra il player e il pulsante di chiusura */
 }
 
     .overlay {
