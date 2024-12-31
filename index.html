@@ -189,21 +189,21 @@
     overflow: hidden; /* Assicurarsi che il colore rimanga all'interno dei bordi arrotondati */
     padding: 0; /* Rimuovere padding per bordi arrotondati */
     background-color: #fff; /* Imposta uno sfondo bianco per migliorare la visibilità */
+    background-image: linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 50%, #ccc 50%, #ccc 75%, transparent 75%, transparent), linear-gradient(45deg, #ccc 25%, #fff 25%, #fff 50%, #ccc 50%, #ccc 75%, #fff 75%, #fff);
 }
 
-/* Specifico per Safari */
-@media not all and (min-resolution:.001dpcm) { @supports (-webkit-appearance:none) {
+@supports (-webkit-appearance: none) {
     .settings input[type="color"] {
         -webkit-appearance: none;
         padding: 0;
         border: none;
         border-radius: 15px;
-        background-color: #fff;
+        background-color: transparent;
         height: 40px;
         cursor: pointer;
-        background-image: linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 50%, #ccc 50%, #ccc 75%, transparent 75%, transparent); /* Aggiungi sfondo a scacchi per mostrare il colore */
+        background-image: linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 50%, #ccc 50%, #ccc 75%, transparent 75%, transparent), linear-gradient(45deg, #ccc 25%, #fff 25%, #fff 50%, #ccc 50%, #ccc 75%, #fff 75%, #fff);
     }
-}}
+}
 
 .settings input[type="color"]::-webkit-color-swatch-wrapper {
     padding: 0;
