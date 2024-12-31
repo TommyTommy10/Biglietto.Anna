@@ -830,9 +830,23 @@
     }
 });
     
-   function updateSongInfo(songTitle, songArtist) {
+function updateSongInfo(songTitle, songArtist) {
     document.querySelector('.song-title').textContent = songTitle;
     document.querySelector('.song-artist').textContent = songArtist;
+}
+
+function playAudio() {
+    document.getElementById('audioPlayer').play();
+}
+
+function pauseAudio() {
+    document.getElementById('audioPlayer').pause();
+}
+
+function stopAudio() {
+    const audioPlayer = document.getElementById('audioPlayer');
+    audioPlayer.pause();
+    audioPlayer.currentTime = 0;
 }
 
 // Esempio di utilizzo:
