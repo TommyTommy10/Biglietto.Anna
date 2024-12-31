@@ -493,6 +493,11 @@
     </div>
     <div class="music-player" id="musicPlayer" style="display:none;">
         <img id="currentSongImage" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/2.png" alt="Current Song Icon" class="current-song-icon">
+        <!-- Blocco HTML aggiunto per le informazioni sulla canzone -->
+        <div class="song-info">
+            <h3 class="song-title">Nome della Canzone</h3>
+            <p class="song-artist">Nome del Cantante/Band</p>
+        </div>
         <button id="backButton" class="back-button" onclick="showMenu()"></button>
         <audio id="audioPlayer" controls>
             <source id="audioSource" src="" type="audio/mpeg">
@@ -731,6 +736,14 @@
         span.style.animation = 'scrolling-text 10s linear infinite';
     }
 });
+    
+    function updateSongInfo(songTitle, songArtist) {
+    document.querySelector('.song-title').textContent = songTitle;
+    document.querySelector('.song-artist').textContent = songArtist;
+}
+
+// Esempio di utilizzo:
+updateSongInfo('Titolo della Canzone', 'Nome del Cantante/Band');
 </script>
 </body>
 </html>
