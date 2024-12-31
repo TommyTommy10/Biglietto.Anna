@@ -180,6 +180,26 @@
     margin-top: 15px;
 }
 
+/* Arrotondare i color picker */
+.settings input[type="color"] {
+    -webkit-appearance: none;
+    border: none;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 15px; /* Arrotondare i picker */
+    overflow: hidden; /* Assicurarsi che il colore rimanga all'interno dei bordi arrotondati */
+    padding: 0; /* Rimuovere padding per bordi arrotondati */
+}
+
+.settings input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+    border-radius: 15px; /* Arrotondare anche il wrapper */
+}
+
+.settings input[type="color"]::-webkit-color-swatch {
+    border: none;
+    border-radius: 15px; /* Arrotondare il colore swatch */
+}
     .music-container {
         display: flex;
         align-items: center;
