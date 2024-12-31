@@ -48,7 +48,7 @@
     .entry {
         margin-bottom: 40px;
         padding: 20px;
-        border-radius: 15px;
+        border-radius: 10px;
         background-color: var(--colore-riquadro); /* Colore riquadro principale */
     }
 
@@ -70,7 +70,7 @@
         max-width: 100%;
         height: auto;
         margin-top: 20px;
-        border-radius: 15px;
+        border-radius: 10px;
     }
 
     .highlight {
@@ -85,12 +85,12 @@
         top: 20px;
         background-color: var(--colore-riquadro);
         padding: 20px;
-        border-radius: 15px;
+        border-radius: 10px;
         box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
         z-index: 100;
         width: 300px;
     }
-    
+
     .settings {
         right: 20px;
     }
@@ -115,7 +115,7 @@
     .settings select, .settings input[type="color"] {
         width: 100%;
         padding: 10px;
-        border-radius: 15px; /* Arrotondare i bordi */
+        border-radius: 5px;
         border: 1px solid #ddd;
         margin-top: 5px;
     }
@@ -125,21 +125,15 @@
         border: none;
         height: 40px;
         cursor: pointer;
-        border-radius: 15px; /* Arrotondare i picker */
-        overflow: hidden; /* Assicurarsi che il colore rimanga all'interno dei bordi arrotondati */
-        padding: 0; /* Rimuovere padding per bordi arrotondati */
-        background-color: #fff; /* Imposta uno sfondo bianco per migliorare la visibilità */
     }
 
     .settings input[type="color"]::-webkit-color-swatch-wrapper {
         padding: 0;
-        border-radius: 15px; /* Arrotondare anche il wrapper */
     }
 
     .settings input[type="color"]::-webkit-color-swatch {
         border: none;
-        border-radius: 15px; /* Arrotondare il colore swatch */
-        background-color: transparent; /* Rimuovi lo sfondo predefinito per vedere il colore effettivo */
+        border-radius: 5px;
     }
 
     .settings-button, .music-button {
@@ -166,7 +160,54 @@
     .music-button {
         left: 20px;
     }
+/* Arrotondare tutti i bordi */
+.music, .music-item, .music-icon, .current-song-icon, .close-music, .music-button, .settings-button, .container, .close-settings {
+    border-radius: 15px;
+}
 
+/* Stile dei pulsanti di chiusura */
+.close-music, .close-settings {
+    background-color: #f44336; /* Colore rosso */
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 15px; /* Arrotondare i bordi */
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Aggiungi ombreggiatura */
+    margin-top: 15px;
+}
+
+/* Arrotondare i color picker */
+.settings input[type="color"] {
+    -webkit-appearance: none;
+    border: none;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 15px; /* Arrotondare i picker */
+    overflow: hidden; /* Assicurarsi che il colore rimanga all'interno dei bordi arrotondati */
+    padding: 0; /* Rimuovere padding per bordi arrotondati */
+    background-color: #fff; /* Imposta uno sfondo bianco per migliorare la visibilità */
+}
+
+.settings input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+    border-radius: 15px; /* Arrotondare anche il wrapper */
+}
+
+.settings input[type="color"]::-webkit-color-swatch {
+    border: none;
+    border-radius: 15px; /* Arrotondare il colore swatch */
+    background-color: transparent; /* Rimuovi lo sfondo predefinito per vedere il colore effettivo */
+}
+
+/* Aggiungere una linea di contorno per la visibilità */
+.settings input[type="color"] {
+    border: 2px solid #ddd; /* Aggiungi una linea di contorno sottile */
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2); /* Ombreggiatura interna */
+}
+    
     .music-container {
         display: flex;
         align-items: center;
@@ -177,14 +218,14 @@
     .music-container img {
         max-width: 100%;
         height: auto;
-        border-radius: 15px; /* Arrotondare i bordi */
+        border-radius: 10px;
         margin-bottom: 10px;
     }
 
     .music-container audio {
         width: 100%;
         height: 50px;
-        border-radius: 15px; /* Arrotondare i bordi */
+        border-radius: 10px;
     }
 
     .overlay {
@@ -208,7 +249,7 @@
     .link-style:hover {
         border-bottom: 1px solid var(--colore-link); /* Sottolinea con il colore del link */
     }
-    
+
 /* Arrotondare tutti i bordi */
 .music, .music-item, .music-icon, .current-song-icon, .close-music, .music-button, .settings-button, .container {
     border-radius: 15px;
@@ -293,67 +334,68 @@
     content: "←"; /* Freccia */
 }
 
-.current-song-icon {
-    width: 100%;
-    max-width: 300px;
-    height: auto;
-    margin-bottom: 20px;
-    border-radius: 15px; /* Arrotondare i bordi */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
 
-.music-player {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 30px; /* Aggiunto margine superiore per evitare la sovrapposizione */
-}
-
-/* Media queries per dispositivi diversi */
-@media (max-width: 768px) {
-    .container {
-        padding: 10px;
-    }
-
-    .settings, .music {
+    .current-song-icon {
         width: 100%;
+        max-width: 300px;
+        height: auto;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     }
 
-    .settings-button, .music-button {
-        width: 30px;
-        height: 30px;
+    .music-player {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 30px; /* Aggiunto margine superiore per evitare la sovrapposizione */
     }
 
-    .back-button {
-        font-size: 1.5em; /* Ridotto il font size per dispositivi più piccoli */
-        padding: 5px; /* Ridotto il padding per dispositivi più piccoli */
-    }
-}
+    /* Media queries per dispositivi diversi */
+    @media (max-width: 768px) {
+        .container {
+            padding: 10px;
+        }
 
-@media (max-width: 480px) {
-    .container {
-        width: 100%;
-        padding: 5px;
-    }
+        .settings, .music {
+            width: 100%;
+        }
 
-    .entry {
-        padding: 10px;
-    }
+        .settings-button, .music-button {
+            width: 30px;
+            height: 30px;
+        }
 
-    .settings, .music {
-        width: 100%;
-    }
-
-    .settings-button, .music-button {
-        width: 30px;
-        height: 30px;
+        .back-button {
+            font-size: 1.5em; /* Ridotto il font size per dispositivi più piccoli */
+            padding: 5px; /* Ridotto il padding per dispositivi più piccoli */
+        }
     }
 
-    .back-button {
-        font-size: 1.5em; /* Ridotto il font size per dispositivi più piccoli */
-        padding: 5px; /* Ridotto il padding per dispositivi più piccoli */
+    @media (max-width: 480px) {
+        .container {
+            width: 100%;
+            padding: 5px;
+        }
+
+        .entry {
+            padding: 10px;
+        }
+
+        .settings, .music {
+            width: 100%;
+        }
+
+        .settings-button, .music-button {
+            width: 30px;
+            height: 30px;
+        }
+
+        .back-button {
+            font-size: 1.5em; /* Ridotto il font size per dispositivi più piccoli */
+            padding: 5px; /* Ridotto il padding per dispositivi più piccoli */
+        }
     }
-}
 </style>
 </head>
 <body>
@@ -500,7 +542,7 @@
             <h2>29 Dicembre 2024</h2>
             <p>Adesso qualcuno mi deve dire come non si fa ad adorare una ragazza così. Non centra l’essere bella, simpatica, quelle cose lì… Quelle sono caratteristiche che possono avere tutti, chi più e chi meno. Si, sei splendida, sei simpaticissima, parlare con te mi fa sorridere. Ma questo non è il punto di oggi. Oggi voglio parlare di come sia facile parlare di tutto con te. Ma tutto tutto. Ceh, io non credo di aver mai avuto conversazioni di questo genere con nessuno. Un ora e un quarto a parlare di come si viene. Non sono cose che di solito succedono. Concludo con questo: io di ste cose non parlo a nessuno, ma se succede, o mi stanno puntando una pistola alla tempia, o so che chi mi ascolta è una persona affidabile, che non ti giudica e che se hai bisogno ti aiuta. Notte, mia sceneggiatrice🩶<span
         </div>
-                
+
         <div class="entry">
             <h2>30 Dicembre 2024</h2>
             <p>Sono felicissimo, mi manchi da morire e stare in chiamata mi è piaciuto troppo. Però, poi, qualcuno è dovuto “andare in bagno”. Voglio abbracciarti!!! Mi manchi da morire. La sera, mentre faccio questa pagina che stai leggendo, ascolto la canzone “The Night We Men” (la trovi nella sezione della mia musica). Mi sento male, mordo il peluche che ho da quando sono nato e inizio a piangere. Ti voglio ♾️ bene🩶 Notte<span
