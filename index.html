@@ -473,6 +473,19 @@
         align-items: center;
         margin-top: 30px; /* Aggiunto margine superiore per evitare la sovrapposizione */
     }
+    
+    .music {
+    overflow: hidden; /* Rimuove lo scorrimento */
+}
+
+.music-menu {
+    padding-top: 20px; /* Sposta le intestazioni verso l'alto */
+}
+
+.music-item p {
+    margin: 0; /* Rimuove il margine per evitare disallineamenti */
+    padding: 5px 0; /* Aggiunge un po' di spazio intorno al testo */
+}
 
     /* Media queries per dispositivi diversi */
     @media (max-width: 768px) {
@@ -900,6 +913,57 @@ function updateSongInfo(songTitle, songArtist) {
 
 // Esempio di utilizzo:
 updateSongInfo('Titolo della Canzone', 'Nome del Cantante/Band');
+function playSong(songId) {
+    // Esempio di mappatura delle canzoni con i loro URL audio
+    const songs = {
+        miFaiImpazzire: 'URL_AUDIO_MI_FAI_IMPAZZIRE',
+        someoneToStay: 'URL_AUDIO_SOMEONE_TO_STAY',
+        whyILoveYou: 'URL_AUDIO_WHY_I_LOVE_YOU',
+        dontPanic: 'URL_AUDIO_DONT_PANIC',
+        dangerousWoman: 'URL_AUDIO_DANGEROUS_WOMAN',
+        madSounds: 'URL_AUDIO_MAD_SOUNDS',
+        no1PartyAnthem: 'URL_AUDIO_NO_1_PARTY_ANTHEM',
+        iWannaBeYours: 'URL_AUDIO_I_WANNA_BE_YOURS',
+        endOfBeginning: 'URL_AUDIO_END_OF_BEGINNING',
+        mothToAFlame: 'URL_AUDIO_MOTH_TO_A_FLAME',
+        outOfMyLeague: 'URL_AUDIO_OUT_OF_MY_LEAGUE',
+        favorite: 'URL_AUDIO_FAVORITE',
+        fiveOfive: 'URL_AUDIO_505',
+        confident: 'URL_AUDIO_CONFIDENT',
+        wildestDreams: 'URL_AUDIO_WILDEST_DREAMS',
+        iSeeYou: 'URL_AUDIO_I_SEE_YOU',
+        beautifulThings: 'URL_AUDIO_BEAUTIFUL_THINGS',
+        myType: 'URL_AUDIO_MY_TYPE',
+        babyGoddamn: 'URL_AUDIO_BABY_GODDAMN',
+        tranTran: 'URL_AUDIO_TRAN_TRAN',
+        rockstar: 'URL_AUDIO_ROCKSTAR',
+        older: 'URL_AUDIO_OLDER',
+        mockingbird: 'URL_AUDIO_MOCKINGBIRD',
+        yellow: 'URL_AUDIO_YELLOW',
+        cigarettesDream: 'URL_AUDIO_CIGARETTES_DREAM',
+        apocalypse: 'URL_AUDIO_APOCALYPSE',
+        friends: 'URL_AUDIO_FRIENDS',
+        youWereThereForMe: 'URL_AUDIO_YOU_WERE_THERE_FOR_ME',
+        theNightWeMet: 'URL_AUDIO_THE_NIGHT_WE_MET'
+    };
+
+    // Ottieni l'elemento audio e la sorgente audio
+    const audioPlayer = document.getElementById('audioPlayer');
+    const audioSource = document.getElementById('audioSource');
+
+    // Aggiorna la sorgente audio con l'URL della canzone selezionata
+    audioSource.src = songs[songId];
+
+    // Ricarica il player audio per aggiornare la sorgente
+    audioPlayer.load();
+
+    // Avvia la riproduzione della canzone
+    audioPlayer.play();
+
+    // Nascondi il menu della musica e mostra il player
+    document.getElementById('musicMenu').style.display = 'none';
+    document.getElementById('musicPlayer').style.display = 'block';
+}
 </script>
 </body>
 </html>
