@@ -161,17 +161,24 @@
         left: 20px;
     }
 
-    .close-settings, .close-music {
-        margin-top: 15px;
-        background-color: #f44336;
-        color: #fff;
-        padding: 10px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        width: 100%;
-        text-align: center;
-    }
+/* Arrotondare tutti i bordi */
+.music, .music-item, .music-icon, .current-song-icon, .close-music, .music-button, .settings-button, .container, .close-settings {
+    border-radius: 15px;
+}
+
+/* Stile dei pulsanti di chiusura */
+.close-music, .close-settings {
+    background-color: #f44336; /* Colore rosso */
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 15px; /* Arrotondare i bordi */
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Aggiungi ombreggiatura */
+    margin-top: 15px;
+}
 
     .music-container {
         display: flex;
