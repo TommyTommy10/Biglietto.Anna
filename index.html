@@ -403,19 +403,19 @@
     animation: scrolling-text 10s linear infinite;
 }
 
-/* Posizionamento corretto della freccia */
+/* Stile della freccia indietro */
 .back-button {
     background: none;
     border: none;
     font-size: 2em;
     cursor: pointer;
     position: absolute;
-    top: 20px; /* Allinea la parte superiore della freccia con l'inizio della foto */
-    left: 20px;
-    z-index: 102; /* Assicurati che il pulsante sia sopra altri elementi */
+    top: 10px;
+    left: 10px;
+    z-index: 102;
     color: #fff;
     background-color: transparent;
-    border-radius: 50%; /* Bordi arrotondati */
+    border-radius: 50%;
     width: 40px;
     height: 40px;
     display: flex;
@@ -424,9 +424,67 @@
 }
 
 .back-button::before {
-    content: "←"; /* Freccia */
+    content: "←";
 }
 
+/* Stile per il testo della canzone */
+.song-info {
+    text-align: center;
+    margin-top: 5px;
+}
+
+.song-title {
+    font-size: 1em;
+    color: var(--colore-primario);
+    margin: 0;
+    font-weight: bold;
+}
+
+.song-artist {
+    font-size: 0.75em; /* 3/16 più piccolo rispetto al titolo */
+    color: var(--colore-secondario);
+    margin: 3px 0 0;
+    font-style: normal;
+    opacity: 0.8;
+}
+
+/* Stile per i controlli personalizzati */
+.custom-controls {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.control-button {
+    background-color: #444;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5em;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.control-button:hover {
+    background-color: #555;
+}
+
+/* Stile del pulsante di chiusura */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 2em;
+    cursor: pointer;
+    color: #fff;
+}
+
+.close-button:hover {
+    color: #f44336;
+}
 
     .current-song-icon {
         width: 100%;
@@ -526,19 +584,20 @@
         <!-- Aggiungi altre canzoni come desideri -->
     </div>
     <div class="music-player" id="musicPlayer" style="display:none;">
+        <button id="backButton" class="back-button" onclick="showMenu()"></button>
         <img id="currentSongImage" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/2.png" alt="Current Song Icon" class="current-song-icon">
         <!-- Blocco HTML aggiunto per le informazioni sulla canzone -->
         <div class="song-info">
             <h3 class="song-title">Nome della Canzone</h3>
             <p class="song-artist">Nome del Cantante/Band</p>
         </div>
-        <button id="backButton" class="back-button" onclick="showMenu()"></button>
-        <audio id="audioPlayer" controls>
-            <source id="audioSource" src="" type="audio/mpeg">
-            Il tuo browser non supporta l'elemento audio.
-        </audio>
+        <div class="custom-controls">
+            <button class="control-button" onclick="playAudio()">&#9654;</button> <!-- Pulsante play -->
+            <button class="control-button" onclick="pauseAudio()">&#9208;</button> <!-- Pulsante pausa -->
+            <button class="control-button" onclick="stopAudio()">&#9209;</button> <!-- Pulsante stop -->
+        </div>
+        <button class="close-button" onclick="toggleMusic()">&#10006;</button> <!-- Pulsante X per chiudere -->
     </div>
-    <button class="close-music" onclick="toggleMusic()">Chiudi</button>
 </div>
         <!-- Interfaccia per cambiare font e colori -->
         <div class="settings" id="settings">
