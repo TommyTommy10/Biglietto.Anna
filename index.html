@@ -403,19 +403,19 @@
     animation: scrolling-text 10s linear infinite;
 }
 
-/* Posizionamento corretto della freccia */
+/* Stile della freccia indietro */
 .back-button {
     background: none;
     border: none;
     font-size: 2em;
     cursor: pointer;
     position: absolute;
-    top: 20px; /* Allinea la parte superiore della freccia con l'inizio della foto */
-    left: 20px;
-    z-index: 102; /* Assicurati che il pulsante sia sopra altri elementi */
+    top: 10px;
+    left: 10px;
+    z-index: 102;
     color: #fff;
     background-color: transparent;
-    border-radius: 50%; /* Bordi arrotondati */
+    border-radius: 50%;
     width: 40px;
     height: 40px;
     display: flex;
@@ -423,8 +423,39 @@
     justify-content: center;
 }
 
-.back-button::before {
-    content: "←"; /* Freccia */
+/* Stile per il testo della canzone */
+.song-info {
+    text-align: center;
+    margin-top: 5px;
+}
+
+.song-title {
+    font-size: 1em; /* Ridurre la dimensione del titolo */
+    color: var(--colore-primario);
+    margin: 0;
+    font-weight: bold;
+}
+
+.song-artist {
+    font-size: 0.75em; /* 3/16 più piccolo rispetto al titolo */
+    color: var(--colore-secondario);
+    margin: 3px 0 0;
+    font-style: normal;
+    opacity: 0.8;
+}
+
+/* Stile del pulsante di chiusura */
+.close-music {
+    background-color: #f44336;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px; /* Arrotondare i bordi */
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 15px; /* Spazio tra il player e il pulsante di chiusura */
 }
 
 
@@ -526,13 +557,13 @@
         <!-- Aggiungi altre canzoni come desideri -->
     </div>
     <div class="music-player" id="musicPlayer" style="display:none;">
+        <button id="backButton" class="back-button" onclick="showMenu()">&#8592;</button>
         <img id="currentSongImage" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/2.png" alt="Current Song Icon" class="current-song-icon">
         <!-- Blocco HTML aggiunto per le informazioni sulla canzone -->
         <div class="song-info">
             <h3 class="song-title">Nome della Canzone</h3>
             <p class="song-artist">Nome del Cantante/Band</p>
         </div>
-        <button id="backButton" class="back-button" onclick="showMenu()"></button>
         <audio id="audioPlayer" controls>
             <source id="audioSource" src="" type="audio/mpeg">
             Il tuo browser non supporta l'elemento audio.
@@ -771,7 +802,7 @@
     }
 });
     
-   function updateSongInfo(songTitle, songArtist) {
+function updateSongInfo(songTitle, songArtist) {
     document.querySelector('.song-title').textContent = songTitle;
     document.querySelector('.song-artist').textContent = songArtist;
 }
