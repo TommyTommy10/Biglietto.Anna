@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -69,31 +68,6 @@
         --colore-titolo: #5C7D3B; /* Verde Oliva Scuro */
         --colore-testo-impostazioni: #2F4F4F; /* Blu Petrolio */
     }
-    
-    .main-box {
-    /* Stile del riquadro principale */
-}
-
-.paragraph-box {
-    /* Stile del riquadro del paragrafo */
-}
-
-.window {
-    /* Stile delle finestre */
-}
-
-.music-player {
-    /* Stile del music player */
-}
-
-.date {
-    /* Stile della data */
-}
-
-.button {
-    /* Stile dei pulsanti */
-}
-
 
     body {
         font-family: 'Arial', sans-serif;
@@ -232,18 +206,21 @@
     border-radius: 15px;
 }
 
-/* Stile dei pulsanti di chiusura */
-.close-music, .close-settings {
+.close-settings, .close-music {
     background-color: #f44336; /* Colore rosso */
-    color: #fff;
+    color: #fff; /* Colore del testo */
     padding: 10px;
     border: none;
     border-radius: 15px; /* Arrotondare i bordi */
     cursor: pointer;
     width: 100%;
     text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Aggiungi ombreggiatura */
-    margin-top: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 15px; /* Spazio tra il player e il pulsante di chiusura */
+}
+
+.close-settings:hover, .close-music:hover {
+    background-color: #d32f2f; /* Colore più scuro al passaggio del mouse */
 }
 
 /* Arrotondare i color picker */
@@ -334,19 +311,13 @@
     display: block; /* Assicurati che sia un blocco per occupare la larghezza */
 }
 
-/* Stile del pulsante di chiusura */
-.close-music {
-    background-color: #f44336; /* Colore rosso */
-    color: #fff;
-    padding: 10px;
-    border: none;
-    border-radius: 5px; /* Arrotondare i bordi */
-    cursor: pointer;
-    width: 100%;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Aggiungi ombreggiatura */
-    margin-top: 10px; /* Riduci lo spazio tra il player e il pulsante di chiusura */
+    .song-artist {
+    font-size: 0.75em; /* Dimensione del font per il nome dell'artista */
+    color: rgba(0, 0, 0, 0.7); /* Colore del testo con opacità per renderlo più chiaro */
+    margin: 5px 0 0; /* Aggiungi margine sopra per separare dal titolo della canzone */
+    font-style: normal; /* Stile normale per il nome del cantante/band */
 }
+
 
     .overlay {
         display: none;
@@ -802,35 +773,77 @@ h2 {
                 <!-- Aggiungi altri font qui -->
             </select>
 
-        <label for="colorPicker">Seleziona il colore dello sfondo:</label>
-<input type="color" id="colorPicker" value="#f4f4f9">
+            <div class="category-settings">
+        <h3>Seleziona il colore dello Sfondo</h3>
+        <label for="colorPicker1">Seleziona il colore:</label>
+        <input type="color" id="colorPicker1" value="#ff0000" onchange="updateColor('backgroundColor', this.value)">
+        <div class="color-preview" id="backgroundColor" style="width: 100%; height: 50px; background-color: #ff0000;"></div>
+    </div>
 
-<label for="textColorPicker">Seleziona il colore del testo:</label>
-<input type="color" id="textColorPicker" value="#000000">
+    <div class="category-settings">
+        <h3>Seleziona il colore del Testo</h3>
+        <label for="colorPicker2">Seleziona il colore:</label>
+        <input type="color" id="colorPicker2" value="#00ff00" onchange="updateColor('textColor', this.value)">
+        <div class="color-preview" id="textColor" style="width: 100%; height: 50px; background-color: #00ff00;"></div>
+    </div>
 
-<label for="buttonColorPicker">Seleziona il colore dei pulsanti:</label>
-<input type="color" id="buttonColorPicker" value="#007bff">
+    <div class="category-settings">
+        <h3>Seleziona il colore dei Pulsanti</h3>
+        <label for="colorPicker3">Seleziona il colore:</label>
+        <input type="color" id="colorPicker3" value="#0000ff" onchange="updateColor('buttonColor', this.value)">
+        <div class="color-preview" id="buttonColor" style="width: 100%; height: 50px; background-color: #0000ff;"></div>
+    </div>
 
-<label for="titleColorPicker">Seleziona il colore del titolo:</label>
-<input type="color" id="titleColorPicker" value="#000000">
+    <div class="category-settings">
+        <h3>Seleziona il colore del Bordo</h3>
+        <label for="colorPicker4">Seleziona il colore:</label>
+        <input type="color" id="colorPicker4" value="#ffff00" onchange="updateColor('borderColor', this.value)">
+        <div class="color-preview" id="borderColor" style="width: 100%; height: 50px; background-color: #ffff00;"></div>
+    </div>
 
-<label for="mainBoxColorPicker">Seleziona il colore del riquadro principale:</label>
-<input type="color" id="mainBoxColorPicker" value="#ffffff">
+    <div class="category-settings">
+        <h3>Seleziona il colore del Titolo</h3>
+        <label for="colorPicker5">Seleziona il colore:</label>
+        <input type="color" id="colorPicker5" value="#ff00ff" onchange="updateColor('titleColor', this.value)">
+        <div class="color-preview" id="titleColor" style="width: 100%; height: 50px; background-color: #ff00ff;"></div>
+    </div>
 
-<label for="paragraphBoxColorPicker">Seleziona il colore del riquadro del paragrafo:</label>
-<input type="color" id="paragraphBoxColorPicker" value="#ffffff">
+    <div class="category-settings">
+        <h3>Seleziona il colore del Sottotitolo</h3>
+        <label for="colorPicker6">Seleziona il colore:</label>
+        <input type="color" id="colorPicker6" value="#00ffff" onchange="updateColor('subtitleColor', this.value)">
+        <div class="color-preview" id="subtitleColor" style="width: 100%; height: 50px; background-color: #00ffff;"></div>
+    </div>
 
-<label for="windowColorPicker">Seleziona il colore delle finestre:</label>
-<input type="color" id="windowColorPicker" value="#ffffff">
+    <div class="category-settings">
+        <h3>Seleziona il colore del Link</h3>
+        <label for="colorPicker7">Seleziona il colore:</label>
+        <input type="color" id="colorPicker7" value="#800080" onchange="updateColor('linkColor', this.value)">
+        <div class="color-preview" id="linkColor" style="width: 100%; height: 50px; background-color: #800080;"></div>
+    </div>
 
-<label for="musicPlayerColorPicker">Seleziona il colore del music player:</label>
-<input type="color" id="musicPlayerColorPicker" value="#ffffff">
+    <div class="category-settings">
+        <h3>Seleziona il colore del Footer</h3>
+        <label for="colorPicker8">Seleziona il colore:</label>
+        <input type="color" id="colorPicker8" value="#ffa500" onchange="updateColor('footerColor', this.value)">
+        <div class="color-preview" id="footerColor" style="width: 100%; height: 50px; background-color: #ffa500;"></div>
+    </div ```html
+    <div class="category-settings">
+        <h3>Seleziona il colore del Menu</h3>
+        <label for="colorPicker9">Seleziona il colore:</label>
+        <input type="color" id="colorPicker9" value="#008000" onchange="updateColor('menuColor', this.value)">
+        <div class="color-preview" id="menuColor" style="width: 100%; height: 50px; background-color: #008000;"></div>
+    </div>
 
-<label for="dateColorPicker">Seleziona il colore della data:</label>
-<input type="color" id="dateColorPicker" value="#000000">
+    <div class="category-settings">
+        <h3>Seleziona il colore del Banner</h3>
+        <label for="colorPicker10">Seleziona il colore:</label>
+        <input type="color" id="colorPicker10" value="#000080" onchange="updateColor('bannerColor', this.value)">
+        <div class="color-preview" id="bannerColor" style="width: 100%; height: 50px; background-color: #000080;"></div>
+    </div>
 
-<button class="close-settings" onclick="toggleSettings()">Chiudi</button>
-
+    <button class="close-settings" onclick="toggleSettings()">Chiudi</button>
+</div>
 
         <!-- Esempio di post del blog -->
         <div class="entry">
@@ -871,152 +884,120 @@ h2 {
     </div>
 
 <script>
-  function toggleSettings() {
-    var settings = document.getElementById('settings');
-    var settingsButton = document.getElementById('settingsButton');
-    var overlay = document.getElementById('overlay');
-    var music = document.getElementById('music');
-    var musicButton = document.getElementById('musicButton');
-    if (settings.style.display === 'none' || settings.style.display === '') {
-        settings.style.display = 'block';
-        settingsButton.style.display = 'none';
-        overlay.style.display = 'block';
-        music.style.display = 'none';
-        musicButton.style.display = 'flex';
-    } else {
+    function toggleSettings() {
+        var settings = document.getElementById('settings');
+        var settingsButton = document.getElementById('settingsButton');
+        var overlay = document.getElementById('overlay');
+        var music = document.getElementById('music');
+        var musicButton = document.getElementById('musicButton');
+        if (settings.style.display === 'none' || settings.style.display === '') {
+            settings.style.display = 'block';
+            settingsButton.style.display = 'none';
+            overlay.style.display = 'block';
+            music.style.display = 'none';
+            musicButton.style.display = 'flex';
+        } else {
+            settings.style.display = 'none';
+            settingsButton.style.display = 'flex';
+            overlay.style.display = 'none';
+        }
+    }
+
+    function toggleMusic() {
+        var music = document.getElementById('music');
+        var musicButton = document.getElementById('musicButton');
+        var overlay = document.getElementById('overlay');
+        var settings = document.getElementById('settings');
+        var settingsButton = document.getElementById('settingsButton');
+        if (music.style.display === 'none' || music.style.display === '') {
+            music.style.display = 'block';
+            musicButton.style.display = 'none';
+            overlay.style.display = 'block';
+            settings.style.display = 'none';
+            settingsButton.style.display = 'flex';
+        } else {
+            music.style.display = 'none';
+            musicButton.style.display = 'flex';
+            overlay.style.display = 'none';
+        }
+    }
+
+    function closeWindows() {
+        var settings = document.getElementById('settings');
+        var settingsButton = document.getElementById('settingsButton');
+        var music = document.getElementById('music');
+        var musicButton = document.getElementById('musicButton');
+        var overlay = document.getElementById('overlay');
         settings.style.display = 'none';
         settingsButton.style.display = 'flex';
-        overlay.style.display = 'none';
-    }
-}
-
-function toggleMusic() {
-    var music = document.getElementById('music');
-    var musicButton = document.getElementById('musicButton');
-    var overlay = document.getElementById('overlay');
-    var settings = document.getElementById('settings');
-    var settingsButton = document.getElementById('settingsButton');
-    if (music.style.display === 'none' || music.style.display === '') {
-        music.style.display = 'block';
-        musicButton.style.display = 'none';
-        overlay.style.display = 'block';
-        settings.style.display = 'none';
-        settingsButton.style.display = 'flex';
-    } else {
         music.style.display = 'none';
         musicButton.style.display = 'flex';
         overlay.style.display = 'none';
     }
-}
 
-function closeWindows() {
-    var settings = document.getElementById('settings');
-    var settingsButton = document.getElementById('settingsButton');
-    var music = document.getElementById('music');
-    var musicButton = document.getElementById('musicButton');
-    var overlay = document.getElementById('overlay');
-    settings.style.display = 'none';
-    settingsButton.style.display = 'flex';
-    music.style.display = 'none';
-    musicButton.style.display = 'flex';
-    overlay.style.display = 'none';
-}
+    function playSong(songId) {
+        var audioPlayer = document.getElementById('audioPlayer');
+        var audioSource = document.getElementById('audioSource');
+        var musicMenu = document.getElementById('musicMenu');
+        var musicPlayer = document.getElementById('musicPlayer');
 
-function playSong(songId) {
-    var audioPlayer = document.getElementById('audioPlayer');
-    var audioSource = document.getElementById('audioSource');
-    var musicMenu = document.getElementById('musicMenu');
-    var musicPlayer = document.getElementById('musicPlayer');
+        // Imposta il percorso della canzone da riprodurre
+        audioSource.src = 'path-to-' + songId + '.mp3';
+        audioPlayer.load();
+        audioPlayer.play();
 
-    // Imposta il percorso della canzone da riprodurre
-    audioSource.src = 'path-to-' + songId + '.mp3';
-    audioPlayer.load();
-    audioPlayer.play();
-
-    // Mostra il lettore musicale e nascondi il menu
-    musicMenu.style.display = 'none';
-    musicPlayer.style.display = 'flex';
-}
-
-function showMenu() {
-    var musicMenu = document.getElementById('musicMenu');
-    var musicPlayer = document.getElementById('musicPlayer');
-
-    // Mostra il menu e nascondi il lettore musicale
-    musicMenu.style.display = 'flex';
-    musicPlayer.style.display = 'none';
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Imposta il colore iniziale per i color picker
-    document.getElementById('colorPicker').value = rgb2hex(getComputedStyle(document.body).backgroundColor);
-    document.getElementById('textColorPicker').value = rgb2hex(getComputedStyle(document.body).color);
-    document.getElementById('buttonColorPicker').value = rgb2hex(getComputedStyle(document.querySelector('.settings-button')).backgroundColor);
-
-    document.getElementById('fontSelect').addEventListener('change', function() {
-        document.body.style.fontFamily = this.value;
-    });
-
-    document.getElementById('colorPicker').addEventListener('input', function() {
-        document.body.style.backgroundColor = this.value;
-    });
-
-    document.getElementById('textColorPicker').addEventListener('input', function() {
-        document.body.style.color = this.value;
-    });
-
-    document.getElementById('buttonColorPicker').addEventListener('input', function() {
-        var buttons = document.querySelectorAll('.settings-button, .music-button');
-        buttons.forEach(function(button) {
-            button.style.backgroundColor = document.getElementById('buttonColorPicker').value;
-        });
-    });
-
-    document.getElementById('titleColorPicker').addEventListener('input', function() {
-        document.querySelectorAll('h2').forEach(title => {
-            title.style.color = this.value;
-        });
-    });
-
-    document.getElementById('mainBoxColorPicker').addEventListener('input', function() {
-        document.querySelector('.main-box').style.backgroundColor = this.value;
-    });
-
-    document.getElementById('paragraphBoxColorPicker').addEventListener('input', function() {
-        document.querySelectorAll('.paragraph-box').forEach(box => {
-            box.style.backgroundColor = this.value;
-        });
-    });
-
-    document.getElementById('windowColorPicker').addEventListener('input', function() {
-        document.querySelectorAll('.window').forEach(window => {
-            window.style.backgroundColor = this.value;
-        });
-    });
-
-    document.getElementById('musicPlayerColorPicker').addEventListener('input', function() {
-        document.querySelector('.music-player').style.backgroundColor = this.value;
-    });
-
-    document.getElementById('dateColorPicker').addEventListener('input', function() {
-        document.querySelectorAll('.date').forEach(date => {
-            date.style.color = this.value;
-        });
-    });
-
-    function rgb2hex(rgb) {
-        if (/^#[0-9A-F]{6}$/i.test(rgb)) {
-            return rgb;
-        }
-        rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
-        function hex(x) {
-            return ("0" + parseInt(x).toString(16)).slice(-2);
-        }
-        return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+        // Mostra il lettore musicale e nascondi il menu
+        musicMenu.style.display = 'none';
+        musicPlayer.style.display = 'flex';
     }
-});
 
-document.querySelectorAll('.music-item p span').forEach(span => {
+    function showMenu() {
+        var musicMenu = document.getElementById('musicMenu');
+        var musicPlayer = document.getElementById('musicPlayer');
+
+        // Mostra il menu e nascondi il lettore musicale
+        musicMenu.style.display = 'flex';
+        musicPlayer.style.display = 'none';
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Imposta il colore iniziale per i color picker
+        document.getElementById('colorPicker').value = rgb2hex(getComputedStyle(document.body).backgroundColor);
+        document.getElementById('textColorPicker').value = rgb2hex(getComputedStyle(document.body).color);
+        document.getElementById('buttonColorPicker').value = rgb2hex(getComputedStyle(document.querySelector('.settings-button')).backgroundColor);
+
+        document.getElementById('fontSelect').addEventListener('change', function() {
+            document.body.style.fontFamily = this.value;
+        });
+
+        document.getElementById('colorPicker').addEventListener('input', function() {
+            document.body.style.backgroundColor = this.value;
+        });
+
+        document.getElementById('textColorPicker').addEventListener('input', function() {
+            document.body.style.color = this.value;
+        });
+
+        document.getElementById('buttonColorPicker').addEventListener('input', function() {
+            var buttons = document.querySelectorAll('.settings-button, .music-button');
+            buttons.forEach(function(button) {
+                button.style.backgroundColor = document.getElementById('buttonColorPicker').value;
+            });
+        });
+
+        function rgb2hex(rgb) {
+            if (/^#[0-9A-F]{6}$/i.test(rgb)) {
+                return rgb;
+            }
+            rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+            function hex(x) {
+                return ("0" + parseInt(x).toString(16)).slice(-2);
+            }
+            return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+        }
+    });
+
+    document.querySelectorAll('.music-item p span').forEach(span => {
     const parentWidth = span.parentElement.offsetWidth;
     const spanWidth = span.offsetWidth;
 
@@ -1024,11 +1005,11 @@ document.querySelectorAll('.music-item p span').forEach(span => {
         span.style.animation = 'scrolling-text 10s linear infinite';
     }
 });
-
+    
 function updateSongInfo(songTitle, songArtist) {
     document.querySelector('.song-title').textContent = songTitle;
     document.querySelector('.song-artist').textContent = songArtist;
-}
+};
 </script>
 </body>
 </html>
