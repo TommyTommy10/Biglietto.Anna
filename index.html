@@ -299,6 +299,17 @@
     border-radius: 10px; /* Bordo arrotondato */
     transition: background-color 0.3s; /* Transizione per l'effetto hover */
 }
+    
+    .music-row {
+    display: flex; /* Disporre le canzoni in una riga */
+    justify-content: space-between; /* Spazio uniforme tra le canzoni */
+    margin-bottom: 20px; /* Spazio sotto ogni riga */
+}
+
+.music-item {
+    width: calc(50% - 10px); /* Due canzoni per riga con spaziatura */
+    box-sizing: border-box; /* Assicurati che il padding e il margine non influiscano sulla larghezza */
+}
 
 .music-item:hover {
     background-color: var(--colore-accento); /* Cambia colore al passaggio del mouse */
