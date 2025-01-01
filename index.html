@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -287,41 +286,26 @@
         height: 50px;
         border-radius: 10px;
     }
-.music-menu {
-    margin-top: 20px; /* Spazio sopra le sezioni */
-}
-
-.music-item {
-    display: flex; /* Disporre l'immagine e il testo in linea */
-    align-items: center; /* Centrare verticalmente */
-    margin: 10px 0; /* Spazio tra le canzoni */
-    padding: 10px; /* Padding interno */
-    background-color: var(--colore-riquadro); /* Colore di sfondo per le canzoni */
-    border-radius: 10px; /* Bordo arrotondato */
-    transition: background-color 0.3s; /* Transizione per l'effetto hover */
-}
-
-.music-item:hover {
-    background-color: var(--colore-accento); /* Cambia colore al passaggio del mouse */
-}
-
-.music-icon {
-    width: 50px; /* Dimensione fissa per l'icona */
-    height: 50px; /* Dimensione fissa per l'icona */
-    margin-right: 10px; /* Spazio tra l'icona e il testo */
-    border-radius: 50%; /* Icona arrotondata */
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Ombra per l'icona */
+    
+    .song-info {
+    text-align: center; /* Centra il testo */
+    margin-top: 10px; /* Spazio tra l'immagine e il testo */
 }
 
 .song-title {
-    font-weight: bold; /* Grassetto per il titolo */
+    font-size: 1em; /* Dimensione del font per il titolo della canzone */
     color: var(--colore-texto); /* Colore del testo */
+    margin: 0; /* Rimuovere margine predefinito */
+    font-weight: bold; /* Aggiungi grassetto per il titolo della canzone */
 }
 
 .song-artist {
-    font-size: 0.9em; /* Dimensione del font per l'artista */
-    color: var(--colore-primario); /* Colore del testo */
-    opacity: 0.8; /* Leggera trasparenza */
+    font-size: 0.75em; /* Dimensione del font per il nome dell'artista */
+    color: var(--colore-texto); /* Colore del testo */
+    margin: 0; /* Rimuovere margine predefinito */
+    opacity: 0.7; /* Aggiungi trasparenza per dare un effetto di sottotitolo */
+    width: 75%; /* Imposta la larghezza al 75% */
+    display: block; /* Assicurati che sia un blocco per occupare la larghezza */
 }
 
 /* Stile del pulsante di chiusura */
