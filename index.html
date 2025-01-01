@@ -384,6 +384,24 @@
     box-sizing: border-box;
 }
 
+    .music-item {
+    position: relative; /* Necessario per posizionare il quadrato */
+    display: inline-block; /* Permette di avere un quadrato attorno all'icona */
+    margin: 10px; /* Spaziatura tra gli elementi */
+}
+
+.music-item:hover::before {
+    content: ""; /* Crea un elemento pseudo */
+    position: absolute; /* Posiziona il quadrato */
+    top: 0; /* Allinea in alto */
+    left: 0; /* Allinea a sinistra */
+    right: 0; /* Allinea a destra */
+    bottom: 0; /* Allinea in basso */
+    background-color: rgba(218, 165, 32, 0.5); /* Colore dorato con trasparenza */
+    border-radius: 10px; /* Arrotonda gli angoli */
+    z-index: -1; /* Mette il quadrato dietro l'icona */
+}
+    
 .music-icon {
     width: 100%;
     height: auto;
