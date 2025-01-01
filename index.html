@@ -206,18 +206,21 @@
     border-radius: 15px;
 }
 
-/* Stile dei pulsanti di chiusura */
-.close-music, .close-settings {
+.close-settings, .close-music {
     background-color: #f44336; /* Colore rosso */
-    color: #fff;
+    color: #fff; /* Colore del testo */
     padding: 10px;
     border: none;
     border-radius: 15px; /* Arrotondare i bordi */
     cursor: pointer;
     width: 100%;
     text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Aggiungi ombreggiatura */
-    margin-top: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 15px; /* Spazio tra il player e il pulsante di chiusura */
+}
+
+.close-settings:hover, .close-music:hover {
+    background-color: #d32f2f; /* Colore più scuro al passaggio del mouse */
 }
 
 /* Arrotondare i color picker */
@@ -308,19 +311,13 @@
     display: block; /* Assicurati che sia un blocco per occupare la larghezza */
 }
 
-/* Stile del pulsante di chiusura */
-.close-music {
-    background-color: #f44336; /* Colore rosso */
-    color: #fff;
-    padding: 10px;
-    border: none;
-    border-radius: 5px; /* Arrotondare i bordi */
-    cursor: pointer;
-    width: 100%;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Aggiungi ombreggiatura */
-    margin-top: 10px; /* Riduci lo spazio tra il player e il pulsante di chiusura */
+    .song-artist {
+    font-size: 0.75em; /* Dimensione del font per il nome dell'artista */
+    color: rgba(0, 0, 0, 0.7); /* Colore del testo con opacità per renderlo più chiaro */
+    margin: 5px 0 0; /* Aggiungi margine sopra per separare dal titolo della canzone */
+    font-style: normal; /* Stile normale per il nome del cantante/band */
 }
+
 
     .overlay {
         display: none;
@@ -776,17 +773,77 @@ h2 {
                 <!-- Aggiungi altri font qui -->
             </select>
 
-            <label for="colorPicker">Seleziona il colore dello sfondo:</label>
-            <input type="color" id="colorPicker" value="#f4f4f9">
+            <div class="category-settings">
+        <h3>Seleziona il colore dello Sfondo</h3>
+        <label for="colorPicker1">Seleziona il colore:</label>
+        <input type="color" id="colorPicker1" value="#ff0000" onchange="updateColor('backgroundColor', this.value)">
+        <div class="color-preview" id="backgroundColor" style="width: 100%; height: 50px; background-color: #ff0000;"></div>
+    </div>
 
-            <label for="textColorPicker">Seleziona il colore del testo:</label>
-            <input type="color" id="textColorPicker" value="#000000">
+    <div class="category-settings">
+        <h3>Seleziona il colore del Testo</h3>
+        <label for="colorPicker2">Seleziona il colore:</label>
+        <input type="color" id="colorPicker2" value="#00ff00" onchange="updateColor('textColor', this.value)">
+        <div class="color-preview" id="textColor" style="width: 100%; height: 50px; background-color: #00ff00;"></div>
+    </div>
 
-            <label for="buttonColorPicker">Seleziona il colore dei pulsanti:</label>
-            <input type="color" id="buttonColorPicker" value="#007bff">
+    <div class="category-settings">
+        <h3>Seleziona il colore dei Pulsanti</h3>
+        <label for="colorPicker3">Seleziona il colore:</label>
+        <input type="color" id="colorPicker3" value="#0000ff" onchange="updateColor('buttonColor', this.value)">
+        <div class="color-preview" id="buttonColor" style="width: 100%; height: 50px; background-color: #0000ff;"></div>
+    </div>
 
-            <button class="close-settings" onclick="toggleSettings()">Chiudi</button>
-        </div>
+    <div class="category-settings">
+        <h3>Seleziona il colore del Bordo</h3>
+        <label for="colorPicker4">Seleziona il colore:</label>
+        <input type="color" id="colorPicker4" value="#ffff00" onchange="updateColor('borderColor', this.value)">
+        <div class="color-preview" id="borderColor" style="width: 100%; height: 50px; background-color: #ffff00;"></div>
+    </div>
+
+    <div class="category-settings">
+        <h3>Seleziona il colore del Titolo</h3>
+        <label for="colorPicker5">Seleziona il colore:</label>
+        <input type="color" id="colorPicker5" value="#ff00ff" onchange="updateColor('titleColor', this.value)">
+        <div class="color-preview" id="titleColor" style="width: 100%; height: 50px; background-color: #ff00ff;"></div>
+    </div>
+
+    <div class="category-settings">
+        <h3>Seleziona il colore del Sottotitolo</h3>
+        <label for="colorPicker6">Seleziona il colore:</label>
+        <input type="color" id="colorPicker6" value="#00ffff" onchange="updateColor('subtitleColor', this.value)">
+        <div class="color-preview" id="subtitleColor" style="width: 100%; height: 50px; background-color: #00ffff;"></div>
+    </div>
+
+    <div class="category-settings">
+        <h3>Seleziona il colore del Link</h3>
+        <label for="colorPicker7">Seleziona il colore:</label>
+        <input type="color" id="colorPicker7" value="#800080" onchange="updateColor('linkColor', this.value)">
+        <div class="color-preview" id="linkColor" style="width: 100%; height: 50px; background-color: #800080;"></div>
+    </div>
+
+    <div class="category-settings">
+        <h3>Seleziona il colore del Footer</h3>
+        <label for="colorPicker8">Seleziona il colore:</label>
+        <input type="color" id="colorPicker8" value="#ffa500" onchange="updateColor('footerColor', this.value)">
+        <div class="color-preview" id="footerColor" style="width: 100%; height: 50px; background-color: #ffa500;"></div>
+    </div ```html
+    <div class="category-settings">
+        <h3>Seleziona il colore del Menu</h3>
+        <label for="colorPicker9">Seleziona il colore:</label>
+        <input type="color" id="colorPicker9" value="#008000" onchange="updateColor('menuColor', this.value)">
+        <div class="color-preview" id="menuColor" style="width: 100%; height: 50px; background-color: #008000;"></div>
+    </div>
+
+    <div class="category-settings">
+        <h3>Seleziona il colore del Banner</h3>
+        <label for="colorPicker10">Seleziona il colore:</label>
+        <input type="color" id="colorPicker10" value="#000080" onchange="updateColor('bannerColor', this.value)">
+        <div class="color-preview" id="bannerColor" style="width: 100%; height: 50px; background-color: #000080;"></div>
+    </div>
+
+    <button class="close-settings" onclick="toggleSettings()">Chiudi</button>
+</div>
 
         <!-- Esempio di post del blog -->
         <div class="entry">
