@@ -310,6 +310,7 @@
 
 .music-row {
     display: flex; /* Disporre le canzoni in una riga */
+    flex-wrap: wrap; /* Permette di andare a capo se necessario */
     justify-content: space-between; /* Spazio uniforme tra le canzoni */
     margin-bottom: 20px; /* Spazio sotto ogni riga */
 }
@@ -318,6 +319,8 @@
     width: calc(50% - 10px); /* Due canzoni per riga con spaziatura */
     box-sizing: border-box; /* Assicurati che il padding e il margine non influiscano sulla larghezza */
     padding: 10px; /* Padding interno per le canzoni */
+    display: flex; /* Disporre l'immagine e il testo in linea */
+    align-items: center; /* Centrare verticalmente */
 }
 
 .music-item:hover {
