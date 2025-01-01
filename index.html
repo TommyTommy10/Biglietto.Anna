@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -300,17 +301,8 @@
     transition: background-color 0.3s; /* Transizione per l'effetto hover */
 }
     
-.music-menu h2 {
-    margin: 0; /* Rimuovi margini predefiniti */
-    padding: 10px 0; /* Aggiungi padding per separare il titolo dalle canzoni */
-    font-size: 1.5em; /* Dimensione del font per il titolo */
-    color: var(--colore-titolo); /* Colore del titolo */
-    text-align: center; /* Centra il titolo */
-}
-
-.music-row {
+    .music-row {
     display: flex; /* Disporre le canzoni in una riga */
-    flex-wrap: wrap; /* Permette di andare a capo se necessario */
     justify-content: space-between; /* Spazio uniforme tra le canzoni */
     margin-bottom: 20px; /* Spazio sotto ogni riga */
 }
@@ -318,9 +310,6 @@
 .music-item {
     width: calc(50% - 10px); /* Due canzoni per riga con spaziatura */
     box-sizing: border-box; /* Assicurati che il padding e il margine non influiscano sulla larghezza */
-    padding: 10px; /* Padding interno per le canzoni */
-    display: flex; /* Disporre l'immagine e il testo in linea */
-    align-items: center; /* Centrare verticalmente */
 }
 
 .music-item:hover {
