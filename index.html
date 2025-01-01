@@ -410,45 +410,24 @@
     animation: none; /* Disabilita l'animazione */
 }
 
-/* Stile della freccia indietro */
-.back-button {
-    background: none;
-    border: none;
-    font-size: 2em;
-    cursor: pointer;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    z-index: 102;
-    color: #fff;
-    background-color: transparent;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Stile per il testo della canzone */
 .song-info {
-    text-align: center;
-    margin-top: 5px;
+    text-align: center; /* Centra il testo */
+    margin-top: 10px; /* Spazio tra l'immagine e il testo */
 }
 
 .song-title {
-    font-size: 1em; /* Ridurre la dimensione del titolo */
-    color: var(--colore-primario);
-    margin: 0;
-    font-weight: bold;
+    font-size: 1em; /* Riduci la dimensione del font */
+    color: var(--colore-texto); /* Usa il colore del testo */
+    margin: 0; /* Rimuovere margine predefinito */
+    font-weight: bold; /* Aggiungi grassetto per il titolo della canzone */
 }
 
 .song-artist {
-    font-size: 0.75em; /* 3/16 più piccolo rispetto al titolo */
-    color: var(--colore-secondario);
-    margin: 3px 0 0;
-    font-style: normal;
-    opacity: 0.8;
+    font-size: 0.75em; /* Riduci ulteriormente la dimensione del font */
+    color: var(--colore-texto); /* Usa il colore del testo */
+    margin: 5px 0 0; /* Aggiungi margine sopra per separare dal titolo della canzone */
+    font-style: normal; /* Stile normale per il nome del cantante/band */
+    opacity: 0.7; /* Aggiungi trasparenza per dare un effetto di sottotitolo */
 }
 
 /* Stile del pulsante di chiusura */
