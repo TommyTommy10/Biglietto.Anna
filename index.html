@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
+<html lang="it"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Per la De Prettiest</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/2.png" type="image/png">
-    <link href="https://fonts.googleapis.com/css?family=Alex+Brush|Allura|Amatic+SC|Arial|Bilbo+Swash+Caps|Brush+Script+MT|Comic+Sans+MS|Courier+New|Dancing+Script|Edwardian+Script+ITC|Euphoria+Script|Fondamento|Gabriola|Garamond|Georgia|Great+Vibes|Herr+Von+Muellerhoff|Indie+Flower|Italianno|Just+Another+Hand|Kunstler+Script|League+Script|Lobster|Lucida+Handwriting|Meddon|Merienda|Monotype+Corsiva|Monsieur+La+Doulaise|Niconne|Norican|Oleo+Script|Over+the+Rainbow|Pacifico|Palace+Script+MT|Papyrus|Parisienne|Permanent+Marker|Pangolin|Pinyon+Script|Poiret+One|Segoe+Script|Snell+Roundhand|Times+New+Roman|Trebuchet+MS|Verdana&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Alex+Brush|Allura|Amatic+SC|Arial|Bilbo+Swash+Caps|Brush+Script+MT|Comic+Sans+MS|Courier+New|Dancing+Script|Edwardian+Script+ITC|Euphoria+Script|Fondamento|Gabriola|Garamond|Georgia|Great+Vibes|Herr+Von+Muellerhoff|Indie+Flower|Italianno|Just+Another+Hand|Kunstler+Script|League+Script|Lobster|Lucida+Handwriting|Meddon|Merienda|Monotype+Corsiva|Monsieur+La+Doulaise|Niconne|Norican|Oleo+Script|Over+the+Rainbow|Pacifico|Palace+Script+MT|Papyrus|Parisienne|Permanent+Marker|Pangolin|Pinyon+Script|Poiret+One|Segoe+Script|Snell+Roundhand|Times+New+Roman|Trebuchet+MS|Verdana&amp;display=swap" rel="stylesheet">
     <title>Ricordi Speciali</title>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
@@ -554,16 +552,16 @@ h2 {
         <h1>Ricordi Speciali</h1>
 
         <!-- Overlay -->
-        <div class="overlay" id="overlay" onclick="closeWindows()"></div>
+        <div class="overlay" id="overlay" onclick="closeWindows()" style="display: block;"></div>
 
         <!-- Pulsante per mostrare le impostazioni -->
-        <div class="settings-button" id="settingsButton" onclick="toggleSettings()">⚙️</div>
+        <div class="settings-button" id="settingsButton" onclick="toggleSettings()" style="display: none;">⚙️</div>
 
 <!-- Pulsante per mostrare la musica -->
-<div class="music-button" id="musicButton" onclick="toggleMusic()">🎵</div>
+<div class="music-button" id="musicButton" onclick="toggleMusic()" style="display: flex;">🎵</div>
 
 <!-- Finestra della musica -->
-<div class="music" id="music">
+<div class="music" id="music" style="display: none;">
     <div class="music-menu" id="musicMenu">
         <!-- Sezione "Her" -->
         <h2>Her</h2>
@@ -717,14 +715,14 @@ h2 {
         <!-- Aggiungi altre canzoni come desideri -->
     </div>
     <div class="music-player" id="musicPlayer" style="display:none;">
-        <button id="backButton" class="back-button" onclick="showMenu()">&#8592;</button>
+        <button id="backButton" class="back-button" onclick="showMenu()">←</button>
         <img id="currentSongImage" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/2.png" alt="Current Song Icon" class="current-song-icon">
         <!-- Blocco HTML aggiunto per le informazioni sulla canzone -->
         <div class="song-info">
             <h3 class="song-title">Nome della Canzone</h3>
             <p class="song-artist">Nome del Cantante/Band</p>
         </div>
-        <audio id="audioPlayer" controls>
+        <audio id="audioPlayer" controls="">
             <source id="audioSource" src="" type="audio/mpeg">
             Il tuo browser non supporta l'elemento audio.
         </audio>
@@ -732,7 +730,7 @@ h2 {
     <button class="close-music" onclick="toggleMusic()">Chiudi</button>
 </div>
         <!-- Interfaccia per cambiare font e colori -->
-        <div class="settings" id="settings">
+        <div class="settings" id="settings" style="display: block;">
             <h2>Personalizza il Sito</h2>
             <label for="fontSelect">Seleziona Font:</label>
             <select id="fontSelect">
@@ -823,23 +821,23 @@ h2 {
         <div class="entry">
             <h2>12 Dicembre 2024</h2>
             <p>Oggi evidentemente non è giornata per te. E per questo ti prometto che ti prenderò un magnifico peluche. Adesso vorrei poter essere li per abbracciarti. Ma non ci sono. Ricordati sempre che per te ci sono sempre. Se non riesci a dormire scrivimi, svegliami, mi fa solo piacere. Quindi non esitare mai. Preferisco stare sveglio tutta notte che lasciarti sola.
-        </div>
+        </p></div>
 
          <div class="entry">
             <h2>16 Dicembre 2024</h2>
             <p>Oggi è stata una bella giornata. Hai risposto a Marrado Caurizio. Hai fatto dei disegni traumatici per chiedere quanto ce l’avessi lungo, ma va bene. Poi sono stato azzannato a un braccio. Che poi non ti ho detto niente, ma essenzialemente è un succhiotto. Ma va bene. A parte il male che ho alla spalla, oggi è stata una bella giornata. Anche se il male è stato risarcito da un abbraccio. Ora vado a dormire. Notte. Tvb🩶
-        </div>
+        </p></div>
 
         <div class="entry">
             <h2>17 Dicembre 2024</h2>
             <p>Oggi ne ho un altro, so di non averti detto niente, ma perchè finché sorridi mi va bene. Puoi anche riempirmi le braccia, a me va bene, basta che tu sorrida. Perchè quando mi mordi, fai un sorriso bellissimo. Comunque credo che Ryan sia invidiosissimo. Sempre il primo a dirti su se mi mordi. Ma credo che se sentisse il mio stesso dolore cambierebbe idea. Si, fa molto male, ma per te, soffrirei 1000 volte di più. E poi, neanche me lo devi chiedere per una chiamata, al massimo di chiedo di aspettare massimo massimo 20 minuti. Se proprio è il momento sbagliato. Se va peggio ti dico di no, ma è raro. Poi te ancora non lo sai, ma ho già il tuo regalo nello zaino, sono sicuro che ti piacerà. In aggiunta, ho lasciato un bigliettino (orribile, ma di meglio non riuscivo a fare quando l’ho incartato, sorry, l’importante è il significato). So che il pacco non è bellissimo, ma è fatto con tanto amore, perchè ti voglio tanto tanto bene. Bye bye tata🩶
-        </div>
+        </p></div>
 
         <div class="entry">
             <h2>20 Dicembre 2024</h2>
             <p>Anche se sono stato azzannato nei peggio modi, oggi è stat una bella giornata. Hai finalmente scritto a Bok, anche se hai paura. Mal che vada, io sono qui, per te libero anche quando non ho tempo. Ubi tu ubi ego (si, sono fissato con sta frase. Che poi è latina, non greca). Spero tutto vada bene…
-            <p>Anche se sono stato azzannato nei peggio modi, oggi è stata una bella giornata. Hai finalmente scritto a Bok, anche se hai paura. Mal che vada, io sono qui, per te libero anche quando non ho tempo. Ubi tu ubi ego (si, sono fissato con sta frase. Che poi è latina, non greca). Spero tutto vada bene…
-        </div>
+            </p><p>Anche se sono stato azzannato nei peggio modi, oggi è stata una bella giornata. Hai finalmente scritto a Bok, anche se hai paura. Mal che vada, io sono qui, per te libero anche quando non ho tempo. Ubi tu ubi ego (si, sono fissato con sta frase. Che poi è latina, non greca). Spero tutto vada bene…
+        </p></div>
 <div class="entry">
     <h2>24 Dicembre 2024</h2>
     <p>Siamo già al terzo giorno di vacanze. È la vigilia ma neanche me ne ero reso conto. Con te i giorni si riempiono sempre di bei ricordi che non puoi neanche pensare che sia passato così poco tempo. Poi ieri sono stato in discoteca per la prima volta. Mentre aspettavo in fila, mi è arrivata una foto di un abitante della Mongolia che sta viaggiando per il deserto del Gobi. Con una felpa nera sulla bocca, gli occhi talmente socchiusi che sembrava volesse uccidere qualcuno dalla rabbia. Ovviamente eri bellissima in quella foto. Poi, dopo un po’, me ne arriva un’altra che non può essere descritta, non è family friendly, ma proprio per niente. <a href="https://www.instagram.com/reel/DDkhFdCtqbv/?igsh=MWppYm92enZpeXpjeA==" class="link-style">Ti dico solo una cosa: sei bellissima, sempre, non dubitarne mai.</a> Ti voglio bene🩶</p>
@@ -1018,5 +1016,7 @@ function updateSongInfo(songTitle, songArtist) {
     document.querySelector('.song-artist').textContent = songArtist;
 }
 </script>
+
+
 </body>
 </html>
