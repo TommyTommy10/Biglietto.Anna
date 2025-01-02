@@ -220,6 +220,19 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Aggiungi ombreggiatura */
     margin-top: 15px;
 }
+    .settings {
+    overflow-y: auto; /* Abilita lo scorrimento verticale */
+    max-height: 400px; /* Assicura che la finestra abbia una dimensione massima */
+}
+
+.close-music, .close-settings {
+    background-color: var(--colore-chiusura); /* Usa una variabile per il colore */
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 15px; /* Arrotondare i bordi */
+    cursor: pointer;
+  }  
 
 /* Arrotondare i color picker */
 .settings input[type="color"] {
@@ -778,15 +791,33 @@ h2 {
             </select>
 
             <label for="colorPicker">Seleziona il colore dello sfondo:</label>
-            <input type="color" id="colorPicker" value="#f4f4f9">
+<input type="color" id="colorPicker" value="#f4f4f9">
 
-            <label for="textColorPicker">Seleziona il colore del testo:</label>
-            <input type="color" id="textColorPicker" value="#000000">
+<label for="textColorPicker">Seleziona il colore del testo:</label>
+<input type="color" id="textColorPicker" value="#000000">
 
-            <label for="buttonColorPicker">Seleziona il colore dei pulsanti:</label>
-            <input type="color" id="buttonColorPicker" value="#007bff">
+<label for="buttonColorPicker">Seleziona il colore dei pulsanti:</label>
+<input type="color" id="buttonColorPicker" value="#007bff">
 
-            <button class="close-settings" onclick="toggleSettings()">Chiudi</button>
+<label for="titleColorPicker">Seleziona il colore del titolo:</label>
+<input type="color" id="titleColorPicker" value="#000000">
+
+<label for="mainBoxColorPicker">Seleziona il colore del riquadro principale:</label>
+<input type="color" id="mainBoxColorPicker" value="#ffffff">
+
+<label for="paragraphBoxColorPicker">Seleziona il colore del riquadro paragrafo:</label>
+<input type="color" id="paragraphBoxColorPicker" value="#ffffff">
+
+<label for="windowColorPicker">Seleziona il colore delle finestre:</label>
+<input type="color" id="windowColorPicker" value="#ffffff">
+
+<label for="musicPlayerColorPicker">Seleziona il colore del music player:</label>
+<input type="color" id="musicPlayerColorPicker" value="#ffffff">
+
+<label for="dateColorPicker">Seleziona il colore della data:</label>
+<input type="color" id="dateColorPicker" value="#000000">
+
+<button class="close-settings" onclick="toggleSettings()">Chiudi</button>
         </div>
 
         <!-- Esempio di post del blog -->
@@ -829,119 +860,152 @@ h2 {
 
 <script>
     function toggleSettings() {
-        var settings = document.getElementById('settings');
-        var settingsButton = document.getElementById('settingsButton');
-        var overlay = document.getElementById('overlay');
-        var music = document.getElementById('music');
-        var musicButton = document.getElementById('musicButton');
-        if (settings.style.display === 'none' || settings.style.display === '') {
-            settings.style.display = 'block';
-            settingsButton.style.display = 'none';
-            overlay.style.display = 'block';
-            music.style.display = 'none';
-            musicButton.style.display = 'flex';
-        } else {
-            settings.style.display = 'none';
-            settingsButton.style.display = 'flex';
-            overlay.style.display = 'none';
-        }
-    }
-
-    function toggleMusic() {
-        var music = document.getElementById('music');
-        var musicButton = document.getElementById('musicButton');
-        var overlay = document.getElementById('overlay');
-        var settings = document.getElementById('settings');
-        var settingsButton = document.getElementById('settingsButton');
-        if (music.style.display === 'none' || music.style.display === '') {
-            music.style.display = 'block';
-            musicButton.style.display = 'none';
-            overlay.style.display = 'block';
-            settings.style.display = 'none';
-            settingsButton.style.display = 'flex';
-        } else {
-            music.style.display = 'none';
-            musicButton.style.display = 'flex';
-            overlay.style.display = 'none';
-        }
-    }
-
-    function closeWindows() {
-        var settings = document.getElementById('settings');
-        var settingsButton = document.getElementById('settingsButton');
-        var music = document.getElementById('music');
-        var musicButton = document.getElementById('musicButton');
-        var overlay = document.getElementById('overlay');
+    var settings = document.getElementById('settings');
+    var settingsButton = document.getElementById('settingsButton');
+    var overlay = document.getElementById('overlay');
+    var music = document.getElementById('music');
+    var musicButton = document.getElementById('musicButton');
+    if (settings.style.display === 'none' || settings.style.display === '') {
+        settings.style.display = 'block';
+        settingsButton.style.display = 'none';
+        overlay.style.display = 'block';
+        music.style.display = 'none';
+        musicButton.style.display = 'flex';
+    } else {
         settings.style.display = 'none';
         settingsButton.style.display = 'flex';
+        overlay.style.display = 'none';
+    }
+}
+
+function toggleMusic() {
+    var music = document.getElementById('music');
+    var musicButton = document.getElementById('musicButton');
+    var overlay = document.getElementById('overlay');
+    var settings = document.getElementById('settings');
+    var settingsButton = document.getElementById('settingsButton');
+    if (music.style.display === 'none' || music.style.display === '') {
+        music.style.display = 'block';
+        musicButton.style.display = 'none';
+        overlay.style.display = 'block';
+        settings.style.display = 'none';
+        settingsButton.style.display = 'flex';
+    } else {
         music.style.display = 'none';
         musicButton.style.display = 'flex';
         overlay.style.display = 'none';
     }
+}
 
-    function playSong(songId) {
-        var audioPlayer = document.getElementById('audioPlayer');
-        var audioSource = document.getElementById('audioSource');
-        var musicMenu = document.getElementById('musicMenu');
-        var musicPlayer = document.getElementById('musicPlayer');
+function closeWindows() {
+    var settings = document.getElementById('settings');
+    var settingsButton = document.getElementById('settingsButton');
+    var music = document.getElementById('music');
+    var musicButton = document.getElementById('musicButton');
+    var overlay = document.getElementById('overlay');
+    settings.style.display = 'none';
+    settingsButton.style.display = 'flex';
+    music.style.display = 'none';
+    musicButton.style.display = 'flex';
+    overlay.style.display = 'none';
+}
 
-        // Imposta il percorso della canzone da riprodurre
-        audioSource.src = 'path-to-' + songId + '.mp3';
-        audioPlayer.load();
-        audioPlayer.play();
+function playSong(songId) {
+    var audioPlayer = document.getElementById('audioPlayer');
+    var audioSource = document.getElementById('audioSource');
+    var musicMenu = document.getElementById('musicMenu');
+    var musicPlayer = document.getElementById('musicPlayer');
 
-        // Mostra il lettore musicale e nascondi il menu
-        musicMenu.style.display = 'none';
-        musicPlayer.style.display = 'flex';
-    }
+    // Imposta il percorso della canzone da riprodurre
+    audioSource.src = 'path-to-' + songId + '.mp3';
+    audioPlayer.load();
+    audioPlayer.play();
 
-    function showMenu() {
-        var musicMenu = document.getElementById('musicMenu');
-        var musicPlayer = document.getElementById('musicPlayer');
+    // Mostra il lettore musicale e nascondi il menu
+    musicMenu.style.display = 'none';
+    musicPlayer.style.display = 'flex';
+}
 
-        // Mostra il menu e nascondi il lettore musicale
-        musicMenu.style.display = 'flex';
-        musicPlayer.style.display = 'none';
-    }
+function showMenu() {
+    var musicMenu = document.getElementById('musicMenu');
+    var musicPlayer = document.getElementById('musicPlayer');
 
-    document.addEventListener('DOMContentLoaded', function() {
-        // Imposta il colore iniziale per i color picker
-        document.getElementById('colorPicker').value = rgb2hex(getComputedStyle(document.body).backgroundColor);
-        document.getElementById('textColorPicker').value = rgb2hex(getComputedStyle(document.body).color);
-        document.getElementById('buttonColorPicker').value = rgb2hex(getComputedStyle(document.querySelector('.settings-button')).backgroundColor);
+    // Mostra il menu e nascondi il lettore musicale
+    musicMenu.style.display = 'flex';
+    musicPlayer.style.display = 'none';
+}
 
-        document.getElementById('fontSelect').addEventListener('change', function() {
-            document.body.style.fontFamily = this.value;
-        });
+document.addEventListener('DOMContentLoaded', function() {
+    // Imposta il colore iniziale per i color picker
+    document.getElementById('colorPicker').value = rgb2hex(getComputedStyle(document.body).backgroundColor);
+    document.getElementById('textColorPicker').value = rgb2hex(getComputedStyle(document.body).color);
+    document.getElementById('buttonColorPicker').value = rgb2hex(getComputedStyle(document.querySelector('.settings-button')).backgroundColor);
 
-        document.getElementById('colorPicker').addEventListener('input', function() {
-            document.body.style.backgroundColor = this.value;
-        });
-
-        document.getElementById('textColorPicker').addEventListener('input', function() {
-            document.body.style.color = this.value;
-        });
-
-        document.getElementById('buttonColorPicker').addEventListener('input', function() {
-            var buttons = document.querySelectorAll('.settings-button, .music-button');
-            buttons.forEach(function(button) {
-                button.style.backgroundColor = document.getElementById('buttonColorPicker').value;
-            });
-        });
-
-        function rgb2hex(rgb) {
-            if (/^#[0-9A-F]{6}$/i.test(rgb)) {
-                return rgb;
-            }
-            rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
-            function hex(x) {
-                return ("0" + parseInt(x).toString(16)).slice(-2);
-            }
-            return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
-        }
+    document.getElementById('fontSelect').addEventListener('change', function() {
+        document.body.style.fontFamily = this.value;
     });
 
-    document.querySelectorAll('.music-item p span').forEach(span => {
+    document.getElementById('colorPicker').addEventListener('input', function() {
+        document.body.style.backgroundColor = this.value;
+    });
+
+    document.getElementById('textColorPicker').addEventListener('input', function() {
+        document.body.style.color = this.value;
+    });
+
+    document.getElementById('buttonColorPicker').addEventListener('input', function() {
+        var buttons = document.querySelectorAll('.settings-button, .music-button');
+        buttons.forEach(function(button) {
+            button.style.backgroundColor = document.getElementById('buttonColorPicker').value;
+        });
+    });
+
+    // Nuovi color picker
+    document.getElementById('titleColorPicker').addEventListener('input', function() {
+        document.querySelectorAll('h2').forEach(title => {
+            title.style.color = this.value;
+        });
+    });
+
+    document.getElementById('mainBoxColorPicker').addEventListener('input', function() {
+        document.querySelector('.main-box').style.backgroundColor = this.value;
+    });
+
+    document.getElementById('paragraphBoxColorPicker').addEventListener('input', function() {
+        document.querySelectorAll('.paragraph-box').forEach(box => {
+            box.style.backgroundColor = this.value;
+        });
+    });
+
+    document.getElementById('windowColorPicker').addEventListener('input', function() {
+        document.querySelectorAll('.window').forEach(window => {
+            window.style.backgroundColor = this.value;
+        });
+    });
+
+    document.getElementById('musicPlayerColorPicker').addEventListener('input', function() {
+        document.querySelector('.music-player').style.backgroundColor = this.value;
+    });
+
+    document.getElementById('dateColorPicker').addEventListener('input', function() {
+        document.querySelectorAll('.date').forEach(date => {
+            date.style.color = this.value;
+        });
+    });
+
+    function rgb2hex(rgb) {
+        if (/^#[0-9A-F]{6}$/i.test(rgb)) {
+            return rgb;
+        }
+        rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+        function hex(x) {
+            return ("0" + parseInt(x).toString(16)).slice(-2);
+        }
+        return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+    }
+});
+
+document.querySelectorAll('.music-item p span').forEach(span => {
     const parentWidth = span.parentElement.offsetWidth;
     const spanWidth = span.offsetWidth;
 
@@ -949,11 +1013,11 @@ h2 {
         span.style.animation = 'scrolling-text 10s linear infinite';
     }
 });
-    
+
 function updateSongInfo(songTitle, songArtist) {
     document.querySelector('.song-title').textContent = songTitle;
     document.querySelector('.song-artist').textContent = songArtist;
-};
+}
 </script>
 </body>
 </html>
