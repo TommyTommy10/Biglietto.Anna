@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -234,6 +232,64 @@
     border-radius: 15px; /* Arrotondare i bordi */
     cursor: pointer;
   }  
+
+    .settings {
+    overflow-y: auto; /* Abilita lo scorrimento verticale */
+    max-height: 400px; /* Assicura che la finestra abbia una dimensione massima */
+}
+
+.close-music, .close-settings {
+    background-color: var(--colore-chiusura); /* Usa una variabile per il colore */
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 15px; /* Arrotondare i bordi */
+    cursor: pointer;
+}
+
+/* Colori iniziali per il testo, riquadro principale, riquadro del paragrafo e finestre */
+body {
+    --dateColorPicker: #000000;
+    --windowColorPicker: #ffffff;
+    --mainBoxColorPicker: #ffffff;
+    --paragraphBoxColorPicker: #ffffff;
+    --textColorPicker: #000000;
+    --titleColorPicker: #000000;
+}
+
+/* Differenziazione dei colori per "personalizza il sito", "her" e "mine" */
+.personalizza, .her, .mine {
+    color: var(--textColorPicker); /* Cambia il colore con il testo */
+}
+
+.titolo-canzone {
+    font-weight: bold;
+}
+
+.autore-canzone {
+    color: #AAAAAA; /* Colore più chiaro */
+}
+
+/* Inizializzazione dei colori dinamici */
+h2 {
+    color: var(--titleColorPicker);
+}
+
+.main-box {
+    background-color: var(--mainBoxColorPicker);
+}
+
+.paragraph-box {
+    background-color: var(--paragraphBoxColorPicker);
+}
+
+.window {
+    background-color: var(--windowColorPicker);
+}
+
+.date {
+    color: var(--dateColorPicker);
+}
 
 /* Arrotondare i color picker */
 .settings input[type="color"] {
@@ -791,35 +847,36 @@ h2 {
                 <!-- Aggiungi altri font qui -->
             </select>
 
-            <label for="colorPicker">Seleziona il colore dello sfondo:</label>
-<input type="color" id="colorPicker" value="#f4f4f9">
+<div class="settings">
+    <label for="colorPicker">Seleziona il colore dello sfondo:</label>
+    <input type="color" id="colorPicker" value="#f4f4f9">
 
-<label for="textColorPicker">Seleziona il colore del titolo:</label>
-<input type="color" id="textColorPicker" value="#000000">
+    <label for="textColorPicker">Seleziona il colore del titolo:</label>
+    <input type="color" id="textColorPicker" value="#000000">
 
-<label for="dateColorPicker">Seleziona il colore della testo:</label>
-<input type="color" id="dateColorPicker" value="#000000">
+    <label for="dateColorPicker">Seleziona il colore del testo:</label>
+    <input type="color" id="dateColorPicker" value="#000000">
 
-<label for="titleColorPicker">Seleziona il colore del data:</label>
-<input type="color" id="titleColorPicker" value="#000000">
+    <label for="titleColorPicker">Seleziona il colore della data:</label>
+    <input type="color" id="titleColorPicker" value="#000000">
 
-<label for="mainBoxColorPicker">Seleziona il colore del riquadro principale:</label>
-<input type="color" id="mainBoxColorPicker" value="#ffffff">
+    <label for="mainBoxColorPicker">Seleziona il colore del riquadro principale:</label>
+    <input type="color" id="mainBoxColorPicker" value="#ffffff">
 
-<label for="paragraphBoxColorPicker">Seleziona il colore del riquadro del paragrafo:</label>
-<input type="color" id="paragraphBoxColorPicker" value="#ffffff">
+    <label for="paragraphBoxColorPicker">Seleziona il colore del riquadro del paragrafo:</label>
+    <input type="color" id="paragraphBoxColorPicker" value="#ffffff">
 
-<label for="windowColorPicker">Seleziona il colore delle finestre:</label>
-<input type="color" id="windowColorPicker" value="#ffffff">
+    <label for="windowColorPicker">Seleziona il colore delle finestre:</label>
+    <input type="color" id="windowColorPicker" value="#ffffff">
 
-<label for="buttonColorPicker">Seleziona il colore dei pulsanti:</label>
-<input type="color" id="buttonColorPicker" value="#007bff">
+    <label for="buttonColorPicker">Seleziona il colore dei pulsanti:</label>
+    <input type="color" id="buttonColorPicker" value="#007bff">
 
-<label for="musicPlayerColorPicker">Seleziona il colore del music player:</label>
-<input type="color" id="musicPlayerColorPicker" value="#ffffff">
+    <label for="musicPlayerColorPicker">Seleziona il colore del music player:</label>
+    <input type="color" id="musicPlayerColorPicker" value="#ffffff">
 
-<button class="close-settings" onclick="toggleSettings()">Chiudi</button>
-        </div>
+    <button class="close-settings" onclick="toggleSettings()">Chiudi</button>
+</div>
 
         <!-- Esempio di post del blog -->
         <div class="entry">
@@ -858,84 +915,7 @@ h2 {
 </div>
 
     </div>
-
 <script>
-    function toggleSettings() {
-    var settings = document.getElementById('settings');
-    var settingsButton = document.getElementById('settingsButton');
-    var overlay = document.getElementById('overlay');
-    var music = document.getElementById('music');
-    var musicButton = document.getElementById('musicButton');
-    if (settings.style.display === 'none' || settings.style.display === '') {
-        settings.style.display = 'block';
-        settingsButton.style.display = 'none';
-        overlay.style.display = 'block';
-        music.style.display = 'none';
-        musicButton.style.display = 'flex';
-    } else {
-        settings.style.display = 'none';
-        settingsButton.style.display = 'flex';
-        overlay.style.display = 'none';
-    }
-}
-
-function toggleMusic() {
-    var music = document.getElementById('music');
-    var musicButton = document.getElementById('musicButton');
-    var overlay = document.getElementById('overlay');
-    var settings = document.getElementById('settings');
-    var settingsButton = document.getElementById('settingsButton');
-    if (music.style.display === 'none' || music.style.display === '') {
-        music.style.display = 'block';
-        musicButton.style.display = 'none';
-        overlay.style.display = 'block';
-        settings.style.display = 'none';
-        settingsButton.style.display = 'flex';
-    } else {
-        music.style.display = 'none';
-        musicButton.style.display = 'flex';
-        overlay.style.display = 'none';
-    }
-}
-
-function closeWindows() {
-    var settings = document.getElementById('settings');
-    var settingsButton = document.getElementById('settingsButton');
-    var music = document.getElementById('music');
-    var musicButton = document.getElementById('musicButton');
-    var overlay = document.getElementById('overlay');
-    settings.style.display = 'none';
-    settingsButton.style.display = 'flex';
-    music.style.display = 'none';
-    musicButton.style.display = 'flex';
-    overlay.style.display = 'none';
-}
-
-function playSong(songId) {
-    var audioPlayer = document.getElementById('audioPlayer');
-    var audioSource = document.getElementById('audioSource');
-    var musicMenu = document.getElementById('musicMenu');
-    var musicPlayer = document.getElementById('musicPlayer');
-
-    // Imposta il percorso della canzone da riprodurre
-    audioSource.src = 'path-to-' + songId + '.mp3';
-    audioPlayer.load();
-    audioPlayer.play();
-
-    // Mostra il lettore musicale e nascondi il menu
-    musicMenu.style.display = 'none';
-    musicPlayer.style.display = 'flex';
-}
-
-function showMenu() {
-    var musicMenu = document.getElementById('musicMenu');
-    var musicPlayer = document.getElementById('musicPlayer');
-
-    // Mostra il menu e nascondi il lettore musicale
-    musicMenu.style.display = 'flex';
-    musicPlayer.style.display = 'none';
-}
-
 document.addEventListener('DOMContentLoaded', function() {
     // Imposta il colore iniziale per i color picker
     document.getElementById('colorPicker').value = rgb2hex(getComputedStyle(document.body).backgroundColor);
@@ -991,6 +971,14 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('dateColorPicker').addEventListener('input', function() {
         document.querySelectorAll('.date').forEach(date => {
             date.style.color = this.value;
+        });
+    });
+
+    // Aggiungi le seguenti righe per le scritte "personalizza il sito", "her" e "mine"
+    document.getElementById('textColorPicker').addEventListener('input', function() {
+        var textColor = this.value;
+        document.querySelectorAll('.personalizza, .her, .mine').forEach(element => {
+            element.style.color = textColor;
         });
     });
 
