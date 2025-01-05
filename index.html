@@ -1012,139 +1012,119 @@ h2 {
     </div>
 
 <script>
-    function toggleSettings() {
-    var settings = document.getElementById('settings');
-    var settingsButton = document.getElementById('settingsButton');
-    var overlay = document.getElementById('overlay');
-    var music = document.getElementById('music');
-    var musicButton = document.getElementById('musicButton');
-    if (settings.style.display === 'none' || settings.style.display === '') {
-        settings.style.display = 'block';
-        settingsButton.style.display = 'none';
-        overlay.style.display = 'block';
-        music.style.display = 'none';
-        musicButton.style.display = 'flex';
-    } else {
-        settings.style.display = 'none';
-        settingsButton.style.display = 'flex';
-        overlay.style.display = 'none';
+   document.addEventListener('DOMContentLoaded', function() {
+    function setInitialColorPickerValue(elementId, cssProperty) {
+        const element = document.getElementById(elementId);
+        if (element) {
+            element.value = rgb2hex(getComputedStyle(document.body)[cssProperty]);
+        }
     }
-}
 
-function toggleMusic() {
-    var music = document.getElementById('music');
-    var musicButton = document.getElementById('musicButton');
-    var overlay = document.getElementById('overlay');
-    var settings = document.getElementById('settings');
-    var settingsButton = document.getElementById('settingsButton');
-    if (music.style.display === 'none' || music.style.display === '') {
-        music.style.display = 'block';
-        musicButton.style.display = 'none';
-        overlay.style.display = 'block';
-        settings.style.display = 'none';
-        settingsButton.style.display = 'flex';
-    } else {
-        music.style.display = 'none';
-        musicButton.style.display = 'flex';
-        overlay.style.display = 'none';
-    }
-}
+    setInitialColorPickerValue('colorPicker', 'backgroundColor');
+    setInitialColorPickerValue('textColorPicker', 'color');
+    setInitialColorPickerValue('buttonColorPicker', 'backgroundColor');
 
-function closeWindows() {
-    var settings = document.getElementById('settings');
-    var settingsButton = document.getElementById('settingsButton');
-    var music = document.getElementById('music');
-    var musicButton = document.getElementById('musicButton');
-    var overlay = document.getElementById('overlay');
-    settings.style.display = 'none';
-    settingsButton.style.display = 'flex';
-    music.style.display = 'none';
-    musicButton.style.display = 'flex';
-    overlay.style.display = 'none';
-}
-
-function playSong(songId) {
-    var audioPlayer = document.getElementById('audioPlayer');
-    var audioSource = document.getElementById('audioSource');
-    var musicMenu = document.getElementById('musicMenu');
-    var musicPlayer = document.getElementById('musicPlayer');
-
-    // Imposta il percorso della canzone da riprodurre
-    audioSource.src = 'path-to-' + songId + '.mp3';
-    audioPlayer.load();
-    audioPlayer.play();
-
-    // Mostra il lettore musicale e nascondi il menu
-    musicMenu.style.display = 'none';
-    musicPlayer.style.display = 'flex';
-}
-
-function showMenu() {
-    var musicMenu = document.getElementById('musicMenu');
-    var musicPlayer = document.getElementById('musicPlayer');
-
-    // Mostra il menu e nascondi il lettore musicale
-    musicMenu.style.display = 'flex';
-    musicPlayer.style.display = 'none';
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Imposta il colore iniziale per i color picker
-    document.getElementById('colorPicker').value = rgb2hex(getComputedStyle(document.body).backgroundColor);
-    document.getElementById('textColorPicker').value = rgb2hex(getComputedStyle(document.body).color);
-    document.getElementById('buttonColorPicker').value = rgb2hex(getComputedStyle(document.querySelector('.settings-button')).backgroundColor);
-
-    document.getElementById('fontSelect').addEventListener('change', function() {
-        document.body.style.fontFamily = this.value;
-    });
-
-    document.getElementById('colorPicker').addEventListener('input', function() {
-        document.body.style.backgroundColor = this.value;
-    });
-
-    document.getElementById('textColorPicker').addEventListener('input', function() {
-        document.body.style.color = this.value;
-    });
-
-    document.getElementById('buttonColorPicker').addEventListener('input', function() {
-        var buttons = document.querySelectorAll('.settings-button, .music-button');
-        buttons.forEach(function(button) {
-            button.style.backgroundColor = document.getElementById('buttonColorPicker').value;
+    const fontSelect = document.getElementById('fontSelect');
+    if (fontSelect) {
+        fontSelect.addEventListener('change', function() {
+            document.body.style.fontFamily = this.value;
         });
-    });
+    }
+
+    const colorPicker = document.getElementById('colorPicker');
+    if (colorPicker) {
+        colorPicker.addEventListener('input', function() {
+            document.body.style.backgroundColor = this.value;
+        });
+    }
+
+    const textColorPicker = document.getElementById('textColorPicker');
+    if (textColorPicker) {
+        textColorPicker.addEventListener('input', function() {
+            document.body.style.color = this.value;
+        });
+    }
+
+    const buttonColorPicker = document.getElementById('buttonColorPicker');
+    if (buttonColorPicker) {
+        buttonColorPicker.addEventListener('input', function() {
+            const buttons = document.querySelectorAll('.settings-button, .music-button');
+            buttons.forEach(function(button) {
+                button.style.backgroundColor = buttonColorPicker.value;
+            });
+        });
+    }
 
     // Nuovi color picker
-    document.getElementById('titleColorPicker').addEventListener('input', function() {
-        document.querySelectorAll('h2').forEach(title => {
-            title.style.color = this.value;
+    const titleColorPicker = document.getElementById('titleColorPicker');
+    if (titleColorPicker) {
+        titleColorPicker.addEventListener('input', function() {
+            document.documentElement.style.setProperty('--titleColorPicker', this.value);
         });
-    });
+    }
 
-    document.getElementById('mainBoxColorPicker').addEventListener('input', function() {
-        document.querySelector('.main-box').style.backgroundColor = this.value;
-    });
-
-    document.getElementById('paragraphBoxColorPicker').addEventListener('input', function() {
-        document.querySelectorAll('.paragraph-box').forEach(box => {
-            box.style.backgroundColor = this.value;
+    const mainBoxColorPicker = document.getElementById('mainBoxColorPicker');
+    if (mainBoxColorPicker) {
+        mainBoxColorPicker.addEventListener('input', function() {
+            document.documentElement.style.setProperty('--mainBoxColorPicker', this.value);
         });
-    });
+    }
 
-    document.getElementById('windowColorPicker').addEventListener('input', function() {
-        document.querySelectorAll('.window').forEach(window => {
-            window.style.backgroundColor = this.value;
+    const paragraphBoxColorPicker = document.getElementById('paragraphBoxColorPicker');
+    if (paragraphBoxColorPicker) {
+        paragraphBoxColorPicker.addEventListener('input', function() {
+            document.documentElement.style.setProperty('--paragraphBoxColorPicker', this.value);
         });
-    });
+    }
 
-    document.getElementById('musicPlayerColorPicker').addEventListener('input', function() {
-        document.querySelector('.music-player').style.backgroundColor = this.value;
-    });
-
-    document.getElementById('dateColorPicker').addEventListener('input', function() {
-        document.querySelectorAll('.date').forEach(date => {
-            date.style.color = this.value;
+    const windowColorPicker = document.getElementById('windowColorPicker');
+    if (windowColorPicker) {
+        windowColorPicker.addEventListener('input', function() {
+            document.documentElement.style.setProperty('--windowColorPicker', this.value);
         });
-    });
+    }
+
+    const musicPlayerColorPicker = document.getElementById('musicPlayerColorPicker');
+    if (musicPlayerColorPicker) {
+        musicPlayerColorPicker.addEventListener('input', function() {
+            document.querySelector('.music-player').style.backgroundColor = this.value;
+        });
+    }
+
+    const dateColorPicker = document.getElementById('dateColorPicker');
+    if (dateColorPicker) {
+        dateColorPicker.addEventListener('input', function() {
+            document.documentElement.style.setProperty('--dateColorPicker', this.value);
+        });
+    }
+
+    // Aggiungi le seguenti righe per le scritte "personalizza il sito", "her" e "mine"
+    if (textColorPicker) {
+        textColorPicker.addEventListener('input', function() {
+            const textColor = this.value;
+            document.querySelectorAll('.personalizza, .her, .mine').forEach(element => {
+                element.style.color = textColor;
+            });
+        });
+    }
+
+    // Aggiungi un gestore di eventi per la barra di ricerca
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            const songs = document.querySelectorAll('.music-item');
+            songs.forEach(function(song) {
+                const title = song.querySelector('.song-title').textContent.toLowerCase();
+                const artist = song.querySelector('.song-artist').textContent.toLowerCase();
+                if (title.includes(query) || artist.includes(query)) {
+                    song.style.display = 'block';
+                } else {
+                    song.style.display = 'none';
+                }
+            });
+        });
+    }
 
     function rgb2hex(rgb) {
         if (/^#[0-9A-F]{6}$/i.test(rgb)) {
@@ -1156,21 +1136,59 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
     }
-});
 
-document.querySelectorAll('.music-item p span').forEach(span => {
-    const parentWidth = span.parentElement.offsetWidth;
-    const spanWidth = span.offsetWidth;
+    document.querySelectorAll('.music-item p span').forEach(span => {
+        const parentWidth = span.parentElement.offsetWidth;
+        const spanWidth = span.offsetWidth;
 
-    if (spanWidth > parentWidth) {
-        span.style.animation = 'scrolling-text 10s linear infinite';
+        if (spanWidth > parentWidth) {
+            span.style.animation = 'scrolling-text 10s linear infinite';
+        }
+    });
+
+    function updateSongInfo(songTitle, songArtist) {
+        document.querySelector('.song-title').textContent = songTitle;
+        document.querySelector('.song-artist').textContent = songArtist;
+    }
+
+    function toggleSettings() {
+        var settings = document.getElementById('settings');
+        var settingsButton = document.getElementById('settingsButton');
+        var overlay = document.getElementById('overlay');
+        var music = document.getElementById('music');
+        var musicButton = document.getElementById('musicButton');
+        if (settings.style.display === 'none' || settings.style.display === '') {
+            settings.style.display = 'block';
+            settingsButton.style.display = 'none';
+            overlay.style.display = 'block';
+            music.style.display = 'none';
+            musicButton.style.display = 'flex';
+        } else {
+            settings.style.display = 'none';
+            settingsButton.style.display = 'flex';
+            overlay.style.display = 'none';
+        }
+    }
+
+    function toggleMusic() {
+        var music = document.getElementById('music');
+        var musicButton = document.getElementById('musicButton');
+        var overlay = document.getElementById('overlay');
+        var settings = document.getElementById('settings');
+        var settingsButton = document.getElementById('settingsButton');
+        if (music.style.display === 'none' || music.style.display === '') {
+            music.style.display = 'block';
+            musicButton.style.display = 'none';
+            overlay.style.display = 'block';
+            settings.style.display = 'none';
+            settingsButton.style.display = 'flex';
+        } else {
+            music.style.display = 'none';
+            musicButton.style.display = 'flex';
+            overlay.style.display = 'none';
+        }
     }
 });
-
-function updateSongInfo(songTitle, songArtist) {
-    document.querySelector('.song-title').textContent = songTitle;
-    document.querySelector('.song-artist').textContent = songArtist;
-}
 </script>
 </body>
 </html>
