@@ -649,11 +649,8 @@ h2 {
         
 <div class="container">
   <input required="" type="text" name="text" class="input">
-  <label class="label">Serach a song or an artisti...</label>
+  <label class="label">Search a song or an artist...</label>
 </div>
-        <input type="text" id="searchInput" placeholder="Cerca canzone o artista" oninput="handleSearch()">
-        <div id="results"></div>
-        
         <!-- Sezione "Her" -->
         <h2>Her</h2>
 <div class="music-item" onclick="playSong('miFaiImpazzire')">
@@ -1116,23 +1113,6 @@ function updateSongInfo(songTitle, songArtist) {
     document.querySelector('.song-title').textContent = songTitle;
     document.querySelector('.song-artist').textContent = songArtist;
 }
-
-    const songs = [
-        { name: "Song A", artist: "Artist A" },
-        { name: "Song B", artist: "Artist B" },
-        // Aggiungi altre canzoni qui
-    ];
-
-    function handleSearch() {
-        const query = document.getElementById('searchInput').value;
-        const results = searchSongs(songs, query);
-        displayResults(results);
-    }
-
-    function displayResults(results) {
-        const resultsDiv = document.getElementById('results');
-        resultsDiv.innerHTML = results.map(song => `<div>${song.name} - ${song.artist}</div>`).join('');
-    }
 </script>
 </body>
 </html>
