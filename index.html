@@ -1024,6 +1024,45 @@ h2 {
     }
 
     document.getElementById('searchInput').addEventListener('keyup', filterSongs);
+    
+ const songs = [
+            "Mi Fai Impazzire - Blanco",
+            "Someone To Stay - Vancouver Sleep Clinic",
+            "Why I Love You - Jay-Z",
+            "Don’t Panic - Coldplay",
+            "Dangerous Woman - Ariana Grande",
+            "Mad Sounds - Arctic Monkeys",
+            "No 1 Party Anthem - Arctic Monkeys",
+            "I Wanna Be Yours - Arctic Monkeys",
+            "End Of Beginning - Djo",
+            "Moth To A Flame - The Weeknd",
+            "Out Of My League - Fitz And The Tantrums",
+            "Favorite - Isabel LaRosa",
+            "505 - Arctic Monkeys",
+            "Confident - Justin Bieber",
+            "Wildest Dreams - Taylor Swift",
+            "I See You - Jutty Ranx",
+            "Beautiful Things - Benson Boone",
+            "My Type - Saweetie",
+            "Baby Goddamn - Tananai",
+            "Tran Tran - Sfera E Basta",
+            "Rockstar - Sfera E Basta",
+            "Older - Isabel LaRosa",
+            "Mockingbird - Eminem",
+            "Yellow - Coldplay",
+            "Cigarettes Dream - Cage The Elephant",
+            "Apocalypse - Cigarettes After Sex",
+            "Friends - Chase Atlantic",
+            "You Were There For Me - Henry Moodie",
+            "The Night We Met - Lord Huron",
+        ];
+
+        document.getElementById('search-input').addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            const results = songs.filter(song => song.toLowerCase().includes(query));
+            const resultsContainer = document.getElementById('results');
+            resultsContainer.innerHTML = results.map(song => `<div>${song}</div>`).join('');
+        });
 </script>
 </body>
 </html>
