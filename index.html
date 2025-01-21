@@ -650,6 +650,8 @@ h2 {
 <div class="container">
   <input required="" type="text" name="text" class="input">
   <label class="label">Search a song or an artist...</label>
+    <input type="text" id="searchBar" placeholder="Cerca...">
+<div id="searchResults"></div>
 </div>
         <!-- Sezione "Her" -->
         <h2>Her</h2>
@@ -1063,6 +1065,25 @@ h2 {
             const resultsContainer = document.getElementById('results');
             resultsContainer.innerHTML = results.map(song => `<div>${song}</div>`).join('');
         });
+    
+    const searchBar = document.getElementById('searchBar');
+const searchResults = document.getElementById('searchResults');
+
+searchBar.addEventListener('input', function() {
+    const query = searchBar.value.toLowerCase();
+    searchResults.innerHTML = ''; // Pulisci i risultati precedenti
+
+    // Supponiamo di avere un array di dati da cercare
+    const data = ['AI1', 'AI2', 'AI3']; // Sostituisci con i tuoi dati
+
+    const filteredData = data.filter(item => item.toLowerCase().includes(query));
+
+    filteredData.forEach(item => {
+        const resultItem = document.createElement('div');
+        resultItem.textContent = item;
+        searchResults.appendChild(resultItem);
+    });
+});
 </script>
 </body>
 </html>
