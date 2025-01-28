@@ -497,62 +497,6 @@ h2 {
     font-style: normal; /* Stile normale per il nome del cantante/band */
     opacity: 0.7; /* Aggiungi trasparenza per dare un effetto di sottotitolo */
 }
-
-    
-.container {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-  position: relative;
-  color: white;
-}
-
-.container .label {
-  font-size: 13.5px;
-  padding-left: 10px;
-  position: absolute;
-  top: 13px;
-  transition: 0.3s;
-  pointer-events: none;
-}
-
-.input {
-  width: 200px;
-  height: 45px;
-  border: none;
-  outline: none;
-  padding: 0px 7px;
-  border-radius: 6px;
-  color: #fff;
-  font-size: 15px;
-  background-color: transparent;
-  box-shadow: 3px 3px 10px rgba(0,0,0,1),
-  -1px -1px 6px rgba(255, 255, 255, 0.4);
-}
-
-.input:focus {
-  border: 2px solid transparent;
-  color: #fff;
-  box-shadow: 3px 3px 10px rgba(0,0,0,1),
-  -1px -1px 6px rgba(255, 255, 255, 0.4),
-  inset 3px 3px 10px rgba(0,0,0,1),
-  inset -1px -1px 6px rgba(255, 255, 255, 0.4);
-}
-
-.container .input:valid ~ .label,
-.container .input:focus ~ .label {
-  transition: 0.3s;
-  padding-left: 2px;
-  transform: translateY(-35px);
-}
-
-.container .input:valid,
-.container .input:focus {
-  box-shadow: 3px 3px 10px rgba(0,0,0,1),
-  -1px -1px 6px rgba(255, 255, 255, 0.4),
-  inset 3px 3px 10px rgba(0,0,0,1),
-  inset -1px -1px 6px rgba(255, 255, 255, 0.4);
-}
     
 /* Stile del pulsante di chiusura */
 .close-music {
@@ -647,11 +591,7 @@ h2 {
 <!-- Finestra della musica -->
 <div class="music" id="music">
     <div class="music-menu" id="musicMenu">
-        
-<div class="container">
-  <input required="" type="text" name="text" class="input">
-  <label class="label">Search a song or an artist...</label>
-</div>
+
 <!-- Aggiungi questo contenitore per i risultati -->
 <div class="search-results" id="results"></div>
         <!-- Sezione "Her" -->
@@ -1019,63 +959,6 @@ h2 {
             overlay.style.display = 'none';
         }
     }
-
-    function filterSongs() {
-        var input = document.getElementById('searchInput');
-        var filter = input.value.toLowerCase();
-        var musicItems = document.getElementsByClassName('music-item');
-        
-        for (var i = 0; i < musicItems.length; i++) {
-            var songTitle = musicItems[i].getElementsByClassName('song-title')[0];
-            var songArtist = musicItems[i].getElementsByClassName('song-artist')[0];
-            if (songTitle.innerText.toLowerCase().includes(filter) || songArtist.innerText.toLowerCase().includes(filter)) {
-                musicItems[i].style.display = "";
-            } else {
-                musicItems[i].style.display = "none";
-            }
-        }
-    }
-
-    document.getElementById('searchInput').addEventListener('keyup', filterSongs);
-    
- const songs = [
-            "Mi Fai Impazzire - Blanco",
-            "Someone To Stay - Vancouver Sleep Clinic",
-            "Why I Love You - Jay-Z",
-            "Don’t Panic - Coldplay",
-            "Dangerous Woman - Ariana Grande",
-            "Mad Sounds - Arctic Monkeys",
-            "No 1 Party Anthem - Arctic Monkeys",
-            "I Wanna Be Yours - Arctic Monkeys",
-            "End Of Beginning - Djo",
-            "Moth To A Flame - The Weeknd",
-            "Out Of My League - Fitz And The Tantrums",
-            "Favorite - Isabel LaRosa",
-            "505 - Arctic Monkeys",
-            "Confident - Justin Bieber",
-            "Wildest Dreams - Taylor Swift",
-            "I See You - Jutty Ranx",
-            "Beautiful Things - Benson Boone",
-            "My Type - Saweetie",
-            "Baby Goddamn - Tananai",
-            "Tran Tran - Sfera E Basta",
-            "Rockstar - Sfera E Basta",
-            "Older - Isabel LaRosa",
-            "Mockingbird - Eminem",
-            "Yellow - Coldplay",
-            "Cigarettes Dream - Cage The Elephant",
-            "Apocalypse - Cigarettes After Sex",
-            "Friends - Chase Atlantic",
-            "You Were There For Me - Henry Moodie",
-            "The Night We Met - Lord Huron",
-        ];
-
-        document.getElementById('search-input').addEventListener('input', function() {
-            const query = this.value.toLowerCase();
-            const results = songs.filter(song => song.toLowerCase().includes(query));
-            const resultsContainer = document.getElementById('results');
-            resultsContainer.innerHTML = results.map(song => `<div>${song}</div>`).join('');
-        });
 </script>
 </body>
 </html>
