@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -497,6 +496,62 @@ h2 {
     font-style: normal; /* Stile normale per il nome del cantante/band */
     opacity: 0.7; /* Aggiungi trasparenza per dare un effetto di sottotitolo */
 }
+
+    
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  position: relative;
+  color: white;
+}
+
+.container .label {
+  font-size: 15px;
+  padding-left: 10px;
+  position: absolute;
+  top: 13px;
+  transition: 0.3s;
+  pointer-events: none;
+}
+
+.input {
+  width: 200px;
+  height: 45px;
+  border: none;
+  outline: none;
+  padding: 0px 7px;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 15px;
+  background-color: transparent;
+  box-shadow: 3px 3px 10px rgba(0,0,0,1),
+  -1px -1px 6px rgba(255, 255, 255, 0.4);
+}
+
+.input:focus {
+  border: 2px solid transparent;
+  color: #fff;
+  box-shadow: 3px 3px 10px rgba(0,0,0,1),
+  -1px -1px 6px rgba(255, 255, 255, 0.4),
+  inset 3px 3px 10px rgba(0,0,0,1),
+  inset -1px -1px 6px rgba(255, 255, 255, 0.4);
+}
+
+.container .input:valid ~ .label,
+.container .input:focus ~ .label {
+  transition: 0.3s;
+  padding-left: 2px;
+  transform: translateY(-35px);
+}
+
+.container .input:valid,
+.container .input:focus {
+  box-shadow: 3px 3px 10px rgba(0,0,0,1),
+  -1px -1px 6px rgba(255, 255, 255, 0.4),
+  inset 3px 3px 10px rgba(0,0,0,1),
+  inset -1px -1px 6px rgba(255, 255, 255, 0.4);
+}
     
 /* Stile del pulsante di chiusura */
 .close-music {
@@ -591,9 +646,11 @@ h2 {
 <!-- Finestra della musica -->
 <div class="music" id="music">
     <div class="music-menu" id="musicMenu">
-
-<!-- Aggiungi questo contenitore per i risultati -->
-<div class="search-results" id="results"></div>
+        
+<div class="container">
+  <input required="" type="text" name="text" class="input">
+  <label class="label">Username</label>
+</div>
         <!-- Sezione "Her" -->
         <h2>Her</h2>
 <div class="music-item" onclick="playSong('miFaiImpazzire')">
@@ -819,7 +876,7 @@ h2 {
             </select>
 
             <label for="colorPicker">Seleziona il colore dello sfondo:</label>
-<input type="color" id="colorPicker" value="#faf3e0">
+<input type="color" id="colorPicker" value="##faf3e0">
 
 <label for="textColorPicker">Seleziona il colore del titolo:</label>
 <input type="color" id="textColorPicker" value="#5c7d3b">
@@ -888,77 +945,174 @@ h2 {
     <h2>30 Dicembre 2024</h2>
     <p>Sono felicissimo, mi manchi da morire e stare in chiamata mi è piaciuto troppo. Però, poi, qualcuno è dovuto “andare in bagno”. Voglio abbracciarti!!! Mi manchi da morire. La sera, mentre faccio questa pagina che stai leggendo, ascolto la canzone “The Night We Men” (la trovi nella sezione della mia musica). Mi sento male, mordo il peluche che ho da quando sono nato e inizio a piangere. Ti voglio ♾️ bene🩶 Notte</p>
 </div>
-        
+
 <div class="entry">
     <h2>1 Gennaio 2025</h2>
     <p>Ciao, oggi è stata una giornata così così per entrambi. So che te stai male, ma pure io. Si, due mali diversi, ma entrambi dolorosi. Come ti dico nel paragrafo precedente, ho scritto un piccolo paragrafo per due ore. Poi l’ho registrato e ho impostato il telefono perchè te lo mandasse a mezzanotte. Io ho avuto per tutto il 31 dei dubbi, ma una mia amica mi ha detto che secondo lei era una cosa carina e speravo veramente ti sarebbe piaciuto. Poi sono ormai passate 21 ore e 48 minuti e ancora non mi hai detto niente. È tutto il giorno che sono in ansia pensando di averti dato fastidio, ma solo perchè pensavo non ti fosse piaciuto. Scusami, non volevo darti fastidio. Ora che sono le 22:04 e so che ti è piaciuto, sono contento. Notte. Ti voglio bene🩶</p>
-</div>
-
-<div class="entry">
-    <h2>6 Gennaio 2025</h2>
-    <p>Ieri ho fatto un casino, lo so. Non dovevo dirti niente. Dovevo stare zitto e smettere di piangere. Te non centravi. Da ieri sera, ho sperato costantemente in un tuo messaggio, ma non è mai arrivato. Scusami ancora se ho esagerato. Nn vedo l’ora di vederti di persona, perchè stando a casa faccio solo disastri. O per lo più paranoie… Spero di non aver rovinato niente…</p>
-</div>
-        
-<div class="entry">
-    <h2>7 Gennaio 2025</h2>
-    <p>Oggi che ti ho vista, sono stato troppo felice. Mi mancavi veramente tanto…</p>
-</div>
-        
-<div class="entry">
-    <h2>13 Gennaio 2025</h2>
-    <p>Il tuo sorriso mi migliora ogni giornata. Se c’è qualcosa che nn va, penso a te che sorridi e sto meglio. Sto veramente bene con te. Poi sabato mi sono divertito un sacco (la mia carta meno). Ogni tanto dobbiamo rifarlo. Mi piace girare con te, chiacchierare, fare degli scherzi a Matte (a cui crederà per i prossimi 20 anni). Poi hai aperto sul mio telefono siti che, guarda, meglio non dire altro. Però mi sono divertito un sacco. Comunque credo che devo mettere una password a questo file, ma nn so come si faccia. Perchè forse non è la cosa migliore che venga letta da qualcuno se mi apre il Mac. Perchè quando uso il visore con altri mi connetto al computer così si vede. Solo che se uso io il visore per un attimo, qualcuno potrebbe leggere e non mi sembra il caso. Scusa se ti ho svegliata prima. Bye. Ti voglio bene🩶</p>
-</div>
-        
- <div class="entry">
-    <h2>21 Gennaio 2025</h2>
-    <p>È passata una settimana lo so, ma sono stato impegnato. Comunque, adesso che abbiamo gli iPad, ci divertiamo poi. Comunque pensavo, se mi continui a colpire nei coglioni, come vuoi fare poi a diventare la zia ricca? Però mi piace molto fare un giro con te dopo scuola, sei costosa da mantenere, dillo a Jack che mangi, se vuole ti posso mandare le uscite della mia carta da mandargli. Comunque adesso ti prendo Rafayel, te l’ho promesso e lo faccio. Bye bye. Ti voglio tanto tanto bene🩶</p>
-</div>
-
-<div class="entry">
-    <h2>28 Gennaio 2025</h2>
-    <p>Anna, sinceramente, io non so come ringraziarti per tutto. Gli ultimi sono stati giorni bellissimi, ma molto molto molto belli. Scusa, ho perso il file originale, non ricordo bene quello che avevo scritto. Non volevo. <a href="https://photos.app.goo.gl/H1mVWZmy84tJh17E7" class="link-style">Oggi al MC mi è piaciuto molto.</a> Anche i messaggi che hai scritto ieri quando stavo male. Io voglio sempre esserci per te se hai bisogno. Voglio starti vicino come hai fatto te. Io nn so esprimermi, so solo che ti adoro, ti voglio un bene immenso, infinito, smisurato. Ti voglio troppo troppo troppo bene, non so esprimere quanto, ma veramente tanto che non riesco a dimostrarti neanche la più microscopica parte di quanto ti voglio bene. Ti voglio bene🩶</p>
 </div>
 
     </div>
 
 <script>
     function toggleSettings() {
-        var settings = document.getElementById('settings');
-        var settingsButton = document.getElementById('settingsButton');
-        var overlay = document.getElementById('overlay');
-        var music = document.getElementById('music');
-        var musicButton = document.getElementById('musicButton');
-        if (settings.style.display === 'none' || settings.style.display === '') {
-            settings.style.display = 'block';
-            settingsButton.style.display = 'none';
-            overlay.style.display = 'block';
-            music.style.display = 'none';
-            musicButton.style.display = 'flex';
-        } else {
-            settings.style.display = 'none';
-            settingsButton.style.display = 'flex';
-            overlay.style.display = 'none';
-        }
+    var settings = document.getElementById('settings');
+    var settingsButton = document.getElementById('settingsButton');
+    var overlay = document.getElementById('overlay');
+    var music = document.getElementById('music');
+    var musicButton = document.getElementById('musicButton');
+    if (settings.style.display === 'none' || settings.style.display === '') {
+        settings.style.display = 'block';
+        settingsButton.style.display = 'none';
+        overlay.style.display = 'block';
+        music.style.display = 'none';
+        musicButton.style.display = 'flex';
+    } else {
+        settings.style.display = 'none';
+        settingsButton.style.display = 'flex';
+        overlay.style.display = 'none';
     }
+}
 
-    function toggleMusic() {
-        var music = document.getElementById('music');
-        var musicButton = document.getElementById('musicButton');
-        var overlay = document.getElementById('overlay');
-        var settings = document.getElementById('settings');
-        var settingsButton = document.getElementById('settingsButton');
-        if (music.style.display === 'none' || music.style.display === '') {
-            music.style.display = 'block';
-            musicButton.style.display = 'none';
-            overlay.style.display = 'block';
-            settings.style.display = 'none';
-            settingsButton.style.display = 'flex';
-        } else {
-            music.style.display = 'none';
-            musicButton.style.display = 'flex';
-            overlay.style.display = 'none';
-        }
+function toggleMusic() {
+    var music = document.getElementById('music');
+    var musicButton = document.getElementById('musicButton');
+    var overlay = document.getElementById('overlay');
+    var settings = document.getElementById('settings');
+    var settingsButton = document.getElementById('settingsButton');
+    if (music.style.display === 'none' || music.style.display === '') {
+        music.style.display = 'block';
+        musicButton.style.display = 'none';
+        overlay.style.display = 'block';
+        settings.style.display = 'none';
+        settingsButton.style.display = 'flex';
+    } else {
+        music.style.display = 'none';
+        musicButton.style.display = 'flex';
+        overlay.style.display = 'none';
     }
+}
+
+function closeWindows() {
+    var settings = document.getElementById('settings');
+    var settingsButton = document.getElementById('settingsButton');
+    var music = document.getElementById('music');
+    var musicButton = document.getElementById('musicButton');
+    var overlay = document.getElementById('overlay');
+    settings.style.display = 'none';
+    settingsButton.style.display = 'flex';
+    music.style.display = 'none';
+    musicButton.style.display = 'flex';
+    overlay.style.display = 'none';
+}
+
+function playSong(songId) {
+    var audioPlayer = document.getElementById('audioPlayer');
+    var audioSource = document.getElementById('audioSource');
+    var musicMenu = document.getElementById('musicMenu');
+    var musicPlayer = document.getElementById('musicPlayer');
+
+    // Imposta il percorso della canzone da riprodurre
+    audioSource.src = 'path-to-' + songId + '.mp3';
+    audioPlayer.load();
+    audioPlayer.play();
+
+    // Mostra il lettore musicale e nascondi il menu
+    musicMenu.style.display = 'none';
+    musicPlayer.style.display = 'flex';
+}
+
+function showMenu() {
+    var musicMenu = document.getElementById('musicMenu');
+    var musicPlayer = document.getElementById('musicPlayer');
+
+    // Mostra il menu e nascondi il lettore musicale
+    musicMenu.style.display = 'flex';
+    musicPlayer.style.display = 'none';
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Imposta il colore iniziale per i color picker
+    document.getElementById('colorPicker').value = rgb2hex(getComputedStyle(document.body).backgroundColor);
+    document.getElementById('textColorPicker').value = rgb2hex(getComputedStyle(document.body).color);
+    document.getElementById('buttonColorPicker').value = rgb2hex(getComputedStyle(document.querySelector('.settings-button')).backgroundColor);
+
+    document.getElementById('fontSelect').addEventListener('change', function() {
+        document.body.style.fontFamily = this.value;
+    });
+
+    document.getElementById('colorPicker').addEventListener('input', function() {
+        document.body.style.backgroundColor = this.value;
+    });
+
+    document.getElementById('textColorPicker').addEventListener('input', function() {
+        document.body.style.color = this.value;
+    });
+
+    document.getElementById('buttonColorPicker').addEventListener('input', function() {
+        var buttons = document.querySelectorAll('.settings-button, .music-button');
+        buttons.forEach(function(button) {
+            button.style.backgroundColor = document.getElementById('buttonColorPicker').value;
+        });
+    });
+
+    // Nuovi color picker
+    document.getElementById('titleColorPicker').addEventListener('input', function() {
+        document.querySelectorAll('h2').forEach(title => {
+            title.style.color = this.value;
+        });
+    });
+
+    document.getElementById('mainBoxColorPicker').addEventListener('input', function() {
+        document.querySelector('.main-box').style.backgroundColor = this.value;
+    });
+
+    document.getElementById('paragraphBoxColorPicker').addEventListener('input', function() {
+        document.querySelectorAll('.paragraph-box').forEach(box => {
+            box.style.backgroundColor = this.value;
+        });
+    });
+
+    document.getElementById('windowColorPicker').addEventListener('input', function() {
+        document.querySelectorAll('.window').forEach(window => {
+            window.style.backgroundColor = this.value;
+        });
+    });
+
+    document.getElementById('musicPlayerColorPicker').addEventListener('input', function() {
+        document.querySelector('.music-player').style.backgroundColor = this.value;
+    });
+
+    document.getElementById('dateColorPicker').addEventListener('input', function() {
+        document.querySelectorAll('.date').forEach(date => {
+            date.style.color = this.value;
+        });
+    });
+
+    function rgb2hex(rgb) {
+        if (/^#[0-9A-F]{6}$/i.test(rgb)) {
+            return rgb;
+        }
+        rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+        function hex(x) {
+            return ("0" + parseInt(x).toString(16)).slice(-2);
+        }
+        return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+    }
+});
+
+document.querySelectorAll('.music-item p span').forEach(span => {
+    const parentWidth = span.parentElement.offsetWidth;
+    const spanWidth = span.offsetWidth;
+
+    if (spanWidth > parentWidth) {
+        span.style.animation = 'scrolling-text 10s linear infinite';
+    }
+});
+
+function updateSongInfo(songTitle, songArtist) {
+    document.querySelector('.song-title').textContent = songTitle;
+    document.querySelector('.song-artist').textContent = songArtist;
+}
 </script>
 </body>
 </html>
