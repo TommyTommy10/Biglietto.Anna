@@ -709,7 +709,7 @@ h2 {
     <p class="song-artist">Fitz And The Tantrums</p>
 </div>
 <div class="music-item" onclick="playSong('favorite')">
-    <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Favorite.jpg" alt="Favorite Icon" class="music-icon">
+    <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Favorite.jpeg" alt="Favorite Icon" class="music-icon">
     <p class="song-title"><span>Favorite</span></p>
     <p class="song-artist">Isabel LaRosa</p>
 </div>
@@ -809,11 +809,11 @@ h2 {
     </div>
     <div class="music-player" id="musicPlayer" style="display:none;">
         <button id="backButton" class="back-button" onclick="showMenu()">&#8592;</button>
-        <img id="currentSongImage" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/2.png" alt="Current Song Icon" class="current-song-icon">
+        <img id="currentSongImage" src="music-icon" alt="Current Song Icon" class="current-song-icon">
         <!-- Blocco HTML aggiunto per le informazioni sulla canzone -->
         <div class="song-info">
-            <h3 class="song-title">Nome della Canzone</h3>
-            <p class="song-artist">Nome del Cantante/Band</p>
+            <h3 class="song-title"/h3>
+            <p class="song-artist"/p>
         </div>
         <audio id="audioPlayer" controls>
             <source id="audioSource" src="" type="audio/mpeg">
@@ -1148,27 +1148,6 @@ document.querySelectorAll('.music-item p span').forEach(span => {
 function updateSongInfo(songTitle, songArtist) {
     document.querySelector('.song-title').textContent = songTitle;
     document.querySelector('.song-artist').textContent = songArtist;
-}
-
-function playSong(songId, songTitle, songArtist, songImage) {
-    var audioPlayer = document.getElementById('audioPlayer');
-    var audioSource = document.getElementById('audioSource');
-    var musicMenu = document.getElementById('musicMenu');
-    var musicPlayer = document.getElementById('musicPlayer');
-
-    // Imposta il percorso della canzone da riprodurre
-    audioSource.src = 'path-to-' + songId + '.mp3';
-    audioPlayer.load();
-    audioPlayer.play();
-
-    // Mostra il lettore musicale e nascondi il menu
-    musicMenu.style.display = 'none';
-    musicPlayer.style.display = 'flex';
-
-    // Aggiorna l'immagine e le informazioni della canzone in riproduzione
-    document.getElementById('currentSongImage').src = songImage;
-    document.getElementById('currentSongTitle').textContent = songTitle;
-    document.getElementById('currentSongArtist').textContent = songArtist;
 }
 </script>
 </body>
