@@ -63,7 +63,7 @@
         --colore-texto: #2F4F4F; /* Grigio Scuro */
         --colore-button: #4682B4; /* Blu Petrolio */
         --colore-link: #2F4F4F; /* Stesso colore del testo */
-        --colore-riquadro: #5C7D3B; /* Verde Oliva Scuro */
+        --colore-riquadro: #5c7d3b; /* Verde Oliva Scuro */
         --colore-riquadro-alt: #D3D3D3; /* Grigio Chiaro */
         --colore-titolo: #5C7D3B; /* Verde Oliva Scuro */
         --colore-testo-impostazioni: #2F4F4F; /* Blu Petrolio */
@@ -86,13 +86,32 @@
         box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     }
 
-    .yoursandminelabel {
-        max-width: 800px;
-        margin: 0 auto;
-        background-color: #5C7D3B;
+    .entry {
+        margin-bottom: 40px;
         padding: 20px;
-        border-radius: 15px;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0);
+        border-radius: 10px;
+        background-color: var(--colore-riquadro); /* Colore riquadro principale */
+    }
+
+    .entry.alt {
+        background-color: var(--colore-riquadro-alt); /* Colore riquadro alternativo */
+    }
+
+    .entry h2 {
+        margin-top: 0;
+        color: var(--colore-accento);
+    }
+
+    .entry p {
+        line-height: 1.6;
+        color: var(--colore-primario); /* Grigio Scuro per il testo */
+    }
+
+    .entry img {
+        max-width: 100%;
+        height: auto;
+        margin-top: 20px;
+        border-radius: 10px;
     }
 
     .highlight {
@@ -628,12 +647,12 @@ h2 {
 <div class="music" id="music">
     <div class="music-menu" id="musicMenu">
         
-<div class="yoursandminelabel">
+<div class="container">
   <input required="" type="text" name="text" class="input">
   <label class="label">Her</label>
 </div>
         <!-- Sezione "Her" -->
-        <h2>Yours</h2>
+        <h2>Her</h2>
 <div class="music-item" onclick="playSong('miFaiImpazzire')">
     <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Mi%20Fai%20Impazzire.jpeg" alt="Someone To Stay Icon" class="music-icon">
     <p class="song-title"><span>Mi Fai Impazzire</span></p>
