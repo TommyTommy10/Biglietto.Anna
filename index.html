@@ -628,11 +628,61 @@ h2 {
             padding: 5px; /* Ridotto il padding per dispositivi più piccoli */
         }
     }
+
+    .search-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#search {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 25px;
+    outline: none;
+}
+
+#search-btn {
+    padding: 10px 15px;
+    background-color: #0078d7;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+#search-btn:hover {
+    background-color: #005a9e;
+}
+
+#musicMenu {
+    margin-top: 20px;
+}
+
+.music-item {
+    display: block;
+    margin: 5px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.music-item:hover {
+    background-color: #e0e0e0;
+}
 </style>
 </head>
 <body>
     <div class="container">
         <h1>Ricordi Speciali</h1>
+<div class="search-container">
+    <input type="text" id="search" placeholder="Cerca una canzone..." oninput="filterSongs()">
+    <button id="search-btn">🔍</button>
+</div>
 
         <!-- Overlay -->
         <div class="overlay" id="overlay" onclick="closeWindows()"></div>
@@ -1184,6 +1234,23 @@ document.querySelectorAll('.music-item p span').forEach(span => {
 function updateSongInfo(songTitle, songArtist) {
     document.querySelector('.song-title').textContent = songTitle;
     document.querySelector('.song-artist').textContent = songArtist;
+}
+
+    function filterSongs() {
+    const query = document.getElementById("search").value.toLowerCase();
+    const musicItems = document.querySelectorAll(".music-item");
+
+    musicItems.forEach(item => {
+        const title = item.querySelector(".song-title").textContent.toLowerCase();
+        const artist = item.querySelector(".song-artist").textContent.toLowerCase();
+
+        // Mostra o nasconde l'elemento in base alla ricerca
+        if (title.includes(query) || artist.includes(query)) {
+            item.style.display = "block";
+        } else {
+            item.style.display = "none";
+        }
+    });
 }
 </script>
 </body>
