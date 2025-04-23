@@ -629,50 +629,6 @@ h2 {
             padding: 5px; /* Ridotto il padding per dispositivi più piccoli */
         }
     }
-
-    .chat-simulation {
-    width: 300px;
-    background-color: #f5f5f5;
-    border-radius: 15px;
-    padding: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    margin: 20px auto; /* Centrare il contenitore */
-}
-
-.chat-message {
-    display: flex;
-    flex-direction: column;
-    margin: 10px 0;
-    max-width: 80%;
-    padding: 10px;
-    border-radius: 10px;
-    position: relative;
-}
-
-.chat-message.received {
-    background-color: #ffffff; /* Messaggi ricevuti */
-    align-self: flex-start;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.chat-message.sent {
-    background-color: #DCF8C6; /* Messaggi inviati */
-    align-self: flex-end;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.chat-message p {
-    margin: 0;
-    font-size: 14px;
-    line-height: 1.5;
-}
-
-.timestamp {
-    font-size: 12px;
-    color: #999;
-    margin-top: 5px;
-    text-align: right;
-}
 </style>
 </head>
 <body>
@@ -1069,23 +1025,36 @@ h2 {
         
         <div class="entry">
             <h2>17 Aprile 2025</h2>
-            <p>Ma quanto è passato. Ma pensavo meno. Pensavo di averlo fatto una settimana fa, invece. Wow. Va beh. Meglio tardi che mai. Ultimamente non si sa bene come va con Enea. Ma dettagli. Poi non vedo più i miei AirPods da un mese. Sono apparsi Tortellino e Mango. Poi c’è una certa <a href="https://photos.app.goo.gl/3T9Dzc8YvoNoLHBUA" class="link-style">soggetta che ha troppe tette.</a> Ma va beh. Per il resto tutto bene, circa. Ma lunedì che te e Matte eravate terrorizzati quando mio padre è arrivato? Un po’ pure io, ma io per tutto il cibo che c’era in cucina. Adesso vado che vado avanti con quello che stai vedendo. Bye. Tvb🩶</p>
+            <p>Ma quanto è passato. Ma pensavo meno. Pensavo di averlo fatto una settimana fa, invece. Wow. Va beh. Meglio tardi che mai. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Ultimamente non si sa bene come va con Enea. Ma dettagli. Poi non vedo più i miei AirPods da un mese. Sono apparsi Tortellino e Mango. Poi c’è una certa <a href="https://photos.app.goo.gl/3T9Dzc8YvoNoLHBUA" class="link-style">soggetta che ha troppe tette.</a> Ma va beh. Per il resto tutto bene, circa. Ma lunedì che te e Matte eravate terrorizzati quando mio padre è arrivato? Un po’ pure io, ma io per tutto il cibo che c’era in cucina. Adesso vado che vado avanti con quello che stai vedendo. Bye. Tvb🩶</p>
         </div>
 
-        <div class="chat-simulation" id="chatSimulation">
-    <div class="chat-message received">
-        <p>Ciao! Come stai?</p>
-        <span class="timestamp">14:30</span>
-    </div>
-    <div class="chat-message sent">
-        <p>Tutto bene, grazie! E tu?</p>
-        <span class="timestamp">14:31</span>
-    </div>
-    <div class="chat-message received">
-        <p>Benissimo, grazie!</p>
-        <span class="timestamp">14:32</span>
-    </div>
-</div>
         
     </div>
 
@@ -1249,32 +1218,6 @@ function updateSongInfo(songTitle, songArtist) {
     document.querySelector('.song-title').textContent = songTitle;
     document.querySelector('.song-artist').textContent = songArtist;
 }
-
-    function addChatMessage(content, type, timestamp) {
-    const chatSimulation = document.getElementById('chatSimulation');
-
-    // Crea un nuovo messaggio
-    const message = document.createElement('div');
-    message.classList.add('chat-message', type);
-
-    const text = document.createElement('p');
-    text.textContent = content;
-
-    const time = document.createElement('span');
-    time.classList.add('timestamp');
-    time.textContent = timestamp;
-
-    // Aggiungi il contenuto e il timestamp al messaggio
-    message.appendChild(text);
-    message.appendChild(time);
-
-    // Aggiungi il messaggio alla chat
-    chatSimulation.appendChild(message);
-}
-
-// Esempio di utilizzo
-addChatMessage('Ciao! Come va?', 'received', '15:00');
-addChatMessage('Va tutto bene, grazie! E tu?', 'sent', '15:01');
 </script>
 </body>
 </html>
