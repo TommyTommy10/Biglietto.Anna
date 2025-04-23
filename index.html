@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -635,40 +634,39 @@ h2 {
     display: flex;
     flex-direction: column;
     gap: 5px; /* Distanza minima tra i messaggi */
-    margin: 20px 0;
-    font-family: "Arial", sans-serif; /* Usa un font semplice per somigliare a WhatsApp */
+    margin: 20px 0; /* Spazio intorno alla chat */
 }
 
 .chat-message {
     display: flex;
-    align-items: flex-end;
-    gap: 10px; /* Distanza tra immagine e casella */
+    align-items: center;
+    gap: 10px; /* Spazio tra avatar e casella del messaggio */
     max-width: 75%;
     padding: 5px 10px;
-    border-radius: 15px;
-    font-size: 12px; /* Carattere più piccolo per somigliare a WhatsApp */
+    border-radius: 20px; /* Arrotondare i bordi per stile WhatsApp */
+    font-size: 12px; /* Carattere più piccolo per stile realistico */
     position: relative;
 }
 
 .chat-message.received {
     background-color: var(--colore-sfondo); /* Colore sfondo del sito */
-    color: var(--colore-texto);
+    color: var(--colore-texto); /* Colore testo */
     align-self: flex-start;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombra leggera */
 }
 
 .chat-message.sent {
     background-color: var(--colore-button); /* Colore pulsanti del sito */
-    color: #fff;
+    color: #fff; /* Colore testo bianco */
     align-self: flex-end;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Ombra leggera */
 }
 
 .chat-avatar {
     width: 30px;
     height: 30px;
-    border-radius: 50%; /* Simula l'immagine rotonda di WhatsApp */
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 50%; /* Simula avatar rotondi */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Ombra intorno all'immagine */
 }
 
 .message-content {
@@ -679,11 +677,12 @@ h2 {
 }
 
 .timestamp {
-    font-size: 10px;
-    color: rgba(0, 0, 0, 0.5);
+    font-size: 10px; /* Dimensione ridotta per stile realistico */
+    color: rgba(0, 0, 0, 0.5); /* Colore del timestamp */
     text-align: right;
     margin-top: 3px;
 }
+    
 </style>
 </head>
 <body>
@@ -1076,28 +1075,23 @@ h2 {
         <div class="entry">
             <h2>31 Marzo 2025</h2>
             <p>Ne è passato di tempo. Va beh, non ho molto da dire, ma voglio ricordare alcune cose. Io e Matte siamo venuti a vedere la partita e a Matte i bimbi minchia maranzini gli hanno piegato la ruota e rubato il lucchetto ma va beh. Poi la sulla nostra panchina passo sempre dei momenti il lunedì. Oggi per esempio abbiamo preso le margherite. Poi tutta la cioccolata… Ma sabato… Troppo bello. So che ti sei divertita, ma anche io tanto. Cucinare, il karaoke, i cuscini 💀, quando guardavamo i reel… Beh, una serata splendida. Poi ti stava benissimo quella maglia che avevi, come quella di oggi. Va beh, adesso ti saluto che carico i giorni mancanti su Github (che non credo tu lo sappia ma ha come logo un gatto). Ah, adesso sto ascoltando Brooklyn Baby, che mi dà proprio l’ispirazione giusta per scrivere. Ma poi Enea ti ha detto che gli piaci. Domani Champagne. E poi che non si pensi che abbia perso l’entusiasmo per fare questa cosa, ma quando portavo l’iPad ho dovuto togliere il promemoria perchè lo vedeva Bega. Ora vado veramente. Ti voglio tanto bene🩶🩶🩶</p>
-        </div>
-        
-        <div class="entry">
-            <h2>17 Aprile 2025</h2>
-            <p>Ma quanto è passato. Ma pensavo meno. Pensavo di averlo fatto una settimana fa, invece. Wow. Va beh. Meglio tardi che mai. Ultimamente non si sa bene come va con Enea. Ma dettagli. Poi non vedo più i miei AirPods da un mese. Sono apparsi Tortellino e Mango. Poi c’è una certa <a href="https://photos.app.goo.gl/3T9Dzc8YvoNoLHBUA" class="link-style">soggetta che ha troppe tette.</a> Ma va beh. Per il resto tutto bene, circa. 
-                <div class="chat-simulation">
+   <div class="chat-simulation">
     <div class="chat-message received">
-        <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/user-icon.jpg" alt="User Icon" class="chat-avatar">
+        <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/user-icon.jpg" alt="Avatar utente" class="chat-avatar">
         <div class="message-content">
-            <p>Ciao! Come stai?</p>
+            <p>Ehi, come stai?</p>
             <span class="timestamp">15:30</span>
         </div>
     </div>
     <div class="chat-message sent">
-        <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/you-icon.jpg" alt="Your Icon" class="chat-avatar">
+        <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/you-icon.jpg" alt="Tuo avatar" class="chat-avatar">
         <div class="message-content">
-            <p>Bene, grazie! E tu?</p>
+            <p>Tutto bene, grazie! E tu?</p>
             <span class="timestamp">15:31</span>
         </div>
     </div>
     <div class="chat-message received">
-        <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/user-icon.jpg" alt="User Icon" class="chat-avatar">
+        <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/user-icon.jpg" alt="Avatar utente" class="chat-avatar">
         <div class="message-content">
             <p>Benissimo! 😊</p>
             <span class="timestamp">15:32</span>
