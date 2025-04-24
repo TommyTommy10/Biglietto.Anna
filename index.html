@@ -629,80 +629,6 @@ h2 {
             padding: 5px; /* Ridotto il padding per dispositivi più piccoli */
         }
     }
-    
-.chat-simulation {
-    display: flex;
-    flex-direction: column;
-    gap: 5px; /* Minima distanza tra messaggi */
-    margin: 20px 0; /* Inserire nel contesto del ricordo */
-}
-
-.chat-message {
-    display: flex;
-    align-items: center;
-    gap: 10px; /* Spazio tra avatar e contenuto */
-    max-width: 75%;
-    padding: 8px 12px; /* Dimensioni per ricordare WhatsApp */
-    border-radius: 15px; /* Caselle arrotondate per stile WhatsApp */
-    font-size: 11px; /* Carattere realistico */
-    position: relative;
-}
-
-.chat-message.received {
-    background-color: var(--colore-sfondo); /* Colore sfondo per uniformità */
-    color: var(--colore-texto); /* Colore testo conforme al sito */
-    align-self: flex-start;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Leggera ombreggiatura */
-}
-
-.chat-message.sent {
-    background-color: var(--colore-button); /* Colore dei pulsanti del sito */
-    color: #fff; /* Testo bianco per messaggi inviati */
-    align-self: flex-end;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.chat-avatar {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%; /* Avatar circolare */
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Ombra leggera attorno */
-}
-
-.message-content {
-    flex: 1;
-    padding: 5px 10px; /* Distanza interna della casella */
-    border-radius: 10px;
-    word-wrap: break-word;
-}
-
-.timestamp {
-    font-size: 9px; /* Font del timestamp più piccolo */
-    color: rgba(0, 0, 0, 0.5); /* Colore leggero per il timestamp */
-    text-align: right;
-    margin-top: 3px;
-}
-
-.received::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: -7px;
-    border-width: 6px;
-    border-style: solid;
-    border-color: transparent transparent var(--colore-sfondo) transparent;
-}
-
-.sent::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    right: -7px;
-    border-width: 6px;
-    border-style: solid;
-    border-color: transparent transparent var(--colore-button) transparent;
-}
-
 </style>
 </head>
 <body>
@@ -1095,33 +1021,18 @@ h2 {
         <div class="entry">
             <h2>31 Marzo 2025</h2>
             <p>Ne è passato di tempo. Va beh, non ho molto da dire, ma voglio ricordare alcune cose. Io e Matte siamo venuti a vedere la partita e a Matte i bimbi minchia maranzini gli hanno piegato la ruota e rubato il lucchetto ma va beh. Poi la sulla nostra panchina passo sempre dei momenti il lunedì. Oggi per esempio abbiamo preso le margherite. Poi tutta la cioccolata… Ma sabato… Troppo bello. So che ti sei divertita, ma anche io tanto. Cucinare, il karaoke, i cuscini 💀, quando guardavamo i reel… Beh, una serata splendida. Poi ti stava benissimo quella maglia che avevi, come quella di oggi. Va beh, adesso ti saluto che carico i giorni mancanti su Github (che non credo tu lo sappia ma ha come logo un gatto). Ah, adesso sto ascoltando Brooklyn Baby, che mi dà proprio l’ispirazione giusta per scrivere. Ma poi Enea ti ha detto che gli piaci. Domani Champagne. E poi che non si pensi che abbia perso l’entusiasmo per fare questa cosa, ma quando portavo l’iPad ho dovuto togliere il promemoria perchè lo vedeva Bega. Ora vado veramente. Ti voglio tanto bene🩶🩶🩶</p>
-<div class="chat-simulation">
-    <div class="chat-message received">
-        <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/user-icon.jpg" alt="Avatar utente" class="chat-avatar">
-        <div class="message-content">
-            <p>Ehi, come stai?</p>
-            <span class="timestamp">15:30</span>
-        </div>
-    </div>
-    <div class="chat-message sent">
-        <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/you-icon.jpg" alt="Tuo avatar" class="chat-avatar">
-        <div class="message-content">
-            <p>Tutto bene, grazie! E tu?</p>
-            <span class="timestamp">15:31</span>
-        </div>
-    </div>
-    <div class="chat-message received">
-        <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/user-icon.jpg" alt="Avatar utente" class="chat-avatar">
-        <div class="message-content">
-            <p>Benissimo, grazie! 😊</p>
-            <span class="timestamp">15:32</span>
-        </div>
-    </div>
-</div>
-Ma lunedì che te e Matte eravate terrorizzati quando mio padre è arrivato? Un po’ pure io, ma io per tutto il cibo che c’era in cucina. Adesso vado che vado avanti con quello che stai vedendo. Bye. Tvb🩶</p>
         </div>
 
-        
+    <div class="entry">
+        <h2>17 aprile 2025</h2>
+        <p>Ma quanto è passato. Ma pensavo meno. Pensavo di averlo fatto una settimana fa, invece. Wow. Va beh. Meglio tardi che mai. Ultimamente non si sa bene come va con Enea. Ma dettagli. Poi non vedo più i miei AirPods da un mese. Sono apparsi Tortellino e Mango. Poi c’è una certa soggetta che ha troppe tette. Ma va beh. Per il resto tutto bene, circa. Ma lunedì che te e Matte eravate terrorizzati quando mio padre è arrivato? Un po’ pure io, ma io per tutto il cibo che c’era in cucina. Adesso vado che vado avanti con quello che stai vedendo. Bye. Tvb🩶</p>
+    </div>
+
+    <div class="entry">
+        <h2>20 Aprile 2025</h2>
+        <p>Mi sveglio a causa di dei messaggi arrivati sull’orologio. Ho pensato: “È l’Anna che chiede perché le monti la cucina”. Mi alzo. Guardo il telefono. Apro WhatsApp. Cosa trovo? Un messaggio che mi ha fatto felicissimo. C’era scritto: “BUONA PASQUA TOMMY. TI VOGLIO BENE. (sei la prima persona a cui ho pensato oggi quando mi sono svegliata)”. Troppo felice. Mi ha reso più bella la giornata.</p>
+    </div>
+
     </div>
 
 <script>
