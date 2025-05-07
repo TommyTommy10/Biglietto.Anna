@@ -1,0 +1,31 @@
+name: Update Countdown Badge
+on:
+  schedule:
+    - cron: '0 0 * * *' # Esegui ogni giorno a mezzanotte UTC
+  workflow_dispatch:
+
+jobs:
+  update-badge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Calcola giorni rimanenti
+        id: countdown
+        run: |
+          TARGET_DATE="2025-06-24"
+          NOW=$(date +%Y-%m-%d)
+          DAYS_LEFT=$(( ($(date -d $TARGET_DATE +%s) - $(date -d $NOW +%s)) / 86400 ))
+          echo "DAYS_LEFT=$DAYS_LEFT" >> $GITHUB_ENV
+      
+      - name: Aggiorna README con badge
+        run: |
+          sed -i "s/Tempo_mancante-[0-9]*_giorni/Tempo_mancante-${DAYS_LEFT}_giorni/" README.md
+
+      - name: Commit & Push
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git commit -am "Aggiornato countdown a ${DAYS_LEFT} giorni rimanenti"
+          git push
