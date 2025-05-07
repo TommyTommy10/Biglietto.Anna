@@ -1,1 +1,1 @@
-![Countdown](https://img.shields.io/badge/Tempo_mancante-XX_giorni-blue)
+![Countdown](https://img.shields.io/badge/Tempo_mancante-{{DAYS_LEFT}}_giorni-blue)
