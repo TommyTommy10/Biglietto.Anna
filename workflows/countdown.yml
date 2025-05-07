@@ -1,43 +1,28 @@
-name: Update Countdown Badge
+name: Update Countdown
+
 on:
   schedule:
-    - cron: '0 * * * *' # Esegui ogni ora
-  workflow_dispatch:
+    - cron: '0 0 * * *'  # Si aggiorna ogni giorno a mezzanotte
+  workflow_dispatch:  # Permette di eseguirlo manualmente
 
 jobs:
-  update-badge:
+  update-countdown:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Calcola tempo rimanente
-        id: countdown
-        run: |
-          TARGET_DATE="2025-06-24 00:00:00"
-          NOW=$(date +%s)
-          TARGET=$(date -d "$TARGET_DATE" +%s)
-          REMAINING=$((TARGET - NOW))
-
-          MONTHS_LEFT=$((REMAINING / 2592000)) # 1 mese = 2592000 secondi
-          DAYS_LEFT=$(( (REMAINING % 2592000) / 86400 )) # Giorni rimanenti dopo i mesi
-          HOURS_LEFT=$(( (REMAINING % 86400) / 3600 )) # Ore rimanenti dopo i giorni
-          MINUTES_LEFT=$(( (REMAINING % 3600) / 60 )) # Minuti rimanenti dopo le ore
-          SECONDS_LEFT=$(( REMAINING % 60 )) # Secondi rimanenti dopo i minuti
-
-          echo "MONTHS_LEFT=$MONTHS_LEFT" >> $GITHUB_ENV
-          echo "DAYS_LEFT=$DAYS_LEFT" >> $GITHUB_ENV
-          echo "HOURS_LEFT=$HOURS_LEFT" >> $GITHUB_ENV
-          echo "MINUTES_LEFT=$MINUTES_LEFT" >> $GITHUB_ENV
-          echo "SECONDS_LEFT=$SECONDS_LEFT" >> $GITHUB_ENV
+      - uses: actions/checkout@v3
       
-       - name: Aggiorna README con badge
+      - name: Calcola giorni rimanenti
+        id: calc
         run: |
-          sed -i "s/Tempo_mancante-.*/Tempo_mancante-${{ env.MONTHS_LEFT }} Mesi_${{ env.DAYS_LEFT }} Giorni_${{ env.HOURS_LEFT }} Ore_${{ env.MINUTES_LEFT }} Minuti_${{ env.SECONDS_LEFT }} Secondi/" README.md
-
-      - name: Commit & Push
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          git commit -am "Aggiornato countdown: ${{ env.MONTHS_LEFT }}m ${{ env.DAYS_LEFT }}d ${{ env.HOURS_LEFT }}h ${{ env.MINUTES_LEFT }}m ${{ env.SECONDS_LEFT }}s"
-          git push
+          TARGET="2025-06-24"
+          TODAY=$(date +'%Y-%m-%d')
+          DAYS=$(( ($(date -d "$TARGET" +%s) - $(date -d "$TODAY" +%s)) / 86400 ))
+          echo "days=$DAYS" > countdown.json
+          
+      - name: Aggiorna il gist
+        uses: popsiclestick/gist-sync-action@v1.2.0
+        with:
+          auth: ${{ secrets.GIST_TOKEN }}
+          gist_url: https://gist.github.com/YOUR_USERNAME/YOUR_GIST_ID
+          gist_title: Giorni al 24 giugno
+          github_file: countdown.json
