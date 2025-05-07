@@ -1,1 +1,1 @@
-![Countdown](https://img.shields.io/badge/Tempo_mancante-Xm_Xd_Xh_Xm_Xs-blue)
+![Countdown](https://img.shields.io/badge/Tempo_mancante-X Mesi_X Giorni_X Ore_X Minuti_X Secondi-blue)
