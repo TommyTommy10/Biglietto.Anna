@@ -31,9 +31,9 @@ jobs:
           echo "MINUTES_LEFT=$MINUTES_LEFT" >> $GITHUB_ENV
           echo "SECONDS_LEFT=$SECONDS_LEFT" >> $GITHUB_ENV
       
-      - name: Aggiorna README con badge
+       - name: Aggiorna README con badge
         run: |
-          sed -i "s/Tempo_mancante-.*/Tempo_mancante-${{ env.MONTHS_LEFT }}m_${{ env.DAYS_LEFT }}d_${{ env.HOURS_LEFT }}h_${{ env.MINUTES_LEFT }}m_${{ env.SECONDS_LEFT }}s/" README.md
+          sed -i "s/Tempo_mancante-.*/Tempo_mancante-${{ env.MONTHS_LEFT }} Mesi_${{ env.DAYS_LEFT }} Giorni_${{ env.HOURS_LEFT }} Ore_${{ env.MINUTES_LEFT }} Minuti_${{ env.SECONDS_LEFT }} Secondi/" README.md
 
       - name: Commit & Push
         run: |
