@@ -1,1 +1,0 @@
-[![Giorni al 24 giugno](https://img.shields.io/badge/dynamic/json?color=blue&label=Giorni%20al%2024%20giugno&query=%24.days&url=https%3A%2F%2Fgist.githubusercontent.com%2FTommyTommy10%2Ff21a548cd5ec96547b748ceb92443478%2Fraw%2Fcountdown.json)]([https://github.com//TUO_REPO](https://github.com/TommyTommy10/Biglietto.Anna))
