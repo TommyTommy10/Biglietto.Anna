@@ -431,10 +431,17 @@ h2 {
 }
 
 .music-icon {
-    width: 100%;
-    height: auto;
-    border-radius: 50%; /* Arrotonda le immagini */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 100px; /* Imposta una larghezza fissa, ad esempio 100px */
+    height: 100px; /* Imposta la stessa altezza per renderla quadrata */
+    border-radius: 50%; /* Rende l'immagine perfettamente circolare */
+    object-fit: cover; /* Assicura che l'immagine copra l'area senza distorsioni */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Ombra più pronunciata per un effetto 3D */
+    transition: transform 0.2s ease-in-out; /* Aggiunge una transizione per l'hover */
+}
+
+.music-item:hover .music-icon {
+    transform: scale(1.08); /* Ingrossa leggermente l'icona al passaggio del mouse */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* Ombra più intensa all'hover */
 }
 
 .music-item p {
