@@ -628,233 +628,14 @@ h2 {
             padding: 5px; /* Ridotto il padding per dispositivi più piccoli */
         }
     }
-
-/* Stili della finestra principale della musica (music) */
-/* Questa è la finestra che appare quando clicchi il pulsante musica */
-.music {
-    position: fixed; /* O absolute, a seconda di come deve posizionarsi rispetto al body */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* Sfondo semi-trasparente */
-    display: flex; /* Flexbox per centrare o allineare il menu musicale */
-    justify-content: center;
-    align-items: center;
-    z-index: 1000; /* Assicurati che sia sopra tutto il resto */
-    /* display: none; /* Inizialmente nascosto, gestito da JavaScript */
-}
-
-/* Stili del menu musicale interno (music-menu) */
-/* Questo è il pannello scrollabile con le sezioni musicali */
-.music-menu {
-    background-color: #1a1a1a; /* Colore di sfondo scuro come Spotify/Amazon Music */
-    color: #ffffff; /* Testo bianco */
-    width: 90%; /* Larghezza del pannello, puoi adattarla */
-    max-width: 600px; /* Larghezza massima per schermi grandi */
-    height: 90%; /* Altezza del pannello */
-    border-radius: 10px; /* Bordi arrotondati per il pannello */
-    padding: 20px;
-    overflow-y: auto; /* Permette lo scroll verticale se il contenuto è troppo lungo */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Ombra per profondità */
-    position: relative; /* Necessario per posizionare il pulsante di chiusura assoluto */
-}
-
-/* Stili per il campo di ricerca */
-.music-menu .container {
-    margin-bottom: 20px; /* Spazio sotto il campo di ricerca */
-}
-
-.music-menu .input {
-    width: calc(100% - 20px); /* Larghezza completa meno padding */
-    padding: 10px 15px; /* Padding interno */
-    border-radius: 25px; /* Bordi molto arrotondati */
-    border: 1px solid #444; /* Bordo sottile */
-    background-color: #333; /* Sfondo del campo di input */
-    color: #fff; /* Colore del testo digitato */
-    font-size: 1em;
-    box-sizing: border-box; /* Include padding e border nella larghezza */
-    /* Se la label è posizionata assolutamenta sopra, potresti voler un padding-left maggiore */
-}
-
-.music-menu .label {
-    /* Stili per la label del campo di ricerca */
-    position: absolute; /* Per sovrapporla al campo di input */
-    left: 45px; /* Adatta in base al padding-left dell'input e posizione del contenitore */
-    top: 55px; /* Adatta per essere centrata verticalmente con l'input */
-    color: #999;
-    pointer-events: none; /* Permette di cliccare attraverso la label */
-    transition: 0.2s ease all;
-}
-
-/* Quando l'input è attivo, sposta la label */
-.music-menu .input:focus + .label,
-.music-menu .input:not(:placeholder-shown) + .label {
-    top: 30px; /* Sposta in alto */
-    font-size: 0.8em;
-    color: #66b2ff; /* Colore diverso quando è "attiva" */
-}
-
-
-/* Stili per i titoli delle sezioni (Yours, Mine) */
-/* Questo è CRUCIALE per separare i titoli */
+    /* Stili per i titoli delle sezioni (Yours, Mine) */
 .music-menu h2 {
-    font-size: 1.6em; /* Dimensione del font per i titoli delle sezioni */
-    margin-top: 25px; /* Spazio sopra il titolo */
-    margin-bottom: 15px; /* Spazio sotto il titolo, prima delle canzoni */
-    color: #e0e0e0; /* Colore del testo per i titoli */
-    text-align: left; /* Allinea a sinistra */
-    padding-left: 5px; /* Piccolo padding per distanziare dal bordo */
-    border-bottom: 1px solid #333; /* Linea sottile sotto il titolo per separare */
-    padding-bottom: 8px; /* Spazio tra testo e linea */
-}
-
-/* Stili per il contenitore delle canzoni all'interno di ogni sezione */
-.music-section-content {
-    display: grid; /* Usa CSS Grid per un controllo maggiore sul layout */
-    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); /* Colonne flessibili */
-    gap: 15px; /* Spazio tra gli elementi */
-    justify-content: start; /* Allinea gli elementi all'inizio della griglia */
-    padding: 10px 0; /* Padding interno, solo top/bottom */
-}
-
-/* Stili per ogni singolo elemento canzone (album art + testo) */
-.music-item {
-    display: flex;
-    flex-direction: column; /* Impila immagine e testo verticalmente */
-    align-items: center; /* Centra orizzontalmente gli elementi */
-    text-align: center;
-    cursor: pointer;
-    transition: transform 0.2s ease-in-out;
-    padding: 5px; /* Piccolo padding interno */
-}
-
-.music-item:hover {
-    transform: translateY(-5px); /* Leggero spostamento verso l'alto all'hover */
-    /* background-color: rgba(255, 255, 255, 0.1); /* Opzionale: leggero sfondo all'hover */
-    border-radius: 8px;
-}
-
-/* Stili per l'immagine dell'album/artista (circolare) */
-.music-item .music-icon {
-    width: 100px; /* Dimensione fissa per le icone circolari */
-    height: 100px; /* Deve essere uguale alla larghezza per un cerchio perfetto */
-    border-radius: 50%; /* Rende l'immagine perfettamente circolare */
-    object-fit: cover; /* Assicura che l'immagine copra l'area senza distorsioni */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Ombra più pronunciata */
-    margin-bottom: 8px; /* Spazio tra immagine e titolo canzone */
-    transition: box-shadow 0.2s ease-in-out; /* Transizione per l'ombra */
-}
-
-.music-item:hover .music-icon {
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.7); /* Ombra più intensa all'hover */
-}
-
-
-/* Stili per il titolo della canzone */
-.music-item .song-title {
-    font-size: 0.95em;
-    font-weight: bold;
-    margin: 0;
-    color: #ffffff; /* Colore bianco per il titolo */
-    white-space: nowrap; /* Impedisce al titolo di andare a capo */
-    overflow: hidden; /* Nasconde il testo in eccesso */
-    text-overflow: ellipsis; /* Aggiunge i puntini di sospensione (...) */
-    max-width: 100%; /* Si adatta alla larghezza del music-item */
-    padding: 0 5px; /* Piccolo padding laterale per il testo */
-}
-
-/* Stili per l'artista */
-.music-item .song-artist {
-    font-size: 0.8em;
-    color: #b0b0b0; /* Colore grigio chiaro per l'artista */
-    margin: 3px 0 0; /* Spazio sopra il nome dell'artista */
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
-    padding: 0 5px;
-}
-
-/* Stili del music player (quando una canzone è in riproduzione) */
-.music-player {
-    position: absolute; /* O fixed, a seconda della necessità */
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #222; /* Sfondo scuro per il player */
-    padding: 15px;
-    display: flex;
-    flex-direction: column; /* Stack verticale degli elementi del player */
-    align-items: center;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
-    /* display: none; /* Inizialmente nascosto */
-}
-
-.music-player .back-button {
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 1.5em;
-    position: absolute;
-    left: 15px;
-    top: 15px;
-    cursor: pointer;
-}
-
-.music-player .current-song-icon {
-    width: 180px; /* Immagine più grande nel player */
-    height: 180px;
-    border-radius: 8px; /* Angoli leggermente arrotondati per le copertine nel player */
-    object-fit: cover;
+    font-size: 1.5em; /* Dimensione del font per i titoli delle sezioni */
+    margin-top: 30px;
     margin-bottom: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-}
-
-.music-player .song-info {
-    text-align: center;
-    margin-bottom: 15px;
-}
-
-.music-player .song-info h3 {
-    font-size: 1.3em;
-    margin: 0;
-    color: #fff;
-}
-
-.music-player .song-info p {
-    font-size: 1em;
-    color: #ccc;
-    margin: 5px 0 0;
-}
-
-.music-player #audioPlayer {
-    width: 90%;
-    max-width: 400px;
-    margin-top: 10px;
-    filter: invert(1); /* Per rendere i controlli audio visibili su sfondo scuro */
-}
-
-/* Pulsante di chiusura generale della finestra musicale */
-.close-music {
-    position: absolute;
-    bottom: 20px;
-    /* Centra il pulsante se il parent è music, altrimenti left: 50%; transform: translateX(-50%); */
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 10px 25px;
-    background-color: #007bff; /* Un blu per il pulsante Chiudi */
-    color: white;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.2s ease;
-    z-index: 1001; /* Assicurati che sia cliccabile */
-}
-
-.close-music:hover {
-    background-color: #0056b3;
+    color: #eee; /* Colore del testo per i titoli */
+    text-align: left; /* Allinea a sinistra il titolo */
+    padding-left: 10px; /* Piccolo padding per distanziare dal bordo */
 }
 </style>
 </head>
@@ -862,68 +643,189 @@ h2 {
     <div class="container">
         <h1>Ricordi Speciali</h1>
 
+        <!-- Overlay -->
         <div class="overlay" id="overlay" onclick="closeWindows()"></div>
 
+        <!-- Pulsante per mostrare le impostazioni -->
         <div class="settings-button" id="settingsButton" onclick="toggleSettings()">⚙️</div>
 
-        <div class="music-button" id="musicButton" onclick="toggleMusic()">🎵</div>
+<!-- Pulsante per mostrare la musica -->
+<div class="music-button" id="musicButton" onclick="toggleMusic()">🎵</div>
 
-        <div class="music" id="music">
-            <div class="music-menu" id="musicMenu">
-
-                <div class="container">
-                    <input required="" type="text" name="text" class="input">
-                    <label class="label">Cerca un brano o un artista...</label>
-                </div>
-
-                <h2>Yours</h2>
-                <div class="music-section-content">
-                    <div class="music-item" onclick="playSong('miFaiImpazzire')">
-                        <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Mi%20Fai%20Impazzire.jpeg" alt="Mi Fai Impazzire Icon" class="music-icon">
-                        <p class="song-title"><span>Mi Fai Impazzire</span></p>
-                        <p class="song-artist">Blanco</p>
-                    </div>
-                    <div class="music-item" onclick="playSong('someoneToStay')">
-                        <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Someone%20To%20Stay.jpeg" alt="Someone To Stay Icon" class="music-icon">
-                        <p class="song-title"><span>Someone To Stay</span></p>
-                        <p class="song-artist">Vancouver Sleep Clinic</p>
-                    </div>
-                    <div class="music-item" onclick="playSong('whyILoveYou')">
-                        <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Why%20I%20Love%20You.jpeg" alt="Why I Love You Icon" class="music-icon">
-                        <p class="song-title"><span>Why I Love You</span></p>
-                        <p class="song-artist">Jay-Z</p>
-                    </div>
-                    </div>
-
-                <h2>Mine</h2>
-                <div class="music-section-content">
-                    <div class="music-item" onclick="playSong('youWereThereForMe')">
-                        <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/In%20All%20Of%20My%20Lonely%20Nights.jpeg" alt="You Were There For Me Icon" class="music-icon">
-                        <p class="song-title"><span>You Were There For Me</span></p>
-                        <p class="song-artist">Henry Moodie</p>
-                    </div>
-                    <div class="music-item" onclick="playSong('theNightWeMet')">
-                        <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/The%20Night%20We%20Met.jpeg" alt="The Night We Met Icon" class="music-icon">
-                        <p class="song-title"><span>The Night We Met</span></p>
-                        <p class="song-artist">Lord Huron</p>
-                    </div>
-                    </div>
-                </div>
-            <div class="music-player" id="musicPlayer" style="display:none;">
-                <button id="backButton" class="back-button" onclick="showMenu()">&#8592;</button>
-                <img id="currentSongImage" src="music-icon" alt="Current Song Icon" class="current-song-icon">
-                <div class="song-info">
-                    <h3 class="song-title"></h3>
-                    <p class="song-artist"></p>
-                </div>
-                <audio id="audioPlayer" controls>
-                    <source id="audioSource" src="" type="audio/mpeg">
-                    Il tuo browser non supporta l'elemento audio.
-                </audio>
-            </div>
-            <button class="close-music" onclick="toggleMusic()">Chiudi</button>
-        </div>
+<!-- Finestra della musica -->
+<div class="music" id="music">
+    <div class="music-menu" id="musicMenu">
+        <!-- Sezione "Her" -->
+        <h2>Her</h2>
+<div class="music-item" onclick="playSong('miFaiImpazzire')">
+    <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Mi%20Fai%20Impazzire.jpeg" alt="Someone To Stay Icon" class="music-icon">
+    <p class="song-title"><span>Mi Fai Impazzire</span></p>
+    <p class="song-artist">Blanco</p>
+</div>
+<div class="music-item" onclick="playSong('someoneToStay')">
+    <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Someone%20To%20Stay.jpeg" alt="Someone To Stay Icon" class="music-icon">
+    <p class="song-title"><span>Someone To Stay</span></p>
+    <p class="song-artist">Vancouver Sleep Clinic</p>
+</div>
+<div class="music-item" onclick="playSong('whyILoveYou')">
+    <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Why%20I%20Love%20You.jpeg" alt="Why I Love You Icon" class="music-icon">
+    <p class="song-title"><span>Why I Love You</span></p>
+    <p class="song-artist">Jay-Z</p>
+</div>
+<div class="music-item" onclick="playSong('dontPanic')">
+    <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Don't%20Panic.jpeg" alt="Don’t Panic Icon" class="music-icon">
+    <p class="song-title"><span>Don’t Panic</span></p>
+    <p class="song-artist">Coldplay</p>
+</div>
+<div class="music-item" onclick="playSong('no1PartyAnthem')">
+    <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/AM.webp" alt="No 1 Party Anthem Icon" class="music-icon">
+    <p class="song-title"><span>No 1 Party Anthem</span></p>
+    <p class="song-artist">- Arctic Monkeys</p>
+</div>
+<div class="music-item" onclick="playSong('dangerousWoman')">
+    <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Dangerous%20Woman.jpg" alt="Dangerous Woman Icon" class="music-icon">
+    <p class="song-title"><span>Dangerous Woman</span></p>
+    <p class="song-artist">- Ariana Grande</p>
+</div>
+<div class="music-item" onclick="playSong('madSounds')">
+    <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/AM.webp" alt="Mad Sounds Icon" class="music-icon">
+    <p class="song-title"><span>Mad Sounds</span></p>
+    <p class="song-artist">Arctic Monkeys</p>
+</div>
+<div class="music-item" onclick="playSong('endOfBeginning')">
+    <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/End%20Of%20Beginning.jpeg" alt="End Of Beginning Icon" class="music-icon">
+    <p class="song-title"><span>End Of Beginning</span></p>
+    <p class="song-artist">Djo</p>
+</div>
+<div class="music-item" onclick="playSong('iWannaBeYours')">
+    <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/AM.webp" alt="I Wanna Be Yours Icon" class="music-icon">
+    <p class="song-title"><span>I Wanna Be Yours</span></p>
+    <p class="song-artist">Arctic Monkeys</p>
+</div>
+<div class="music-item" onclick="playSong('mothToAFlame')">
+    <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Moth%20To%20A%20Flame.jpeg" alt="Moth To A Flame Icon" class="music-icon">
+    <p class="song-title"><span>Moth To A Flame</span></p>
+    <p class="song-artist">The Weeknd</p>
+</div>
+ <div class="music-item" onclick="playSong('outOfMyLeague')">
+    <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Out%20Of%20My%20League.jpeg" alt="Out Of My League Icon" class="music-icon">
+    <p class="song-title"><span>Out Of My League</span></p>
+    <p class="song-artist">Fitz And The Tantrums</p>
+</div>
+<div class="music-item" onclick="playSong('favorite')">
+    <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Favorite.jpeg" alt="Favorite Icon" class="music-icon">
+    <p class="song-title"><span>Favorite</span></p>
+    <p class="song-artist">Isabel LaRosa</p>
+</div>
+<div class="music-item" onclick="playSong('fiveOfive')">
+    <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/505.jpg" alt="505 Icon" class="music-icon">
+    <p class="song-title"><span>505</span></p>
+    <p class="song-artist">Arctic Monkeys</p>
+</div>
+<div class="music-item" onclick="playSong('confident')">
+    <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Confident.jpg" alt="Confident Icon" class="music-icon">
+    <p class="song-title"><span>Confident</span></p>
+    <p class="song-artist">Justin Bieber</p>
+</div>
+<div class="music-item" onclick="playSong('wildestDreams')">
+    <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Wildest%20Dreams.jpeg" alt="Wildest Dreams Icon" class="music-icon">
+    <p class="song-title"><span>Wildest Dreams</span></p>
+    <p class="song-artist">Taylor Swift</p>
+</div>
+<div class="music-item" onclick="playSong('iSeeYou')">
+    <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/I%20See%20You.jpeg" alt="I See You Icon" class="music-icon">
+    <p class="song-title"><span>I See You</span></p>
+    <p class="song-artist">Jutty Ranx</p>
+</div>
+<div class="music-item" onclick="playSong('beautifulThings')">
+    <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Beautiful%20Things.jpeg" alt="Beautiful Things Icon" class="music-icon">
+    <p class="song-title"><span>Beautiful Things</span></p>
+    <p class="song-artist">Benson Boone</p>
+</div>
+<div class="music-item" onclick="playSong('myType')">
+    <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/My%20Type.png" alt="My Type Icon" class="music-icon">
+    <p class="song-title"><span>My Type</span></p>
+    <p class="song-artist">Saweetie</p>
+</div>
+<div class="music-item" onclick="playSong('babyGoddamn')">
+    <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Baby%20Goddamn.jpeg" alt="Baby Goddamn Icon" class="music-icon">
+    <p class="song-title"><span>Baby Goddamn</span></p>
+    <p class="song-artist">Tananai</p>
+</div>
+<div class="music-item" onclick="playSong('tranTran')">
+    <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Tran%20Tran.jpeg" alt="Tran Tran Icon" class="music-icon">
+    <p class="song-title"><span>Tran Tran</span></p>
+    <p class="song-artist">Sfera E Basta</p>
+</div>
+<div class="music-item" onclick="playSong('rockstar')">
+    <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Rockstar.jpg" alt="Rockstar Icon" class="music-icon">
+    <p class="song-title"><span>Rockstar</span></p>
+    <p class="song-artist">Sfera E Basta</p>
+</div>
+<div class="music-item" onclick="playSong('older')">
+    <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Older.jpeg" alt="Older Icon" class="music-icon">
+    <p class="song-title"><span>Older</span></p>
+    <p class="song-artist">Isabel LaRosa</p>
+</div>
+<div class="music-item" onclick="playSong('mockingbird')">
+    <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Mockingbird.jpeg" alt="Mockingbird Icon" class="music-icon">
+    <p class="song-title"><span>Mockingbird</span></p>
+    <p class="song-artist">Eminem</p>
+</div>
+<div class="music-item" onclick="playSong('yellow')">
+    <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Yellow.jpeg" alt="Yellow Icon" class="music-icon">
+    <p class="song-title"><span>Yellow</span></p>
+    <p class="song-artist">Coldplay</p>
+</div>
+<div class="music-item" onclick="playSong('cigarettesDaydream')">
+    <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Cigarette%20Daydream.jpeg" alt="Cigarettes Daydream Icon" class="music-icon">
+    <p class="song-title"><span>Cigarette Daydream</span></p>
+    <p class="song-artist">Cage The Elephant</p>
+</div>
+<div class="music-item" onclick="playSong('apocalypse')">
+    <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Apocalypse.png" alt="Apocalypse Icon" class="music-icon">
+    <p class="song-title"><span>Apocalypse</span></p>
+    <p class="song-artist">Cigarettes After Sex</p>
+</div>
+<div class="music-item" onclick="playSong('friends')">
+    <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Friends.jpeg" alt="Friends Icon" class="music-icon">
+    <p class="song-title"><span>Friends</span></p>
+    <p class="song-artist">Chase Atlantic</p>
+</div>
+<div class="music-item" onclick="playSong('swim')">
+    <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Swim.jpeg" alt="Swim Icon" class="music-icon">
+    <p class="song-title"><span>Swim</span></p>
+    <p class="song-artist">Chase Atlantic</p>
+</div>
+        <!-- Sezione "Mine" -->
+        <h2>Mine</h2>
+<div class="music-item" onclick="playSong('youWereThereForMe')">
+    <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/In%20All%20Of%20My%20Lonely%20Nights.jpeg" alt="You Were There For Me Icon" class="music-icon">
+    <p class="song-title"><span>You Were There For Me</span></p>
+    <p class="song-artist">Henry Moodie</p>
+</div>
+<div class="music-item" onclick="playSong('theNightWeMet')">
+    <img src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/The%20Night%20We%20Met.jpeg" alt="The Night We Met Icon" class="music-icon">
+    <p class="song-title"><span>The Night We Met</span></p>
+    <p class="song-artist">Lord Huron</p>
+</div>
+        <!-- Aggiungi altre canzoni come desideri -->
     </div>
+    <div class="music-player" id="musicPlayer" style="display:none;">
+        <button id="backButton" class="back-button" onclick="showMenu()">&#8592;</button>
+        <img id="currentSongImage" src="music-icon" alt="Current Song Icon" class="current-song-icon">
+        <!-- Blocco HTML aggiunto per le informazioni sulla canzone -->
+        <div class="song-info">
+            <h3 class="song-title"/h3>
+            <p class="song-artist"/p>
+        </div>
+        <audio id="audioPlayer" controls>
+            <source id="audioSource" src="" type="audio/mpeg">
+            Il tuo browser non supporta l'elemento audio.
+        </audio>
+    </div>
+    <button class="close-music" onclick="toggleMusic()">Chiudi</button>
+</div>
         <!-- Interfaccia per cambiare font e colori -->
         <div class="settings" id="settings">
             <h2>Personalizza il Sito</h2>
