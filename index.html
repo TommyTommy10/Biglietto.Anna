@@ -1138,8 +1138,11 @@ h2 {
     </div>
 
 <script>
-// INIZIO DEL TUO FILE JAVASCRIPT
+// ================================================================
+// INIZIO DEL FILE JAVASCRIPT CON TUTTE LE MODIFICHE
+// ================================================================
 
+// PASSO 1: Lista delle canzoni (songsData) - DEVE ESSERE QUI ALL'INIZIO
 const songsData = {
     'miFaiImpazzire': {
         title: 'Mi Fai Impazzire',
@@ -1347,9 +1350,11 @@ const songsData = {
     }
 };
 
-// Qui sotto iniziano le tue funzioni attuali, come toggleSettings(), ecc.
-    
-    function toggleSettings() {
+// ================================================================
+// LE TUE FUNZIONI DI VISIBILITÀ (toggleSettings, toggleMusic, closeWindows)
+// ================================================================
+
+function toggleSettings() {
     var settings = document.getElementById('settings');
     var settingsButton = document.getElementById('settingsButton');
     var overlay = document.getElementById('overlay');
@@ -1359,8 +1364,8 @@ const songsData = {
         settings.style.display = 'block';
         settingsButton.style.display = 'none';
         overlay.style.display = 'block';
-        music.style.display = 'none';
-        musicButton.style.display = 'flex';
+        music.style.display = 'none'; // Assicurati che la musica sia nascosta
+        musicButton.style.display = 'flex'; // Mostra il pulsante per la musica
     } else {
         settings.style.display = 'none';
         settingsButton.style.display = 'flex';
@@ -1378,8 +1383,8 @@ function toggleMusic() {
         music.style.display = 'block';
         musicButton.style.display = 'none';
         overlay.style.display = 'block';
-        settings.style.display = 'none';
-        settingsButton.style.display = 'flex';
+        settings.style.display = 'none'; // Assicurati che le impostazioni siano nascoste
+        settingsButton.style.display = 'flex'; // Mostra il pulsante per le impostazioni
     } else {
         music.style.display = 'none';
         musicButton.style.display = 'flex';
@@ -1400,30 +1405,33 @@ function closeWindows() {
     overlay.style.display = 'none';
 }
 
+// ================================================================
+// NUOVA FUNZIONE playSong (SOSTITUISCE LA VECCHIA)
+// ================================================================
+
 function playSong(songId) {
-    const song = songsData[songId]; // Questo cerca la canzone nella lista songsData
-    if (song) { // Controlla se la canzone esiste nella lista
+    const song = songsData[songId];
+    if (song) {
         const audioPlayer = document.getElementById('audioPlayer');
         const audioSource = document.getElementById('audioSource');
         const musicMenu = document.getElementById('musicMenu');
         const musicPlayer = document.getElementById('musicPlayer');
-        // Prendi gli elementi per l'immagine, il titolo e l'artista nel player
-        const currentSongImage = document.getElementById('currentSongImage'); // Assicurati di avere un img id="currentSongImage" nel tuo HTML
+        const currentSongImage = document.getElementById('currentSongImage');
         const currentSongTitle = musicPlayer.querySelector('.song-info .song-title');
         const currentSongArtist = musicPlayer.querySelector('.song-info .song-artist');
 
-        audioSource.src = song.audio; // Imposta il sorgente audio dall'URL corretto
-        currentSongImage.src = song.image; // Imposta l'immagine dalla lista songsData
-        currentSongTitle.textContent = song.title; // Aggiorna il titolo nel player
-        currentSongArtist.textContent = song.artist; // Aggiorna l'artista nel player
+        audioSource.src = song.audio;
+        currentSongImage.src = song.image;
+        currentSongTitle.textContent = song.title;
+        currentSongArtist.textContent = song.artist;
 
-        audioPlayer.load(); // Carica l'audio
-        audioPlayer.play(); // Inizia la riproduzione
+        audioPlayer.load();
+        audioPlayer.play();
 
-        musicMenu.style.display = 'none'; // Nasconde il menu delle canzoni
-        musicPlayer.style.display = 'flex'; // Mostra il lettore musicale
+        musicMenu.style.display = 'none';
+        musicPlayer.style.display = 'flex';
     } else {
-        console.error('Canzone non trovata: ' + songId); // Se l'ID della canzone non è nella lista
+        console.error('Canzone non trovata: ' + songId);
     }
 }
 
@@ -1431,10 +1439,13 @@ function showMenu() {
     var musicMenu = document.getElementById('musicMenu');
     var musicPlayer = document.getElementById('musicPlayer');
 
-    // Mostra il menu e nascondi il lettore musicale
     musicMenu.style.display = 'flex';
     musicPlayer.style.display = 'none';
 }
+
+// ================================================================
+// BLOCCO DOMContentLoaded (tutto qui dentro viene eseguito dopo il caricamento della pagina)
+// ================================================================
 
 document.addEventListener('DOMContentLoaded', function() {
     // Imposta il colore iniziale per i color picker
@@ -1494,6 +1505,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Funzione helper per convertire RGB in HEX (usata dai color picker)
     function rgb2hex(rgb) {
         if (/^#[0-9A-F]{6}$/i.test(rgb)) {
             return rgb;
@@ -1504,9 +1516,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
     }
-    // ... (tutto il tuo codice DOMContentLoaded, es. color picker, font, ecc.) ...
 
-    // QUI SOTTO INSERISCI IL BLOCCO DELLA RICERCA
+    // Qui va il blocco della barra di ricerca
     const searchInput = document.querySelector('.search-container .input');
     const musicMenu = document.getElementById('musicMenu');
 
@@ -1527,17 +1538,12 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
-    // QUI SOPRA FINISCE IL BLOCCO DELLA RICERCA
 
-}); // Questa è la chiusura del tuo document.addEventListener('DOMContentLoaded' ...
+}); // FINE DEL BLOCCO document.addEventListener('DOMContentLoaded', ...)
 
-// PASSO 5: Rimuovi o ignora la funzione updateSongInfo (non più necessaria)
-// Questa funzione non è più necessaria, in quanto playSong la gestisce direttamente
-// function updateSongInfo(songTitle, songArtist) {
-//     document.querySelector('.song-title').textContent = songTitle;
-//     document.querySelector('.song-artist').textContent = songArtist;
-// }
-});
+// ================================================================
+// Altri blocchi di codice che non dipendono dal DOMContentLoaded
+// ================================================================
 
 document.querySelectorAll('.music-item p span').forEach(span => {
     const parentWidth = span.parentElement.offsetWidth;
@@ -1548,10 +1554,17 @@ document.querySelectorAll('.music-item p span').forEach(span => {
     }
 });
 
-function updateSongInfo(songTitle, songArtist) {
-    document.querySelector('.song-title').textContent = songTitle;
-    document.querySelector('.song-artist').textContent = songArtist;
-}
+// ================================================================
+// QUESTA FUNZIONE updateSongInfo NON È PIÙ NECESSARIA E PUÒ ESSERE RIMOSSA
+// ================================================================
+// function updateSongInfo(songTitle, songArtist) {
+//     document.querySelector('.song-title').textContent = songTitle;
+//     document.querySelector('.song-artist').textContent = songArtist;
+// }
+
+// ================================================================
+// FINE DEL FILE JAVASCRIPT
+// ================================================================
 </script>
 </body>
 </html>
