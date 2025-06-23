@@ -1468,7 +1468,7 @@ function applyFont(fontFamily) {
         element.style.fontFamily = fontFamily;
     });
     document.body.style.fontFamily = fontFamily;
-    document.querySelector('h1').style.fontFamily = fontFamily;
+    document.querySelector('h1').style.fontFamily = fontFamily; // <<< RIGA POTENZIALMENTE PROBLEMATICA
     document.querySelectorAll('.settings label, .settings button, .music label, .music button').forEach(element => {
         element.style.fontFamily = fontFamily;
     });
@@ -1479,7 +1479,7 @@ function applyFont(fontFamily) {
         el.style.fontFamily = fontFamily;
     });
 }
-
+    
 function applyBackgroundColor(color) {
     document.body.style.backgroundColor = color;
 }
