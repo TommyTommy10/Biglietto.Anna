@@ -637,6 +637,299 @@ h2 {
     text-align: left; /* Allinea a sinistra il titolo */
     padding-left: 10px; /* Piccolo padding per distanziare dal bordo */
 }
+
+/* music.css (o il tuo file CSS) */
+
+/* Stile per il pulsante che apre la musica */
+.music-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    background-color: #DAA520; /* Colore dorato */
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 2.2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transition: background-color 0.3s ease;
+    /* Per togliere l'alone al focus */
+    outline: none;
+}
+
+.music-button:hover {
+    background-color: #c0911a;
+}
+
+.music-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(218,165,32,0.5); /* Puoi personalizzare o rimuovere */
+}
+
+/* Overlay oscurante */
+.music-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Sfondo scuro e semitrasparente */
+    z-index: 999; /* Dietro il popup, ma sopra il resto del contenuto */
+    display: none; /* Inizialmente nascosto */
+}
+
+/* Stile della finestra pop-up principale */
+.music-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Sfondo semitrasparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Sopra l'overlay */
+    display: none; /* Inizialmente nascosto */
+    /* Nessun flex-direction qui, il content si occupa del suo layout */
+}
+
+.music-popup-content {
+    background: #2F4F4F; /* Colore di sfondo del popup */
+    border-radius: 16px;
+    padding: 32px 24px; /* Padding interno */
+    max-width: 720px; /* Larghezza massima del popup */
+    width: 98vw; /* Larghezza reattiva */
+    max-height: 90vh; /* Altezza massima del popup */
+    overflow-y: auto; /* Abilita lo scroll verticale se il contenuto è troppo lungo */
+    box-shadow: 0 8px 40px rgba(0,0,0,0.55);
+    position: relative; /* Per posizionare la 'x' di chiusura */
+
+    /* Aggiunto per centrare correttamente il menu o il player */
+    display: flex;
+    flex-direction: column; /* Gli elementi interni (menu o player) si allineano in colonna */
+    justify-content: center; /* Centra verticalmente il contenuto */
+    align-items: center; /* Centra orizzontalmente il contenuto */
+}
+
+/* Pulsante di chiusura (la 'x') */
+.music-close {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    color: #aaa;
+    font-size: 36px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1001; /* Assicurati che sia sopra tutto nel popup */
+}
+
+.music-close:hover,
+.music-close:focus {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Menu delle canzoni */
+.music-menu {
+    width: 100%; /* Occupa la larghezza disponibile nel popup-content */
+    display: block; /* O flex, se preferisci un layout più flessibile per h2 e music-list */
+    text-align: center; /* Centra i titoli Her/Mine */
+}
+
+.music-menu h2 {
+    color: #DAA520; /* Colore oro per i titoli */
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    font-family: 'Playfair Display', serif; /* O il tuo font desiderato */
+}
+
+.music-list {
+    display: flex;
+    flex-wrap: wrap; /* Le canzoni si adattano su più righe */
+    justify-content: center; /* Centra le icone delle canzoni */
+    gap: 15px; /* Spazio tra le icone */
+    padding-bottom: 20px; /* Spazio sotto la lista */
+    width: 100%; /* Per assicurare che il justify-content funzioni correttamente */
+}
+
+.music-item {
+    background-color: rgba(0, 0, 0, 0.2); /* Sfondo leggermente scuro per l'item */
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    width: 120px; /* Larghezza fissa per ogni item */
+    flex-shrink: 0; /* Impedisce che si rimpicciolisca troppo */
+    display: flex; /* Per allineare verticalmente contenuto */
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Allinea in alto */
+}
+
+.music-item:hover {
+    transform: translateY(-5px); /* Effetto sollevamento */
+}
+
+.music-icon {
+    width: 80px; /* Dimensione dell'icona della canzone */
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.song-title {
+    color: #fff;
+    font-size: 0.9em;
+    margin-bottom: 4px;
+    white-space: nowrap; /* Evita che il titolo vada a capo */
+    overflow: hidden; /* Nasconde il testo che esce */
+    text-overflow: ellipsis; /* Aggiunge i puntini di sospensione */
+    max-width: 100%; /* Limita la larghezza al contenitore */
+}
+
+.song-artist {
+    color: #ccc;
+    font-size: 0.75em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+/* Player musicale */
+.music-player {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra orizzontalmente gli elementi nel player */
+    justify-content: center; /* Centra verticalmente gli elementi nel player */
+    width: 100%; /* Assicurati che il player occupi la larghezza disponibile */
+    text-align: center; /* Centra il testo del titolo/artista */
+    /* Rimuoviamo padding-top se ci sono problemi di spazio, o regoliamo */
+    padding-top: 20px; /* Spazio dall'alto per distanziare dal pulsante Indietro */
+}
+
+.music-back {
+    background-color: transparent;
+    color: #DAA520; /* Colore oro per il testo "Indietro" */
+    border: none;
+    font-size: 1.1em;
+    cursor: pointer;
+    margin-bottom: 20px; /* Spazio sotto il pulsante */
+    /* Per togliere l'alone al focus */
+    outline: none;
+}
+
+.music-back:hover {
+    text-decoration: underline;
+}
+
+.music-back:focus {
+    outline: none;
+}
+
+.player-cover {
+    width: 200px; /* Dimensione più grande per la copertina del player */
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.player-title {
+    color: #fff;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.player-artist {
+    color: #ccc;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#audioPlayer {
+    width: 300px; /* Larghezza dei controlli audio */
+    margin-top: 20px;
+    /* Stilizza i controlli audio base se necessario (con browser-specific prefixes) */
+}
+
+/* Media Queries per schermi più piccoli */
+@media (max-width: 600px) {
+    .music-button {
+        width: 50px;
+        height: 50px;
+        font-size: 1.8em;
+        bottom: 15px;
+        right: 15px;
+    }
+
+    .music-popup-content {
+        padding: 20px 15px;
+        max-width: 95vw;
+    }
+
+    .music-close {
+        font-size: 30px;
+        top: 10px;
+        right: 20px;
+    }
+
+    .music-menu h2 {
+        font-size: 1.5em;
+        margin-bottom: 15px;
+    }
+
+    .music-item {
+        width: 100px;
+        padding: 8px;
+    }
+
+    .music-icon {
+        width: 70px;
+        height: 70px;
+    }
+
+    .song-title {
+        font-size: 0.8em;
+    }
+
+    .song-artist {
+        font-size: 0.7em;
+    }
+
+    .player-cover {
+        width: 150px;
+        height: 150px;
+        margin-bottom: 15px;
+    }
+
+    .player-title {
+        font-size: 1.2em;
+    }
+
+    .player-artist {
+        font-size: 1em;
+    }
+
+    #audioPlayer {
+        width: 90%;
+        max-width: 300px;
+    }
+}
 </style>
 </head>
 <body>
