@@ -930,6 +930,50 @@ h2 {
         max-width: 300px;
     }
 }
+
+/* Stile per i bottoni generici (settings e music) */
+.settings-button, .music-button {
+    position: fixed;
+    top: 20px; /* Li posiziona a 20px dal bordo superiore */
+    background-color: var(--colore-button); /* Usa la variabile CSS che hai definito */
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 101; /* Assicurati che siano sopra la maggior parte degli altri elementi */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    outline: none; /* Rimuove l'alone di focus predefinito */
+}
+
+/* Stile specifico per il bottone delle impostazioni (se esiste) */
+.settings-button {
+    /* Esempio: posizionalo a destra */
+    right: 70px; /* Regola questo valore per distanziarlo dal bottone musica o dal bordo */
+}
+
+/* Stile specifico per il bottone della musica */
+.music-button {
+    /* Posizionalo a destra, vicino al bordo (o dove preferisci) */
+    right: 20px; /* Questo lo metterà a 20px dal bordo destro */
+    /* Se vuoi metterlo a sinistra, usa 'left: 20px;' e magari togli 'right' dal settings-button o mettilo più a destra */
+}
+
+/* Regole per l'hover e il focus (se non le hai già) */
+.settings-button:hover, .music-button:hover {
+    background-color: var(--colore-button-hover); /* Se hai una variabile per l'hover */
+    /* O un colore fisso più scuro */
+    /* background-color: #555; */
+}
+
+.settings-button:focus, .music-button:focus {
+    outline: none; /* Già incluso sopra, ma è bene ribadirlo */
+    box-shadow: 0 0 0 3px rgba(var(--colore-button-rgb), 0.5); /* Un'ombra per il focus, usando RGB della tua variabile se disponibile */
+}
 </style>
 </head>
 <body>
