@@ -1139,7 +1139,7 @@ h2 {
 
 <script>
 // ================================================================
-// INIZIO DEL FILE JAVASCRIPT CON TUTTE LE MODIFICHE
+// INIZIO DEL FILE JAVASCRIPT FINALE CON IL METODO "display"
 // ================================================================
 
 // PASSO 1: Lista delle canzoni (songsData) - DEVE ESSERE QUI ALL'INIZIO
@@ -1208,7 +1208,7 @@ const songsData = {
         title: 'Out Of My League',
         artist: 'Fitz And The Tantrums',
         image: 'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Out%20Of%20My%20League.jpeg',
-        audio: 'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/%2540fitzandthetantrums%2520-%2520Out%2520Of%2520My%2520League%2520%2528Lyrics%2529%2520%5BvmO5aM8H_lA%5D.mp3'
+        audio: 'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Fitz%2540fitzandthetantrums%2520-%2520Out%2520Of%2520My%2520League%2520%2528Lyrics%2529%2520%5BvmO5aM8H_lA%5D.mp3'
     },
     'favorite': {
         title: 'Favorite',
@@ -1351,7 +1351,7 @@ const songsData = {
 };
 
 // ================================================================
-// LE TUE FUNZIONI DI VISIBILITÀ (toggleSettings, toggleMusic, closeWindows)
+// FUNZIONI DI VISIBILITÀ (toggleSettings, toggleMusic, closeWindows) - RIPRISTINATE A style.display
 // ================================================================
 
 function toggleSettings() {
@@ -1360,16 +1360,19 @@ function toggleSettings() {
     var overlay = document.getElementById('overlay');
     var music = document.getElementById('music');
     var musicButton = document.getElementById('musicButton');
+
     if (settings.style.display === 'none' || settings.style.display === '') {
-        settings.style.display = 'block';
-        settingsButton.style.display = 'none';
-        overlay.style.display = 'block';
-        music.style.display = 'none'; // Assicurati che la musica sia nascosta
-        musicButton.style.display = 'flex'; // Mostra il pulsante per la musica
+        settings.style.display = 'block'; // Mostra finestra impostazioni
+        settingsButton.style.display = 'none'; // Nascondi pulsante impostazioni
+        overlay.style.display = 'block'; // Mostra overlay
+
+        // Chiudi l'altra finestra se aperta
+        music.style.display = 'none';
+        musicButton.style.display = 'flex'; // Mostra il pulsante musica
     } else {
-        settings.style.display = 'none';
-        settingsButton.style.display = 'flex';
-        overlay.style.display = 'none';
+        settings.style.display = 'none'; // Nascondi finestra impostazioni
+        settingsButton.style.display = 'flex'; // Mostra pulsante impostazioni
+        overlay.style.display = 'none'; // Nascondi overlay
     }
 }
 
@@ -1379,16 +1382,19 @@ function toggleMusic() {
     var overlay = document.getElementById('overlay');
     var settings = document.getElementById('settings');
     var settingsButton = document.getElementById('settingsButton');
+
     if (music.style.display === 'none' || music.style.display === '') {
-        music.style.display = 'block';
-        musicButton.style.display = 'none';
-        overlay.style.display = 'block';
-        settings.style.display = 'none'; // Assicurati che le impostazioni siano nascoste
-        settingsButton.style.display = 'flex'; // Mostra il pulsante per le impostazioni
+        music.style.display = 'flex'; // Mostra finestra musica (usa 'flex' se il suo contenuto è flex)
+        musicButton.style.display = 'none'; // Nascondi pulsante musica
+        overlay.style.display = 'block'; // Mostra overlay
+
+        // Chiudi l'altra finestra se aperta
+        settings.style.display = 'none';
+        settingsButton.style.display = 'flex'; // Mostra il pulsante impostazioni
     } else {
-        music.style.display = 'none';
-        musicButton.style.display = 'flex';
-        overlay.style.display = 'none';
+        music.style.display = 'none'; // Nascondi finestra musica
+        musicButton.style.display = 'flex'; // Mostra pulsante musica
+        overlay.style.display = 'none'; // Nascondi overlay
     }
 }
 
@@ -1398,6 +1404,7 @@ function closeWindows() {
     var music = document.getElementById('music');
     var musicButton = document.getElementById('musicButton');
     var overlay = document.getElementById('overlay');
+
     settings.style.display = 'none';
     settingsButton.style.display = 'flex';
     music.style.display = 'none';
@@ -1406,7 +1413,7 @@ function closeWindows() {
 }
 
 // ================================================================
-// NUOVA FUNZIONE playSong (SOSTITUISCE LA VECCHIA)
+// FUNZIONE playSong
 // ================================================================
 
 function playSong(songId) {
@@ -1417,8 +1424,8 @@ function playSong(songId) {
         const musicMenu = document.getElementById('musicMenu');
         const musicPlayer = document.getElementById('musicPlayer');
         const currentSongImage = document.getElementById('currentSongImage');
-        const currentSongTitle = musicPlayer.querySelector('.song-info .song-title');
-        const currentSongArtist = musicPlayer.querySelector('.song-info .song-artist');
+        const currentSongTitle = document.getElementById('currentSongTitlePlayer'); // Titolo nel player
+        const currentSongArtist = document.getElementById('currentSongArtistPlayer'); // Artista nel player
 
         audioSource.src = song.audio;
         currentSongImage.src = song.image;
@@ -1428,19 +1435,133 @@ function playSong(songId) {
         audioPlayer.load();
         audioPlayer.play();
 
+        // Passa dalla lista al player della musica
         musicMenu.style.display = 'none';
         musicPlayer.style.display = 'flex';
+
+        // Aggiorna il pulsante play/pause
+        document.getElementById('playPauseBtn').textContent = '⏸';
     } else {
         console.error('Canzone non trovata: ' + songId);
     }
 }
 
+// ================================================================
+// NUOVA FUNZIONE showMenu (Per tornare alla lista delle canzoni dal player)
+// ================================================================
 function showMenu() {
-    var musicMenu = document.getElementById('musicMenu');
-    var musicPlayer = document.getElementById('musicPlayer');
+    const musicMenu = document.getElementById('musicMenu');
+    const musicPlayer = document.getElementById('musicPlayer');
 
     musicMenu.style.display = 'flex';
     musicPlayer.style.display = 'none';
+}
+
+
+// ================================================================
+// FUNZIONI PER LA PERSONALIZZAZIONE (REUSATE DALLA PARTE 7)
+// ================================================================
+
+// Funzione per applicare un font a tutti gli elementi con la classe specificata
+function applyFont(fontFamily) {
+    document.querySelectorAll('.entry h2, .entry p').forEach(element => {
+        element.style.fontFamily = fontFamily;
+    });
+    document.body.style.fontFamily = fontFamily;
+    document.querySelector('h1').style.fontFamily = fontFamily;
+    document.querySelectorAll('.settings label, .settings button, .music label, .music button').forEach(element => {
+        element.style.fontFamily = fontFamily;
+    });
+    // Seleziona il titolo corrente della canzone nel player e nella lista
+    document.getElementById('currentSongTitlePlayer').style.fontFamily = fontFamily;
+    document.getElementById('currentSongArtistPlayer').style.fontFamily = fontFamily;
+    document.querySelectorAll('.list-title, .list-artist').forEach(el => {
+        el.style.fontFamily = fontFamily;
+    });
+}
+
+function applyBackgroundColor(color) {
+    document.body.style.backgroundColor = color;
+}
+
+function applyTitleColor(color) {
+    // Applica ai titoli degli entry (h2)
+    document.querySelectorAll('.entry h2').forEach(element => {
+        element.style.color = color;
+    });
+    // Applica anche al titolo principale h1
+    document.querySelector('h1').style.color = color;
+    // Applica al titolo della canzone nel player
+    document.getElementById('currentSongTitlePlayer').style.color = color;
+    // Applica ai titoli delle canzoni nella lista
+    document.querySelectorAll('.list-title').forEach(el => {
+        el.style.color = color;
+    });
+}
+
+function applyDateColor(color) {
+    document.querySelectorAll('.entry .date').forEach(element => { // Selettore più specifico per la data
+        element.style.color = color;
+    });
+}
+
+function applyTextColor(color) {
+    document.querySelectorAll('.entry p').forEach(element => {
+        element.style.color = color;
+    });
+    document.querySelectorAll('.link-style').forEach(element => {
+        element.style.color = color;
+    });
+    // Applica all'artista della canzone nel player
+    document.getElementById('currentSongArtistPlayer').style.color = color;
+    // Applica agli artisti delle canzoni nella lista
+    document.querySelectorAll('.list-artist').forEach(el => {
+        el.style.color = color;
+    });
+}
+
+function applyMainBoxColor(color) {
+    document.querySelector('.container').style.backgroundColor = color; // Assuming .container is the main box
+}
+
+function applyParagraphBoxColor(color) {
+    document.querySelectorAll('.entry').forEach(element => { // Assuming .entry is your paragraph-box
+        element.style.backgroundColor = color;
+    });
+}
+
+function applyWindowColor(color) {
+    document.getElementById('settings').style.backgroundColor = color;
+    document.getElementById('music').style.backgroundColor = color;
+}
+
+function applyButtonColor(color) {
+    document.querySelectorAll('.settings-button, .music-button, .close-settings').forEach(element => {
+        element.style.backgroundColor = color;
+    });
+    document.querySelectorAll('.music-controls button, #backToListBtn, #prevBtn, #playPauseBtn, #nextBtn').forEach(element => {
+        element.style.backgroundColor = color;
+    });
+}
+
+function applyMusicPlayerColor(color) {
+    document.getElementById('musicPlayer').style.backgroundColor = color;
+    document.getElementById('musicMenu').style.backgroundColor = color; // Anche il menu della musica
+}
+
+// Funzione helper per convertire RGB in HEX
+function rgb2hex(rgb) {
+    if (!rgb) return '#000000'; // Fallback per valori nulli
+    if (rgb.startsWith('#')) {
+        return rgb;
+    }
+    const match = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+    if (!match) return '#000000'; // Fallback se non è un formato rgb valido
+
+    function hex(x) {
+        return ("0" + parseInt(x).toString(16)).slice(-2);
+    }
+    return "#" + hex(match[1]) + hex(match[2]) + hex(match[3]);
 }
 
 // ================================================================
@@ -1448,119 +1569,229 @@ function showMenu() {
 // ================================================================
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Imposta il colore iniziale per i color picker
-    document.getElementById('colorPicker').value = rgb2hex(getComputedStyle(document.body).backgroundColor);
-    document.getElementById('textColorPicker').value = rgb2hex(getComputedStyle(document.body).color);
-    document.getElementById('buttonColorPicker').value = rgb2hex(getComputedStyle(document.querySelector('.settings-button')).backgroundColor);
+    // Ottieni i riferimenti agli elementi una sola volta
+    const settings = document.getElementById('settings');
+    const settingsButton = document.getElementById('settingsButton');
+    const music = document.getElementById('music');
+    const musicButton = document.getElementById('musicButton');
+    const overlay = document.getElementById('overlay');
+    const audioPlayer = document.getElementById('audioPlayer');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    const musicList = document.getElementById('musicList');
+    const backToListBtn = document.getElementById('backToListBtn');
+    const searchInput = document.getElementById('searchInput');
+    const musicMenu = document.getElementById('musicMenu');
+    const musicPlayer = document.getElementById('musicPlayer');
+    const currentSongTitlePlayer = document.getElementById('currentSongTitlePlayer');
+    const currentSongArtistPlayer = document.getElementById('currentSongArtistPlayer');
+    const currentSongImagePlayer = document.getElementById('currentSongImage');
 
-    document.getElementById('fontSelect').addEventListener('change', function() {
-        document.body.style.fontFamily = this.value;
-    });
-
-    document.getElementById('colorPicker').addEventListener('input', function() {
-        document.body.style.backgroundColor = this.value;
-    });
-
-    document.getElementById('textColorPicker').addEventListener('input', function() {
-        document.body.style.color = this.value;
-    });
-
-    document.getElementById('buttonColorPicker').addEventListener('input', function() {
-        var buttons = document.querySelectorAll('.settings-button, .music-button');
-        buttons.forEach(function(button) {
-            button.style.backgroundColor = document.getElementById('buttonColorPicker').value;
-        });
-    });
-
-    // Nuovi color picker
-    document.getElementById('titleColorPicker').addEventListener('input', function() {
-        document.querySelectorAll('h2').forEach(title => {
-            title.style.color = this.value;
-        });
-    });
-
-    document.getElementById('mainBoxColorPicker').addEventListener('input', function() {
-        document.querySelector('.main-box').style.backgroundColor = this.value;
-    });
-
-    document.getElementById('paragraphBoxColorPicker').addEventListener('input', function() {
-        document.querySelectorAll('.paragraph-box').forEach(box => {
-            box.style.backgroundColor = this.value;
-        });
-    });
-
-    document.getElementById('windowColorPicker').addEventListener('input', function() {
-        document.querySelectorAll('.window').forEach(window => {
-            window.style.backgroundColor = this.value;
-        });
-    });
-
-    document.getElementById('musicPlayerColorPicker').addEventListener('input', function() {
-        document.querySelector('.music-player').style.backgroundColor = this.value;
-    });
-
-    document.getElementById('dateColorPicker').addEventListener('input', function() {
-        document.querySelectorAll('.date').forEach(date => {
-            date.style.color = this.value;
-        });
-    });
-
-    // Funzione helper per convertire RGB in HEX (usata dai color picker)
-    function rgb2hex(rgb) {
-        if (/^#[0-9A-F]{6}$/i.test(rgb)) {
-            return rgb;
-        }
-        rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
-        function hex(x) {
-            return ("0" + parseInt(x).toString(16)).slice(-2);
-        }
-        return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+    // -----------------------------------------------------------
+    // Event Listeners per i pulsanti di apertura/chiusura
+    // -----------------------------------------------------------
+    settingsButton.addEventListener('click', toggleSettings);
+    musicButton.addEventListener('click', toggleMusic);
+    overlay.addEventListener('click', closeWindows);
+    document.querySelector('.close-settings').addEventListener('click', toggleSettings); // Il pulsante "Chiudi" nelle impostazioni
+    if (backToListBtn) {
+        backToListBtn.addEventListener('click', showMenu); // Nuovo pulsante per tornare alla lista
     }
 
-    // Qui va il blocco della barra di ricerca
-    const searchInput = document.querySelector('.search-container .input');
-    const musicMenu = document.getElementById('musicMenu');
+    // -----------------------------------------------------------
+    // Inizializzazione della logica del Font Selector
+    // -----------------------------------------------------------
+    const fontSelect = document.getElementById('fontSelect');
+    if (fontSelect) {
+        fontSelect.addEventListener('change', (event) => {
+            const selectedFont = event.target.value;
+            applyFont(selectedFont);
+            localStorage.setItem('selectedFont', selectedFont); // Salva la preferenza
+        });
 
+        const savedFont = localStorage.getItem('selectedFont');
+        if (savedFont) {
+            applyFont(savedFont);
+            fontSelect.value = savedFont;
+        } else {
+            // Applica il font di default dal HTML se non c'è una preferenza salvata
+            applyFont(fontSelect.value);
+        }
+    }
+
+    // -----------------------------------------------------------
+    // Inizializzazione della logica dei Color Pickers
+    // -----------------------------------------------------------
+    const colorPickers = [
+        { id: 'colorPicker', applyFunc: applyBackgroundColor, property: 'backgroundColor' },
+        { id: 'textColorPicker', applyFunc: applyTextColor, property: 'textColor' },
+        { id: 'dateColorPicker', applyFunc: applyDateColor, property: 'dateColor' },
+        { id: 'titleColorPicker', applyFunc: applyTitleColor, property: 'titleColor' },
+        { id: 'mainBoxColorPicker', applyFunc: applyMainBoxColor, property: 'mainBoxColor' },
+        { id: 'paragraphBoxColorPicker', applyFunc: applyParagraphBoxColor, property: 'paragraphBoxColor' },
+        { id: 'windowColorPicker', applyFunc: applyWindowColor, property: 'windowColor' },
+        { id: 'buttonColorPicker', applyFunc: applyButtonColor, property: 'buttonColor' },
+        { id: 'musicPlayerColorPicker', applyFunc: applyMusicPlayerColor, property: 'musicPlayerColor' }
+    ];
+
+    colorPickers.forEach(picker => {
+        const element = document.getElementById(picker.id);
+        if (element) {
+            const savedColor = localStorage.getItem(picker.property);
+            if (savedColor) {
+                element.value = savedColor;
+                picker.applyFunc(savedColor);
+            } else {
+                // Tenta di ottenere il colore computato per il valore di default, se applicabile
+                let defaultColor = element.value; // Valore di default dall'HTML
+                if (picker.id === 'colorPicker' && document.body) {
+                    defaultColor = rgb2hex(getComputedStyle(document.body).backgroundColor);
+                } else if (picker.id === 'textColorPicker' && document.body) {
+                    defaultColor = rgb2hex(getComputedStyle(document.body).color);
+                } else if (picker.id === 'buttonColorPicker' && document.querySelector('.settings-button')) {
+                    defaultColor = rgb2hex(getComputedStyle(document.querySelector('.settings-button')).backgroundColor);
+                }
+                element.value = defaultColor; // Imposta il valore iniziale del picker
+                picker.applyFunc(defaultColor); // Applica il colore iniziale
+            }
+
+            element.addEventListener('input', (event) => {
+                const selectedColor = event.target.value;
+                picker.applyFunc(selectedColor);
+                localStorage.setItem(picker.property, selectedColor);
+            });
+        }
+    });
+
+    // -----------------------------------------------------------
+    // Popolare il Music Menu con le canzoni da songsData
+    // -----------------------------------------------------------
+    if (musicList) {
+        for (const songId in songsData) {
+            const song = songsData[songId];
+            const listItem = document.createElement('div');
+            listItem.classList.add('music-list-item'); // Usa la classe corretta
+            listItem.innerHTML = `
+                <img src="${song.image}" alt="${song.title}" class="list-image">
+                <div class="list-info">
+                    <span class="list-title">${song.title}</span>
+                    <span class="list-artist">${song.artist}</span>
+                </div>
+            `;
+            listItem.addEventListener('click', () => playSong(songId));
+            musicList.appendChild(listItem);
+        }
+    }
+
+    // -----------------------------------------------------------
+    // Logic for Music Player Controls (Play/Pause/Next/Prev)
+    // -----------------------------------------------------------
+    const songIds = Object.keys(songsData);
+    let currentSongIndex = 0; // Inizializza con la prima canzone
+
+    // Trova l'indice della canzone attualmente in riproduzione se salvata
+    const savedSongId = localStorage.getItem('currentPlayingSongId');
+    if (savedSongId) {
+        const index = songIds.indexOf(savedSongId);
+        if (index !== -1) {
+            currentSongIndex = index;
+        }
+    }
+
+    function loadAndPlaySong(index) {
+        if (songIds.length === 0) return;
+
+        currentSongIndex = (index + songIds.length) % songIds.length;
+        const songIdToPlay = songIds[currentSongIndex];
+        const song = songsData[songIdToPlay];
+
+        audioPlayer.src = song.audio;
+        currentSongImagePlayer.src = song.image;
+        currentSongTitlePlayer.textContent = song.title;
+        currentSongArtistPlayer.textContent = song.artist;
+
+        audioPlayer.load();
+        audioPlayer.play();
+        playPauseBtn.textContent = '⏸';
+        localStorage.setItem('currentPlayingSongId', songIdToPlay); // Salva la canzone corrente
+    }
+
+    // Inizializza il player con la canzone trovata o la prima
+    if (songIds.length > 0) {
+        loadAndPlaySong(currentSongIndex);
+        // Se la pagina viene caricata, metti in pausa l'audio all'inizio per evitare auto-play indesiderato
+        audioPlayer.pause();
+        playPauseBtn.textContent = '▶';
+    }
+
+
+    playPauseBtn.addEventListener('click', () => {
+        if (audioPlayer.paused) {
+            audioPlayer.play();
+            playPauseBtn.textContent = '⏸';
+        } else {
+            audioPlayer.pause();
+            playPauseBtn.textContent = '▶';
+        }
+    });
+
+    nextBtn.addEventListener('click', () => {
+        loadAndPlaySong(currentSongIndex + 1);
+    });
+
+    prevBtn.addEventListener('click', () => {
+        loadAndPlaySong(currentSongIndex - 1);
+    });
+
+    audioPlayer.addEventListener('ended', () => {
+        loadAndPlaySong(currentSongIndex + 1);
+    });
+
+    // -----------------------------------------------------------
+    // Logic for Search Bar
+    // -----------------------------------------------------------
     if (searchInput && musicMenu) {
         searchInput.addEventListener('input', () => {
             const searchTerm = searchInput.value.toLowerCase();
-            const musicItems = musicMenu.querySelectorAll('.music-item');
+            const musicListItems = musicMenu.querySelectorAll('.music-list-item'); // Usa la classe corretta
 
-            musicItems.forEach(item => {
-                const title = item.querySelector('.song-title span').textContent.toLowerCase();
-                const artist = item.querySelector('.song-artist').textContent.toLowerCase();
+            musicListItems.forEach(item => {
+                const title = item.querySelector('.list-title').textContent.toLowerCase(); // Usa la classe corretta
+                const artist = item.querySelector('.list-artist').textContent.toLowerCase(); // Usa la classe corretta
 
                 if (title.includes(searchTerm) || artist.includes(searchTerm)) {
-                    item.style.display = ''; // Mostra l'elemento
+                    item.style.display = 'flex';
                 } else {
-                    item.style.display = 'none'; // Nascondi l'elemento
+                    item.style.display = 'none';
                 }
             });
         });
     }
 
+    // -----------------------------------------------------------
+    // Animazione testo scorrevole per titoli/artisti lunghi (DENTRO DOMContentLoaded)
+    // Nota: Le animazioni CSS via keyframes richiedono che l'elemento sia visibile
+    // e che ci sia un overflow. Con display:none/block, l'animazione non sarà fluida.
+    // Potrebbe essere meglio usare text-overflow: ellipsis; per la semplicità.
+    // -----------------------------------------------------------
+    document.querySelectorAll('.music-list-item .list-title, .music-list-item .list-artist').forEach(span => {
+        const parentWidth = span.parentElement.offsetWidth;
+        const spanWidth = span.offsetWidth;
+
+        if (spanWidth > parentWidth) {
+            // Se il testo è più lungo del contenitore, applica l'animazione
+            span.style.animation = 'scrolling-text 10s linear infinite';
+            // Assicurati che nel CSS tu abbia:
+            // .list-title, .list-artist { white-space: nowrap; overflow: hidden; }
+            // @keyframes scrolling-text { ... }
+        } else {
+            // Altrimenti rimuovi l'animazione (utile se cambia il contenuto o la dimensione)
+            span.style.animation = 'none';
+        }
+    });
+
 }); // FINE DEL BLOCCO document.addEventListener('DOMContentLoaded', ...)
-
-// ================================================================
-// Altri blocchi di codice che non dipendono dal DOMContentLoaded
-// ================================================================
-
-document.querySelectorAll('.music-item p span').forEach(span => {
-    const parentWidth = span.parentElement.offsetWidth;
-    const spanWidth = span.offsetWidth;
-
-    if (spanWidth > parentWidth) {
-        span.style.animation = 'scrolling-text 10s linear infinite';
-    }
-});
-
-// ================================================================
-// QUESTA FUNZIONE updateSongInfo NON È PIÙ NECESSARIA E PUÒ ESSERE RIMOSSA
-// ================================================================
-// function updateSongInfo(songTitle, songArtist) {
-//     document.querySelector('.song-title').textContent = songTitle;
-//     document.querySelector('.song-artist').textContent = songArtist;
-// }
 
 // ================================================================
 // FINE DEL FILE JAVASCRIPT
