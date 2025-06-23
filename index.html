@@ -722,6 +722,12 @@ h2 {
     border-radius: 0; /* Rimuovi border-radius in questo punto se copre l'intera larghezza */
     box-sizing: border-box; /* Include padding nella larghezza */
 }
+
+.music.open,
+.settings.open {
+  display: block;
+}
+
 </style>
 </head>
 <body>
@@ -1353,43 +1359,12 @@ const songsData = {
 // ================================================================
 // LE TUE FUNZIONI DI VISIBILITÀ (toggleSettings, toggleMusic, closeWindows)
 // ================================================================
-
 function toggleSettings() {
-    var settings = document.getElementById('settings');
-    var settingsButton = document.getElementById('settingsButton');
-    var overlay = document.getElementById('overlay');
-    var music = document.getElementById('music');
-    var musicButton = document.getElementById('musicButton');
-    if (settings.style.display === 'none' || settings.style.display === '') {
-        settings.style.display = 'block';
-        settingsButton.style.display = 'none';
-        overlay.style.display = 'block';
-        music.style.display = 'none'; // Assicurati che la musica sia nascosta
-        musicButton.style.display = 'flex'; // Mostra il pulsante per la musica
-    } else {
-        settings.style.display = 'none';
-        settingsButton.style.display = 'flex';
-        overlay.style.display = 'none';
-    }
+  document.getElementById('settings').classList.toggle('open');
 }
 
 function toggleMusic() {
-    var music = document.getElementById('music');
-    var musicButton = document.getElementById('musicButton');
-    var overlay = document.getElementById('overlay');
-    var settings = document.getElementById('settings');
-    var settingsButton = document.getElementById('settingsButton');
-    if (music.style.display === 'none' || music.style.display === '') {
-        music.style.display = 'block';
-        musicButton.style.display = 'none';
-        overlay.style.display = 'block';
-        settings.style.display = 'none'; // Assicurati che le impostazioni siano nascoste
-        settingsButton.style.display = 'flex'; // Mostra il pulsante per le impostazioni
-    } else {
-        music.style.display = 'none';
-        musicButton.style.display = 'flex';
-        overlay.style.display = 'none';
-    }
+  document.getElementById('music').classList.toggle('open');
 }
 
 function closeWindows() {
