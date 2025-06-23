@@ -974,771 +974,380 @@ h2 {
     outline: none; /* Già incluso sopra, ma è bene ribadirlo */
     box-shadow: 0 0 0 3px rgba(var(--colore-button-rgb), 0.5); /* Un'ombra per il focus, usando RGB della tua variabile se disponibile */
 }
-
-/* Definizioni delle variabili, se non le hai già, mettile all'inizio del tuo CSS */
-:root {
-    --colore-button: #4CAF50; /* Verde per il bottone, puoi usare il tuo colore esatto */
-    --colore-button-hover: #45a049; /* Colore più scuro per l'hover */
-    --colore-close-button: #f44336; /* Rosso per il bottone Chiudi */
-    --colore-close-button-hover: #da190b; /* Rosso più scuro per l'hover */
-    /* Assicurati di avere anche le variabili per i colori del testo e sfondo del popup */
-    --popup-background-color: #2F4F4F; /* Lo stesso che usi per il popup */
-    --popup-text-color: #fff;
-    --popup-light-text-color: #ccc;
-    --popup-header-height: 60px; /* Altezza dell'header del popup */
-    --popup-footer-height: 60px; /* Altezza del footer del popup */
-}
-
-/* Stile per i bottoni generici (settings e music) - QUELLI FUORI DAL POPUP */
-.settings-button, .music-button {
-    position: fixed;
-    top: 20px;
-    background-color: var(--colore-button);
-    color: #fff;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 101; /* Sopra la maggior parte degli altri elementi */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    outline: none; /* Rimuove l'alone di focus predefinito */
-    border: none; /* Nessun bordo */
-}
-
-.settings-button {
-    right: 70px; /* A sinistra del music-button */
-}
-
-.music-button {
-    right: 20px; /* Più a destra */
-}
-
-.settings-button:hover, .music-button:hover {
-    background-color: var(--colore-button-hover);
-}
-.settings-button:focus, .music-button:focus {
-    box-shadow: 0 0 0 3px rgba(var(--colore-button-rgb, 76, 175, 80), 0.5); /* Esempio per RGB del verde */
-}
-
-/* Stile per l'overlay oscurante (invariato) */
-.music-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 999;
-    display: none;
-}
-
-/* Finestra pop-up musica - SIMILE ALLE IMPOSTAZIONI */
-.music-popup {
-    position: fixed;
-    top: 20px; /* Stessa distanza dall'alto dei bottoni */
-    right: 20px; /* Posizionato in alto a destra */
-    width: 300px; /* Larghezza fissa come il menu impostazioni */
-    height: auto; /* Altezza si adatta al contenuto */
-    max-height: calc(100vh - 40px); /* Massimo altezza viewport - 20px sopra - 20px sotto */
-    background-color: var(--popup-background-color);
-    border-radius: 16px;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.55);
-    z-index: 1000;
-    display: none; /* Inizialmente nascosto */
-    overflow: hidden; /* Nasconde ciò che esce dai bordi arrotondati */
-
-    /* Non usiamo display flex qui, lo useremo per il content */
-}
-
-.music-popup-content {
-    display: flex;
-    flex-direction: column;
-    height: 100%; /* Occupa tutta l'altezza del popup */
-    width: 100%;
-    overflow: hidden; /* Evita scrollbars doppie */
-}
-
-/* Header del pop-up (Freccia Indietro e Titolo) */
-.music-popup-header {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start; /* Allinea a sinistra */
-    padding: 15px 20px;
-    background-color: rgba(0, 0, 0, 0.1); /* Leggermente più scuro dell'header */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    min-height: var(--popup-header-height); /* Altezza fissa */
-}
-
-.music-back {
-    background-color: transparent;
-    color: #fff; /* Colore bianco per la freccia */
-    border: none;
-    font-size: 1.8em; /* Dimensione per la freccia */
-    cursor: pointer;
-    padding: 0; /* Rimuovi padding extra */
-    margin-right: 15px; /* Spazio tra freccia e titolo */
-    outline: none;
-    line-height: 1; /* Per un corretto allineamento verticale */
-    display: none; /* Inizialmente nascosto, verrà mostrato via JS */
-}
-
-.music-back:hover {
-    opacity: 0.8;
-}
-
-#musicMenuTitle {
-    color: #fff;
-    font-size: 1.5em; /* Dimensione del titolo "Her" / "Mine" */
-    margin: 0; /* Rimuovi margini predefiniti */
-    flex-grow: 1; /* Permette al titolo di occupare lo spazio rimanente */
-    text-align: center; /* Centra il titolo */
-}
-
-/* Contenitore delle sezioni del menu canzoni ("Her", "Mine") */
-#musicMenu.music-menu-section {
-    flex-grow: 1; /* Occupa lo spazio disponibile */
-    overflow-y: auto; /* Permette lo scroll solo a questa sezione se troppe canzoni */
-    padding: 15px 20px;
-    display: block; /* Visibile di default all'apertura */
-}
-
-.music-category h2 {
-    color: #DAA520; /* Colore oro per i titoli di categoria */
-    margin-top: 15px;
-    margin-bottom: 10px;
-    font-size: 1.2em; /* Dimensione ridotta per i titoli di categoria */
-    text-align: left; /* Allinea a sinistra come nel menu impostazioni */
-}
-
-.music-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start; /* Allinea a sinistra */
-    gap: 10px; /* Spazio ridotto tra le icone */
-    padding-bottom: 10px;
-}
-
-.music-item {
-    background-color: transparent; /* Nessuno sfondo per l'item */
-    border-radius: 8px;
-    padding: 5px;
-    text-align: center;
-    cursor: pointer;
-    transition: transform 0.2s ease-in-out;
-    width: calc(33.33% - 10px); /* 3 colonne per desktop */
-    min-width: 80px; /* Larghezza minima per evitare che si rimpicciolisca troppo */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.music-item:hover {
-    transform: translateY(-3px);
-}
-
-.music-icon {
-    width: 70px; /* Icone più piccole per stare in 3 colonne */
-    height: 70px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-}
-
-.song-title {
-    color: var(--popup-text-color);
-    font-size: 0.75em; /* Testo più piccolo */
-    margin-bottom: 2px;
-    white-space: normal; /* Permetti al titolo di andare a capo */
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-height: 2.2em; /* Massime due righe di testo */
-    line-height: 1.1em;
-}
-
-.song-artist {
-    color: var(--popup-light-text-color);
-    font-size: 0.65em; /* Testo artista più piccolo */
-    white-space: normal;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-height: 1.1em; /* Massima una riga */
-}
-
-
-/* PLAYER MUSICALE - Mantiene stile centrale ma nel nuovo contenitore */
-#musicPlayer.music-player {
-    display: flex; /* Settato a 'flex' tramite JS quando è attivo */
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; /* Centra verticalmente gli elementi */
-    flex-grow: 1; /* Occupa lo spazio disponibile tra header e footer */
-    padding: 20px;
-    overflow-y: auto; /* Se il contenuto del player dovesse superare l'altezza */
-}
-
-.player-cover {
-    width: 150px; /* Dimensione moderata per la copertina del player */
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
-
-.player-title {
-    color: var(--popup-text-color);
-    font-size: 1.3em;
-    font-weight: bold;
-    margin-bottom: 5px;
-    text-align: center;
-}
-
-.player-artist {
-    color: var(--popup-light-text-color);
-    font-size: 0.9em;
-    margin-bottom: 15px;
-    text-align: center;
-}
-
-#audioPlayer {
-    width: 90%; /* Larghezza dei controlli audio, responsiva */
-    max-width: 250px; /* Limita la larghezza massima */
-    margin-top: 10px;
-}
-
-/* Footer del pop-up (bottone Chiudi) */
-.music-popup-footer {
-    display: flex;
-    justify-content: center; /* Centra il bottone Chiudi */
-    align-items: center;
-    padding: 15px 20px;
-    background-color: rgba(0, 0, 0, 0.1);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    min-height: var(--popup-footer-height); /* Altezza fissa */
-}
-
-.close-popup-button {
-    background-color: var(--colore-close-button); /* Rosso */
-    color: #fff;
-    border: none;
-    border-radius: 8px; /* Bordi leggermente arrotondati */
-    padding: 10px 20px;
-    font-size: 1em;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    outline: none;
-    width: 100%; /* Occupa tutta la larghezza disponibile */
-    max-width: 150px; /* Larghezza massima simile al bottone impostazioni */
-}
-
-.close-popup-button:hover {
-    background-color: var(--colore-close-button-hover);
-}
-
-.close-popup-button:focus {
-    box-shadow: 0 0 0 3px rgba(244, 67, 54, 0.5); /* Esempio per RGB del rosso */
-}
-
-
-/* Media Queries per schermi più piccoli */
-@media (max-width: 600px) {
-    /* Manteniamo le dimensioni dei bottoni esterni in alto a destra come sono */
-
-    .music-popup {
-        top: 10px;
-        right: 10px;
-        width: calc(100vw - 20px); /* Occupa quasi tutta la larghezza */
-        max-height: calc(100vh - 20px);
-        border-radius: 10px;
-    }
-
-    .music-popup-header, .music-popup-footer {
-        padding: 10px 15px;
-        min-height: 50px;
-    }
-
-    #musicMenuTitle {
-        font-size: 1.3em;
-    }
-
-    .music-back {
-        font-size: 1.5em;
-        margin-right: 10px;
-    }
-
-    #musicMenu.music-menu-section {
-        padding: 10px 15px;
-    }
-
-    .music-category h2 {
-        font-size: 1.1em;
-        margin-top: 10px;
-        margin-bottom: 8px;
-    }
-
-    .music-item {
-        width: calc(50% - 10px); /* 2 colonne per mobile */
-        min-width: unset; /* Rimuovi min-width per adattarsi meglio */
-        padding: 6px;
-    }
-
-    .music-icon {
-        width: 60px;
-        height: 60px;
-        margin-bottom: 4px;
-    }
-
-    .song-title {
-        font-size: 0.7em;
-    }
-
-    .song-artist {
-        font-size: 0.6em;
-    }
-
-    .player-cover {
-        width: 120px;
-        height: 120px;
-        margin-bottom: 10px;
-    }
-
-    .player-title {
-        font-size: 1.1em;
-    }
-
-    .player-artist {
-        font-size: 0.8em;
-    }
-
-    #audioPlayer {
-        width: 95%;
-    }
-
-    .close-popup-button {
-        padding: 8px 15px;
-        font-size: 0.9em;
-    }
-}
 </style>
 </head>
 <body>
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ricordi Speciali</title>
-    <link rel="stylesheet" href="style.css"> </head>
-<body>
-
     <div class="container">
         <h1>Ricordi Speciali</h1>
 
+        <!-- Overlay -->
         <div class="overlay" id="overlay" onclick="closeWindows()"></div>
 
-        <button class="settings-button" id="settingsButton" onclick="toggleSettings()">⚙️</button>
+        <!-- Pulsante per mostrare le impostazioni -->
+        <div class="settings-button" id="settingsButton" onclick="toggleSettings()">⚙️</div>
 
-        <button class="music-button" onclick="toggleMusic()">🎵</button>
+<button class="music-button" onclick="toggleMusic()">🎵</button>
 
-        <div id="settings-menu" class="settings-menu" style="display: none;">
-            <div class="settings-menu-content">
-                <div class="settings-header">
-                    <h2>Impostazioni</h2>
+<div id="music" class="music-popup" style="display: none;">
+    <div class="music-popup-content">
+        <span class="music-close" onclick="toggleMusic()">&times;</span>
+        <div class="music-menu">
+            <h2>Her</h2>
+            <div class="music-list">
+                <div class="music-item" onclick="playSong(
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/BLANCO%2C%2520Sfera%2520Ebbasta%2520-%2520MI%2520FAI%2520IMPAZZIRE%2520%2528Lyric%2520Video%2529%2520%5BvBx5MmoR1L8%5D.mp3',
+                    'Mi Fai Impazzire',
+                    'Blanco, Sfera Ebbasta',
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Mi%20Fai%20Impazzire.jpeg'
+                )">
+                    <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Mi%20Fai%20Impazzire.jpeg" alt="cover"/>
+                    <div class="song-title">Mi Fai Impazzire</div>
+                    <div class="song-artist">Blanco, Sfera Ebbasta</div>
                 </div>
-                <div class="settings-body">
-                    <div class="setting-item">
-                        <span>Opzione 1</span>
-                        <input type="checkbox">
-                    </div>
-                    <div class="setting-item">
-                        <span>Opzione 2</span>
-                        <input type="range">
-                    </div>
+                <div class="music-item" onclick="playSong(
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Vancouver%2520Sleep%2520Clinic%2520-%2520Someone%2520to%2520Stay%2520%2528Audio%2529%2520%5BxNVZ4fzkSu8%5D.mp3',
+                    'Someone To Stay',
+                    'Vancouver Sleep Clinic',
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Someone%20To%20Stay.jpeg'
+                )">
+                    <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Someone%20To%20Stay.jpeg" alt="cover"/>
+                    <div class="song-title">Someone To Stay</div>
+                    <div class="song-artist">Vancouver Sleep Clinic</div>
                 </div>
-                <div class="settings-footer">
-                    <button class="close-popup-button" onclick="toggleSettings()">Chiudi</button>
+                <div class="music-item" onclick="playSong(
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Jay-Z%2520%2526%2520Kanye%2520West%2520-%2520Why%2520I%2520Love%2520You%2520%5BHVD4lnfz0-M%5D.mp3',
+                    'Why I Love You',
+                    'Jay-Z & Kanye West',
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Why%20I%20Love%20You.jpeg'
+                )">
+                    <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Why%20I%20Love%20You.jpeg" alt="cover"/>
+                    <div class="song-title">Why I Love You</div>
+                    <div class="song-artist">Jay-Z & Kanye West</div>
+                </div>
+                <div class="music-item" onclick="playSong(
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Coldplay%2520-%2520Don%2527t%2520Panic%2520%5B8uxt-FnNy2I%5D.mp3',
+                    'Don\'t Panic',
+                    'Coldplay',
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Don%27t%20Panic.jpeg'
+                )">
+                    <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Don%27t%20Panic.jpeg" alt="cover"/>
+                    <div class="song-title">Don't Panic</div>
+                    <div class="song-artist">Coldplay</div>
+                </div>
+                <div class="music-item" onclick="playSong(
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/No.%25201%2520Party%2520Anthem%2520%5BmGUjVbsYG6E%5D.mp3',
+                    'No 1 Party Anthem',
+                    'Arctic Monkeys',
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/AM.webp'
+                )">
+                    <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/AM.webp" alt="cover"/>
+                    <div class="song-title">No 1 Party Anthem</div>
+                    <div class="song-artist">Arctic Monkeys</div>
+                </div>
+                <div class="music-item" onclick="playSong(
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Ariana%2520Grande%2520-%2520Dangerous%2520Woman%2520%2528Official%2520Audio%2529%2520%5BTFrMDGfW_Sg%5D.mp3',
+                    'Dangerous Woman',
+                    'Ariana Grande',
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Dangerous%20Woman.jpg'
+                )">
+                    <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Dangerous%20Woman.jpg" alt="cover"/>
+                    <div class="song-title">Dangerous Woman</div>
+                    <div class="song-artist">Ariana Grande</div>
+                </div>
+                <div class="music-item" onclick="playSong(
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Mad%2520Sounds%2520%5Bup5DEICL_Q0%5D.mp3',
+                    'Mad Sounds',
+                    'Arctic Monkeys',
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/AM.webp'
+                )">
+                    <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/AM.webp" alt="cover"/>
+                    <div class="song-title">Mad Sounds</div>
+                    <div class="song-artist">Arctic Monkeys</div>
+                </div>
+                <div class="music-item" onclick="playSong(
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Djo%2520-%2520End%2520Of%2520Beginning%2520%2528Official%2520Audio%2529%2520%5Bxy3AcmW0lrQ%5D.mp3',
+                    'End Of Beginning',
+                    'Djo',
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/End%20Of%20Beginning.jpeg'
+                )">
+                    <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/End%20Of%20Beginning.jpeg" alt="cover"/>
+                    <div class="song-title">End Of Beginning</div>
+                    <div class="song-artist">Djo</div>
+                </div>
+                <div class="music-item" onclick="playSong(
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/I%2520Wanna%2520Be%2520Yours%2520%5Bnyuo9-OjNNg%5D.mp3',
+                    'I Wanna Be Yours',
+                    'Arctic Monkeys',
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/AM.webp'
+                )">
+                    <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/AM.webp" alt="cover"/>
+                    <div class="song-title">I Wanna Be Yours</div>
+                    <div class="song-artist">Arctic Monkeys</div>
+                </div>
+                <div class="music-item" onclick="playSong(
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Swedish%2520House%2520Mafia%2520and%2520The%2520Weeknd%2520-%2520Moth%2520To%2520A%2520Flame%2520%2528Official%2520Video%2529%2520%5Bu9n7Cw-4_HQ%5D.mp3',
+                    'Moth To A Flame',
+                    'Swedish House Mafia & The Weeknd',
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Moth%20To%20A%20Flame.jpeg'
+                )">
+                    <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Moth%20To%20A%20Flame.jpeg" alt="cover"/>
+                    <div class="song-title">Moth To A Flame</div>
+                    <div class="song-artist">Swedish House Mafia & The Weeknd</div>
+                </div>
+                <div class="music-item" onclick="playSong(
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/%2540fitzandthetantrums%2520-%2520Out%2520Of%2520My%2520League%2520%2528Lyrics%2529%2520%5BvmO5aM8H_lA%5D.mp3',
+                    'Out Of My League',
+                    'Fitz And The Tantrums',
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Out%20Of%20My%20League.jpeg'
+                )">
+                    <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Out%20Of%20My%20League.jpeg" alt="cover"/>
+                    <div class="song-title">Out Of My League</div>
+                    <div class="song-artist">Fitz And The Tantrums</div>
+                </div>
+                <div class="music-item" onclick="playSong(
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Isabel%2520LaRosa%2520-%2520Favorite%2520%2528Lyric%2520Video%2529%2520%5BXKR3SfC6DdQ%5D.mp3',
+                    'Favorite',
+                    'Isabel LaRosa',
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Favorite.jpeg'
+                )">
+                    <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Favorite.jpeg" alt="cover"/>
+                    <div class="song-title">Favorite</div>
+                    <div class="song-artist">Isabel LaRosa</div>
+                </div>
+                <div class="music-item" onclick="playSong(
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/505%2520%5BqU9mHegkTc4%5D.mp3',
+                    '505',
+                    'Arctic Monkeys',
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/505.jpg'
+                )">
+                    <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/505.jpg" alt="cover"/>
+                    <div class="song-title">505</div>
+                    <div class="song-artist">Arctic Monkeys</div>
+                </div>
+                <div class="music-item" onclick="playSong(
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Justin%2520Bieber%2520-%2520Confident%2520ft.%2520Chance%2520The%2520Rapper%2520%2528Official%2520Audio%2529%2520%5BqnD1hwjR3WU%5D.mp3',
+                    'Confident',
+                    'Justin Bieber ft. Chance The Rapper',
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Confident.jpg'
+                )">
+                    <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Confident.jpg" alt="cover"/>
+                    <div class="song-title">Confident</div>
+                    <div class="song-artist">Justin Bieber ft. Chance The Rapper</div>
+                </div>
+                <div class="music-item" onclick="playSong(
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Taylor%2520Swift%2520-%2520Wildest%2520Dreams%2520%2528Taylor%2527s%2520Version%2529%2520%2528Lyric%2520Video%2529%2520%5BvtW_4j7SsZk%5D.mp3',
+                    'Wildest Dreams',
+                    'Taylor Swift',
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Wildest%20Dreams.jpeg'
+                )">
+                    <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Wildest%20Dreams.jpeg" alt="cover"/>
+                    <div class="song-title">Wildest Dreams</div>
+                    <div class="song-artist">Taylor Swift</div>
+                </div>
+                <div class="music-item" onclick="playSong(
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Jutty%2520Ranx%2520-%2520I%2520See%2520You%2520%2528Video%2529%2520%5BoHVlBmTlSt8%5D.mp3',
+                    'I See You',
+                    'Jutty Ranx',
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/I%20See%20You.jpeg'
+                )">
+                    <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/I%20See%20You.jpeg" alt="cover"/>
+                    <div class="song-title">I See You</div>
+                    <div class="song-artist">Jutty Ranx</div>
+                </div>
+                <div class="music-item" onclick="playSong(
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Benson%2520Boone%2520-%2520Beautiful%2520Things%2520%2528Official%2520Music%2520Video%2529%2520%5BOa_RSwwpPaA%5D.mp3',
+                    'Beautiful Things',
+                    'Benson Boone',
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Beautiful%20Things.jpeg'
+                )">
+                    <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Beautiful%20Things.jpeg" alt="cover"/>
+                    <div class="song-title">Beautiful Things</div>
+                    <div class="song-artist">Benson Boone</div>
+                </div>
+                <div class="music-item" onclick="playSong(
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Saweetie%2520-%2520My%2520Type%2520%255BOfficial%2520Music%2520Video%255D%2520%5Bx5c2iRHlAHA%5D.mp3',
+                    'My Type',
+                    'Saweetie',
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/My%20Type.png'
+                )">
+                    <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/My%20Type.png" alt="cover"/>
+                    <div class="song-title">My Type</div>
+                    <div class="song-artist">Saweetie</div>
+                </div>
+                <div class="music-item" onclick="playSong(
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Tananai%2520-%2520BABY%2520GODDAMN%2520%5BPLin7dzqk_w%5D.mp3',
+                    'BABY GODDAMN',
+                    'Tananai',
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Baby%20Goddamn.jpeg'
+                )">
+                    <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Baby%20Goddamn.jpeg" alt="cover"/>
+                    <div class="song-title">Baby Goddamn</div>
+                    <div class="song-artist">Tananai</div>
+                </div>
+                <div class="music-item" onclick="playSong(
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Sfera%2520Ebbasta%2520-%2520Tran%2520Tran%2520%2528Prod.%2520Charlie%2520Charles%2529%2520%5BtU_KbOs8w2o%5D.mp3',
+                    'Tran Tran',
+                    'Sfera Ebbasta',
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Tran%20Tran.jpeg'
+                )">
+                    <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Tran%20Tran.jpeg" alt="cover"/>
+                    <div class="song-title">Tran Tran</div>
+                    <div class="song-artist">Sfera Ebbasta</div>
+                </div>
+                <div class="music-item" onclick="playSong(
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Sfera%2520Ebbasta%2520-%2520Rockstar%2520%2528Visual%2529%2520%5Bx8fDlAunwAE%5D.mp3',
+                    'Rockstar',
+                    'Sfera Ebbasta',
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Rockstar.jpg'
+                )">
+                    <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Rockstar.jpg" alt="cover"/>
+                    <div class="song-title">Rockstar</div>
+                    <div class="song-artist">Sfera Ebbasta</div>
+                </div>
+                <div class="music-item" onclick="playSong(
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Isabel%2520LaRosa%2520-%2520older%2520%2528Audio%2529%2520%5B7MVaVDAi5A8%5D.mp3',
+                    'Older',
+                    'Isabel LaRosa',
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Older.jpeg'
+                )">
+                    <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Older.jpeg" alt="cover"/>
+                    <div class="song-title">Older</div>
+                    <div class="song-artist">Isabel LaRosa</div>
+                </div>
+                <div class="music-item" onclick="playSong(
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Mockingbird%2520%5BFjVjHkezTIM%5D.mp3',
+                    'Mockingbird',
+                    'Eminem',
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Mockingbird.jpeg'
+                )">
+                    <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Mockingbird.jpeg" alt="cover"/>
+                    <div class="song-title">Mockingbird</div>
+                    <div class="song-artist">Eminem</div>
+                </div>
+                <div class="music-item" onclick="playSong(
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Coldplay%2520-%2520Yellow%2520%5BtdVAqxNLXiw%5D.mp3',
+                    'Yellow',
+                    'Coldplay',
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Yellow.jpeg'
+                )">
+                    <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Yellow.jpeg" alt="cover"/>
+                    <div class="song-title">Yellow</div>
+                    <div class="song-artist">Coldplay</div>
+                </div>
+                <div class="music-item" onclick="playSong(
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Cigarette%2520Daydreams%2520-%2520Cage%2520the%2520Elephant%2520%5BJt0w1XUzM2Q%5D.mp3',
+                    'Cigarette Daydream',
+                    'Cage The Elephant',
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Cigarette%20Daydream.jpeg'
+                )">
+                    <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Cigarette%20Daydream.jpeg" alt="cover"/>
+                    <div class="song-title">Cigarette Daydream</div>
+                    <div class="song-artist">Cage The Elephant</div>
+                </div>
+                <div class="music-item" onclick="playSong(
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Apocalypse%2520-%2520Cigarettes%2520After%2520Sex%2520%5BsElE_BfQ67s%5D.mp3',
+                    'Apocalypse',
+                    'Cigarettes After Sex',
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Apocalypse.png'
+                )">
+                    <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Apocalypse.png" alt="cover"/>
+                    <div class="song-title">Apocalypse</div>
+                    <div class="song-artist">Cigarettes After Sex</div>
+                </div>
+                <div class="music-item" onclick="playSong(
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Chase%2520Atlantic%2520-%2520FRIENDS%2520%2528Official%2520Lyric%2520Video%2529%2520%5BnT8O_mP2x6Y%5D.mp3',
+                    'FRIENDS',
+                    'Chase Atlantic',
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Friends.jpeg'
+                )">
+                    <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Friends.jpeg" alt="cover"/>
+                    <div class="song-title">FRIENDS</div>
+                    <div class="song-artist">Chase Atlantic</div>
+                </div>
+                <div class="music-item" onclick="playSong(
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Chase%2520Atlantic%2520-%2520SWIM%2520%2528Official%2520Music%2520Video%2529%2520%5BmC9v5FaLt84%5D.mp3',
+                    'SWIM',
+                    'Chase Atlantic',
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Swim.jpeg'
+                )">
+                    <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Swim.jpeg" alt="cover"/>
+                    <div class="song-title">SWIM</div>
+                    <div class="song-artist">Chase Atlantic</div>
+                </div>
+                <div class="music-item" onclick="playSong(
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Lana%2520Del%2520Rey%2520-%2520Brooklyn%2520Baby%2520%2528Official%2520Audio%2529%2520%5BT5xcnjAG8pE%5D.mp3',
+                    'Brooklyn Baby',
+                    'Lana Del Rey',
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/image_placeholder.jpg'
+                )">
+                    <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/image_placeholder.jpg" alt="cover"/>
+                    <div class="song-title">Brooklyn Baby</div>
+                    <div class="song-artist">Lana Del Rey</div>
+                </div>
+                <div class="music-item" onclick="playSong(
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Lana%2520Del%2520Rey%2520-%2520Let%2520The%2520Light%2520In%2520%2528Audio%2529%2520ft.%2520Father%2520John%2520Misty%2520%5BWJlQ4jt5Fz4%5D.mp3',
+                    'Let The Light In',
+                    'Lana Del Rey ft. Father John Misty',
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/image_placeholder.jpg'
+                )">
+                    <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/image_placeholder.jpg" alt="cover"/>
+                    <div class="song-title">Let The Light In</div>
+                    <div class="song-artist">Lana Del Rey ft. Father John Misty</div>
+                </div>
+                <div class="music-item" onclick="playSong(
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Lana%2520Del%2520Rey%2520-%2520Summertime%2520Sadness%2520%2528Official%2520Music%2520Video%2529%2520%5BTdrL3QxjyVw%5D.mp3',
+                    'Summertime Sadness',
+                    'Lana Del Rey',
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/image_placeholder.jpg'
+                )">
+                    <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/image_placeholder.jpg" alt="cover"/>
+                    <div class="song-title">Summertime Sadness</div>
+                    <div class="song-artist">Lana Del Rey</div>
+                </div>
+                <div class="music-item" onclick="playSong(
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Lana%2520Del%2520Rey%2520-%2520Young%2520and%2520Beautiful%2520%5Bo_1aF54DO60%5D.mp3',
+                    'Young and Beautiful',
+                    'Lana Del Rey',
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/image_placeholder.jpg'
+                )">
+                    <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/image_placeholder.jpg" alt="cover"/>
+                    <div class="song-title">Young and Beautiful</div>
+                    <div class="song-artist">Lana Del Rey</div>
+                </div>
+            </div>
+            <h2>Mine</h2>
+            <div class="music-list">
+                <div class="music-item" onclick="playSong(
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Henry%2520Moodie%2520-%2520you%2520were%2520there%2520for%2520me%2520%2528official%2520video%2529%2520%5B65ZRPTcxkWk%5D.mp3',
+                    'You Were There For Me',
+                    'Henry Moodie',
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/In%20All%20Of%20My%20Lonely%20Nights.jpeg'
+                )">
+                    <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/In%20All%20Of%20My%20Lonely%20Nights.jpeg" alt="cover"/>
+                    <div class="song-title">You Were There For Me</div>
+                    <div class="song-artist">Henry Moodie</div>
+                </div>
+                <div class="music-item" onclick="playSong(
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Lord%2520Huron%2520-%2520The%2520Night%2520We%2520Met%2520%2528Official%2520Audio%2529%2520%5BKtlgYxa6BMU%5D.mp3',
+                    'The Night We Met',
+                    'Lord Huron',
+                    'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/The%20Night%20We%20Met.jpeg'
+                )">
+                    <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/The%20Night%20We%20Met.jpeg" alt="cover"/>
+                    <div class="song-title">The Night We Met</div>
+                    <div class="song-artist">Lord Huron</div>
                 </div>
             </div>
         </div>
-
-        <div id="music" class="music-popup" style="display: none;">
-            <div class="music-popup-content">
-                <div class="music-popup-header">
-                    <button id="backButton" class="music-back" onclick="showMenu()">&#8592;</button>
-                    <h2 id="musicMenuTitle">Her</h2> </div>
-
-                <div id="musicMenu" class="music-menu-section">
-                    <div class="music-category">
-                        <h2>Her</h2>
-                        <div class="music-list">
-                            <div class="music-item" onclick="playSong(
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/BLANCO%2C%2520Sfera%2520Ebbasta%2520-%2520MI%2520FAI%2520IMPAZZIRE%2520%2528Lyric%2520Video%2529%2520%5BvBx5MmoR1L8%5D.mp3',
-                                'Mi Fai Impazzire',
-                                'Blanco, Sfera Ebbasta',
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Mi%20Fai%20Impazzire.jpeg'
-                            )">
-                                <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Mi%20Fai%20Impazzire.jpeg" alt="cover"/>
-                                <div class="song-title">Mi Fai Impazzire</div>
-                                <div class="song-artist">Blanco, Sfera Ebbasta</div>
-                            </div>
-                            <div class="music-item" onclick="playSong(
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Vancouver%2520Sleep%2520Clinic%2520-%2520Someone%2520to%2520Stay%2520%2528Audio%2529%2520%5BxNVZ4fzkSu8%5D.mp3',
-                                'Someone To Stay',
-                                'Vancouver Sleep Clinic',
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Someone%20To%20Stay.jpeg'
-                            )">
-                                <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Someone%20To%20Stay.jpeg" alt="cover"/>
-                                <div class="song-title">Someone To Stay</div>
-                                <div class="song-artist">Vancouver Sleep Clinic</div>
-                            </div>
-                            <div class="music-item" onclick="playSong(
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Jay-Z%2520%2526%2520Kanye%2520West%2520-%2520Why%2520I%2520Love%2520You%2520%5BHVD4lnfz0-M%5D.mp3',
-                                'Why I Love You',
-                                'Jay-Z & Kanye West',
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Why%20I%20Love%2520You.jpeg'
-                            )">
-                                <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Why%20I%20Love%2520You.jpeg" alt="cover"/>
-                                <div class="song-title">Why I Love You</div>
-                                <div class="song-artist">Jay-Z & Kanye West</div>
-                            </div>
-                            <div class="music-item" onclick="playSong(
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Coldplay%2520-%2520Don%2527t%2520Panic%2520%5B8uxt-FnNy2I%5D.mp3',
-                                'Don\'t Panic',
-                                'Coldplay',
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Don%27t%20Panic.jpeg'
-                            )">
-                                <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Don%27t%20Panic.jpeg" alt="cover"/>
-                                <div class="song-title">Don't Panic</div>
-                                <div class="song-artist">Coldplay</div>
-                            </div>
-                            <div class="music-item" onclick="playSong(
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/No.%25201%2520Party%2520Anthem%2520%5BmGUjVbsYG6E%5D.mp3',
-                                'No 1 Party Anthem',
-                                'Arctic Monkeys',
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/AM.webp'
-                            )">
-                                <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/AM.webp" alt="cover"/>
-                                <div class="song-title">No 1 Party Anthem</div>
-                                <div class="song-artist">Arctic Monkeys</div>
-                            </div>
-                            <div class="music-item" onclick="playSong(
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Ariana%2520Grande%2520-%2520Dangerous%2520Woman%2520%2528Official%2520Audio%2529%2520%5BTFrMDGfW_Sg%5D.mp3',
-                                'Dangerous Woman',
-                                'Ariana Grande',
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Dangerous%20Woman.jpg'
-                            )">
-                                <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Dangerous%20Woman.jpg" alt="cover"/>
-                                <div class="song-title">Dangerous Woman</div>
-                                <div class="song-artist">Ariana Grande</div>
-                            </div>
-                            <div class="music-item" onclick="playSong(
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Mad%2520Sounds%2520%5Bup5DEICL_Q0%5D.mp3',
-                                'Mad Sounds',
-                                'Arctic Monkeys',
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/AM.webp'
-                            )">
-                                <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/AM.webp" alt="cover"/>
-                                <div class="song-title">Mad Sounds</div>
-                                <div class="song-artist">Arctic Monkeys</div>
-                            </div>
-                            <div class="music-item" onclick="playSong(
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Djo%2520-%2520End%2520Of%2520Beginning%2520%2528Official%2520Audio%2529%2520%5Bxy3AcmW0lrQ%5D.mp3',
-                                'End Of Beginning',
-                                'Djo',
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/End%20Of%20Beginning.jpeg'
-                            )">
-                                <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/End%20Of%20Beginning.jpeg" alt="cover"/>
-                                <div class="song-title">End Of Beginning</div>
-                                <div class="song-artist">Djo</div>
-                            </div>
-                            <div class="music-item" onclick="playSong(
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/I%2520Wanna%2520Be%2520Yours%2520%5Bnyuo9-OjNNg%5D.mp3',
-                                'I Wanna Be Yours',
-                                'Arctic Monkeys',
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/AM.webp'
-                            )">
-                                <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/AM.webp" alt="cover"/>
-                                <div class="song-title">I Wanna Be Yours</div>
-                                <div class="song-artist">Arctic Monkeys</div>
-                            </div>
-                            <div class="music-item" onclick="playSong(
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Swedish%2520House%2520Mafia%2520and%2520The%2520Weeknd%2520-%2520Moth%2520To%2520A%2520Flame%2520%2528Official%2520Video%2529%2520%5Bu9n7Cw-4_HQ%5D.mp3',
-                                'Moth To A Flame',
-                                'Swedish House Mafia & The Weeknd',
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Moth%20To%20A%20Flame.jpeg'
-                            )">
-                                <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Moth%20To%20A%20Flame.jpeg" alt="cover"/>
-                                <div class="song-title">Moth To A Flame</div>
-                                <div class="song-artist">Swedish House Mafia & The Weeknd</div>
-                            </div>
-                            <div class="music-item" onclick="playSong(
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/%2540fitzandthetantrums%2520-%2520Out%2520Of%2520My%2520League%2520%2528Lyrics%2529%2520%5BvmO5aM8H_lA%5D.mp3',
-                                'Out Of My League',
-                                'Fitz And The Tantrums',
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Out%20Of%20My%20League.jpeg'
-                            )">
-                                <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Out%20Of%20My%20League.jpeg" alt="cover"/>
-                                <div class="song-title">Out Of My League</div>
-                                <div class="song-artist">Fitz And The Tantrums</div>
-                            </div>
-                            <div class="music-item" onclick="playSong(
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Isabel%2520LaRosa%2520-%2520Favorite%2520%2528Lyric%2520Video%2529%2520%5BXKR3SfC6DdQ%5D.mp3',
-                                'Favorite',
-                                'Isabel LaRosa',
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Favorite.jpeg'
-                            )">
-                                <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Favorite.jpeg" alt="cover"/>
-                                <div class="song-title">Favorite</div>
-                                <div class="song-artist">Isabel LaRosa</div>
-                            </div>
-                            <div class="music-item" onclick="playSong(
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/505%2520%5BqU9mHegkTc4%5D.mp3',
-                                '505',
-                                'Arctic Monkeys',
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/505.jpg'
-                            )">
-                                <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/505.jpg" alt="cover"/>
-                                <div class="song-title">505</div>
-                                <div class="song-artist">Arctic Monkeys</div>
-                            </div>
-                            <div class="music-item" onclick="playSong(
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Justin%2520Bieber%2520-%2520Confident%2520ft.%2520Chance%2520The%2520Rapper%2520%2528Official%2520Audio%2529%2520%5BqnD1hwjR3WU%5D.mp3',
-                                'Confident',
-                                'Justin Bieber ft. Chance The Rapper',
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Confident.jpg'
-                            )">
-                                <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Confident.jpg" alt="cover"/>
-                                <div class="song-title">Confident</div>
-                                <div class="song-artist">Justin Bieber ft. Chance The Rapper</div>
-                            </div>
-                            <div class="music-item" onclick="playSong(
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Taylor%2520Swift%2520-%2520Wildest%2520Dreams%2520%2528Taylor%2527s%2520Version%2529%2520%2528Lyric%2520Video%2529%2520%5BvtW_4j7SsZk%5D.mp3',
-                                'Wildest Dreams',
-                                'Taylor Swift',
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Wildest%20Dreams.jpeg'
-                            )">
-                                <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Wildest%20Dreams.jpeg" alt="cover"/>
-                                <div class="song-title">Wildest Dreams</div>
-                                <div class="song-artist">Taylor Swift</div>
-                            </div>
-                            <div class="music-item" onclick="playSong(
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Jutty%2520Ranx%2520-%2520I%2520See%2520You%2520%2528Video%2529%2520%5BoHVlBmTlSt8%5D.mp3',
-                                'I See You',
-                                'Jutty Ranx',
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/I%20See%20You.jpeg'
-                            )">
-                                <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/I%20See%20You.jpeg" alt="cover"/>
-                                <div class="song-title">I See You</div>
-                                <div class="song-artist">Jutty Ranx</div>
-                            </div>
-                            <div class="music-item" onclick="playSong(
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Benson%2520Boone%2520-%2520Beautiful%2520Things%2520%2528Official%2520Music%2520Video%2529%2520%5BOa_RSwwpPaA%5D.mp3',
-                                'Beautiful Things',
-                                'Benson Boone',
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Beautiful%20Things.jpeg'
-                            )">
-                                <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Beautiful%20Things.jpeg" alt="cover"/>
-                                <div class="song-title">Beautiful Things</div>
-                                <div class="song-artist">Benson Boone</div>
-                            </div>
-                            <div class="music-item" onclick="playSong(
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Saweetie%2520-%2520My%2520Type%2520%255BOfficial%2520Music%2520Video%255D%2520%5Bx5c2iRHlAHA%5D.mp3',
-                                'My Type',
-                                'Saweetie',
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/My%20Type.png'
-                            )">
-                                <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/My%20Type.png" alt="cover"/>
-                                <div class="song-title">My Type</div>
-                                <div class="song-artist">Saweetie</div>
-                            </div>
-                            <div class="music-item" onclick="playSong(
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Tananai%2520-%2520BABY%2520GODDAMN%2520%5BPLin7dzqk_w%5D.mp3',
-                                'BABY GODDAMN',
-                                'Tananai',
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Baby%20Goddamn.jpeg'
-                            )">
-                                <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Baby%20Goddamn.jpeg" alt="cover"/>
-                                <div class="song-title">Baby Goddamn</div>
-                                <div class="song-artist">Tananai</div>
-                            </div>
-                            <div class="music-item" onclick="playSong(
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Sfera%2520Ebbasta%2520-%2520Tran%2520Tran%2520%2528Prod.%2520Charlie%2520Charles%2529%2520%5BtU_KbOs8w2o%5D.mp3',
-                                'Tran Tran',
-                                'Sfera Ebbasta',
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Tran%20Tran.jpeg'
-                            )">
-                                <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Tran%20Tran.jpeg" alt="cover"/>
-                                <div class="song-title">Tran Tran</div>
-                                <div class="song-artist">Sfera Ebbasta</div>
-                            </div>
-                            <div class="music-item" onclick="playSong(
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Sfera%2520Ebbasta%2520-%2520Rockstar%2520%2528Visual%2529%2520%5Bx8fDlAunwAE%5D.mp3',
-                                'Rockstar',
-                                'Sfera Ebbasta',
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Rockstar.jpg'
-                            )">
-                                <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Rockstar.jpg" alt="cover"/>
-                                <div class="song-title">Rockstar</div>
-                                <div class="song-artist">Sfera Ebbasta</div>
-                            </div>
-                            <div class="music-item" onclick="playSong(
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Isabel%2520LaRosa%2520-%2520older%2520%2528Audio%2529%2520%5B7MVaVDAi5A8%5D.mp3',
-                                'Older',
-                                'Isabel LaRosa',
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Older.jpeg'
-                            )">
-                                <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Older.jpeg" alt="cover"/>
-                                <div class="song-title">Older</div>
-                                <div class="song-artist">Isabel LaRosa</div>
-                            </div>
-                            <div class="music-item" onclick="playSong(
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Mockingbird%2520%5BFjVjHkezTIM%5D.mp3',
-                                'Mockingbird',
-                                'Eminem',
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Mockingbird.jpeg'
-                            )">
-                                <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Mockingbird.jpeg" alt="cover"/>
-                                <div class="song-title">Mockingbird</div>
-                                <div class="song-artist">Eminem</div>
-                            </div>
-                            <div class="music-item" onclick="playSong(
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Coldplay%2520-%2520Yellow%2520%5BtdVAqxNLXiw%5D.mp3',
-                                'Yellow',
-                                'Coldplay',
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Yellow.jpeg'
-                            )">
-                                <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Yellow.jpeg" alt="cover"/>
-                                <div class="song-title">Yellow</div>
-                                <div class="song-artist">Coldplay</div>
-                            </div>
-                            <div class="music-item" onclick="playSong(
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Cigarette%2520Daydreams%2520-%2520Cage%2520the%2520Elephant%2520%5BJt0w1XUzM2Q%5D.mp3',
-                                'Cigarette Daydream',
-                                'Cage The Elephant',
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Cigarette%20Daydream.jpeg'
-                            )">
-                                <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Cigarette%20Daydream.jpeg" alt="cover"/>
-                                <div class="song-title">Cigarette Daydream</div>
-                                <div class="song-artist">Cage The Elephant</div>
-                            </div>
-                            <div class="music-item" onclick="playSong(
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Apocalypse%2520-%2520Cigarettes%2520After%2520Sex%2520%5BsElE_BfQ67s%5D.mp3',
-                                'Apocalypse',
-                                'Cigarettes After Sex',
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Apocalypse.png'
-                            )">
-                                <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Apocalypse.png" alt="cover"/>
-                                <div class="song-title">Apocalypse</div>
-                                <div class="song-artist">Cigarettes After Sex</div>
-                            </div>
-                            <div class="music-item" onclick="playSong(
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Chase%2520Atlantic%2520-%2520FRIENDS%2520%2528Official%2520Lyric%2520Video%2529%2520%5BnT8O_mP2x6Y%5D.mp3',
-                                'FRIENDS',
-                                'Chase Atlantic',
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Friends.jpeg'
-                            )">
-                                <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Friends.jpeg" alt="cover"/>
-                                <div class="song-title">FRIENDS</div>
-                                <div class="song-artist">Chase Atlantic</div>
-                            </div>
-                            <div class="music-item" onclick="playSong(
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Chase%2520Atlantic%2520-%2520SWIM%2520%2528Official%2520Music%2520Video%2529%2520%5BmC9v5FaLt84%5D.mp3',
-                                'SWIM',
-                                'Chase Atlantic',
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Swim.jpeg'
-                            )">
-                                <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Swim.jpeg" alt="cover"/>
-                                <div class="song-title">SWIM</div>
-                                <div class="song-artist">Chase Atlantic</div>
-                            </div>
-                            <div class="music-item" onclick="playSong(
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Lana%2520Del%2520Rey%2520-%2520Brooklyn%2520Baby%2520%2528Official%2520Audio%2529%2520%5BT5xcnjAG8pE%5D.mp3',
-                                'Brooklyn Baby',
-                                'Lana Del Rey',
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/image_placeholder.jpg'
-                            )">
-                                <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/image_placeholder.jpg" alt="cover"/>
-                                <div class="song-title">Brooklyn Baby</div>
-                                <div class="song-artist">Lana Del Rey</div>
-                            </div>
-                            <div class="music-item" onclick="playSong(
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Lana%2520Del%2520Rey%2520-%2520Let%2520The%2520Light%2520In%2520%2528Audio%2529%2520ft.%2520Father%2520John%2520Misty%2520%5BWJlQ4jt5Fz4%5D.mp3',
-                                'Let The Light In',
-                                'Lana Del Rey ft. Father John Misty',
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/image_placeholder.jpg'
-                            )">
-                                <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/image_placeholder.jpg" alt="cover"/>
-                                <div class="song-title">Let The Light In</div>
-                                <div class="song-artist">Lana Del Rey ft. Father John Misty</div>
-                            </div>
-                            <div class="music-item" onclick="playSong(
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Lana%2520Del%2520Rey%2520-%2520Summertime%2520Sadness%2520%2528Official%2520Music%2520Video%2529%2520%5BTdrL3QxjyVw%5D.mp3',
-                                'Summertime Sadness',
-                                'Lana Del Rey',
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/image_placeholder.jpg'
-                            )">
-                                <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/image_placeholder.jpg" alt="cover"/>
-                                <div class="song-title">Summertime Sadness</div>
-                                <div class="song-artist">Lana Del Rey</div>
-                            </div>
-                            <div class="music-item" onclick="playSong(
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Lana%2520Del%2520Rey%2520-%2520Young%2520and%2520Beautiful%2520%5Bo_1aF54DO60%5D.mp3',
-                                'Young and Beautiful',
-                                'Lana Del Rey',
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/image_placeholder.jpg'
-                            )">
-                                <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/image_placeholder.jpg" alt="cover"/>
-                                <div class="song-title">Young and Beautiful</div>
-                                <div class="song-artist">Lana Del Rey</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="music-category">
-                        <h2>Mine</h2>
-                        <div class="music-list">
-                            <div class="music-item" onclick="playSong(
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Henry%2520Moodie%2520-%2520you%2520were%2520there%2520for%2520me%2520%2528official%2520video%2529%2520%5B65ZRPTcxkWk%5D.mp3',
-                                'You Were There For Me',
-                                'Henry Moodie',
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/In%20All%20Of%20My%20Lonely%20Nights.jpeg'
-                            )">
-                                <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/In%20All%20Of%20My%20Lonely%20Nights.jpeg" alt="cover"/>
-                                <div class="song-title">You Were There For Me</div>
-                                <div class="song-artist">Henry Moodie</div>
-                            </div>
-                            <div class="music-item" onclick="playSong(
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/Lord%2520Huron%2520-%2520The%2520Night%2520We%2520Met%2520%2528Official%2520Audio%2529%2520%5BKtlgYxa6BMU%5D.mp3',
-                                'The Night We Met',
-                                'Lord Huron',
-                                'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/The%20Night%20We%20Met.jpeg'
-                            )">
-                                <img class="music-icon" src="https://github.com/TommyTommy10/Biglietto.Anna/raw/main/The%2520Night%2520We%2520Met.jpeg" alt="cover"/>
-                                <div class="song-title">The Night We Met</div>
-                                <div class="song-artist">Lord Huron</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="musicPlayer" class="music-player" style="display:none;">
-                    <img id="playerCover" src="" class="player-cover" alt="cover"/>
-                    <div class="player-title" id="playerTitle"></div>
-                    <div class="player-artist" id="playerArtist"></div>
-                    <audio id="audioPlayer" controls></audio>
-                </div>
-
-                <div class="music-popup-footer">
-                    <button class="close-popup-button" onclick="toggleMusic()">Chiudi</button>
-                </div>
-            </div>
+        <div id="musicPlayer" class="music-player" style="display:none;">
+            <button class="music-back" onclick="showMenu()">&#8592; Indietro</button>
+            <img id="playerCover" src="" class="player-cover" alt="cover"/>
+            <div class="player-title" id="playerTitle"></div>
+            <div class="player-artist" id="playerArtist"></div>
+            <audio id="audioPlayer" controls></audio>
         </div>
     </div>
+</div>
         <!-- Interfaccia per cambiare font e colori -->
         <div class="settings" id="settings">
             <h2>Personalizza il Sito</h2>
@@ -1991,80 +1600,26 @@ h2 {
     }
 }
 
-let currentAudio = null;
-
+// Mostra/nasconde la finestra della musica
 function toggleMusic() {
-    const musicPopup = document.getElementById('music');
-    const musicOverlay = document.getElementById('musicOverlay');
-
-    if (musicPopup.style.display === 'none' || musicPopup.style.display === '') {
-        musicPopup.style.display = 'block'; // Usiamo 'block' per la finestra popup che è fixed
-        musicOverlay.style.display = 'block';
-        showMenu(); // Mostra sempre il menu iniziale all'apertura
-    } else {
-        musicPopup.style.display = 'none';
-        musicOverlay.style.display = 'none';
-        if (currentAudio) {
-            currentAudio.pause();
-            currentAudio.currentTime = 0;
-        }
-    }
-}
-
-function playSong(songSrc, title, artist, coverSrc) {
-    const audioPlayer = document.getElementById('audioPlayer');
-    const playerCover = document.getElementById('playerCover');
-    const playerTitle = document.getElementById('playerTitle');
-    const playerArtist = document.getElementById('playerArtist');
-
-    const musicMenuSection = document.getElementById('musicMenu'); // Riferimento al div del menu
-    const musicPlayer = document.getElementById('musicPlayer');    // Riferimento al div del player
-
-    const musicBackButton = document.querySelector('.music-back'); // Riferimento al bottone freccia
-    const musicMenuTitle = document.getElementById('musicMenuTitle'); // Riferimento al titolo nell'header
-
-    // Ferma l'audio precedente se in riproduzione
-    if (currentAudio) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0;
-    }
-
-    audioPlayer.src = songSrc;
-    playerCover.src = coverSrc;
-    playerTitle.textContent = title;
-    playerArtist.textContent = artist;
-
-    // Nascondi il menu delle canzoni e mostra il player
-    musicMenuSection.style.display = 'none';
-    musicPlayer.style.display = 'flex'; // Il player è un flex container in colonna
-
-    // Mostra il bottone "Indietro" e nascondi il titolo del menu (o cambialo)
-    musicBackButton.style.display = 'block'; // La freccia "Indietro" appare
-    musicMenuTitle.textContent = ''; // Il titolo "Her" / "Mine" sparisce
-
-    audioPlayer.play().catch(e => console.error("Errore nella riproduzione:", e));
-    currentAudio = audioPlayer;
-}
-
-function showMenu() {
-    const musicMenuSection = document.getElementById('musicMenu');
-    const musicPlayer = document.getElementById('musicPlayer');
-    const musicBackButton = document.querySelector('.music-back');
-    const musicMenuTitle = document.getElementById('musicMenuTitle');
-
-    // Nascondi il player e mostra il menu
-    musicPlayer.style.display = 'none';
-    musicMenuSection.style.display = 'block'; // Il menu è un blocco
-
-    // Nascondi il bottone "Indietro" e ripristina il titolo del menu
-    musicBackButton.style.display = 'none';
-    musicMenuTitle.textContent = 'Her'; // Mostra il titolo della prima categoria quando si torna al menu
-
-    // Ferma la musica quando si torna al menu
-    if (currentAudio) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0;
-    }
+  const popup = document.getElementById('music');
+  const overlay = document.getElementById('musicOverlay');
+  const menu = popup.querySelector('.music-menu');
+  const player = document.getElementById('musicPlayer');
+  if (popup.style.display === 'none' || popup.style.display === '') {
+    popup.style.display = 'flex';
+    overlay.style.display = 'block';
+    menu.style.display = '';
+    player.style.display = 'none';
+    document.body.style.overflow = 'hidden'; // blocca lo scroll della pagina sotto
+  } else {
+    popup.style.display = 'none';
+    overlay.style.display = 'none';
+    showMenu();
+    document.body.style.overflow = ''; // riabilita scroll
+    // Ferma la musica se aperta
+    document.getElementById('audioPlayer').pause();
+  }
 }
 
 function closeWindows() {
@@ -2078,6 +1633,35 @@ function closeWindows() {
     music.style.display = 'none';
     musicButton.style.display = 'flex';
     overlay.style.display = 'none';
+}
+
+// Play di una canzone
+function playSong(url, title, artist, cover) {
+  document.querySelector('#music .music-menu').style.display = 'none';
+  const player = document.getElementById('musicPlayer');
+  player.style.display = 'flex';
+  document.getElementById('audioPlayer').src = url;
+  document.getElementById('playerTitle').textContent = title;
+  document.getElementById('playerArtist').textContent = artist;
+  document.getElementById('playerCover').src = cover;
+  document.getElementById('audioPlayer').play();
+}
+
+// Torna alla lista canzoni dal player
+function showMenu() {
+  document.getElementById('musicPlayer').style.display = 'none';
+  document.querySelector('#music .music-menu').style.display = '';
+  // Ferma la musica
+  document.getElementById('audioPlayer').pause();
+}
+
+function showMenu() {
+    var musicMenu = document.getElementById('musicMenu');
+    var musicPlayer = document.getElementById('musicPlayer');
+
+    // Mostra il menu e nascondi il lettore musicale
+    musicMenu.style.display = 'flex';
+    musicPlayer.style.display = 'none';
 }
 
 document.addEventListener('DOMContentLoaded', function() {
