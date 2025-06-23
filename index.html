@@ -827,8 +827,8 @@ h2 {
         <img id="currentSongImage" src="music-icon" alt="Current Song Icon" class="current-song-icon">
         <!-- Blocco HTML aggiunto per le informazioni sulla canzone -->
         <div class="song-info">
-            <h3 class="song-title"/h3>
-            <p class="song-artist"/p>
+            <h3 class="song-title"></h3>
+            <p class="song-artist"></p>
         </div>
         <audio id="audioPlayer" controls>
             <source id="audioSource" src="" type="audio/mpeg">
@@ -1121,21 +1121,24 @@ function closeWindows() {
     overlay.style.display = 'none';
 }
 
-function playSong(songFilename) {
+function playSong(songFilename, title = '', artist = '') {
   const audioPlayer = document.getElementById('audioPlayer');
   const audioSource = document.getElementById('audioSource');
   const musicMenu = document.getElementById('musicMenu');
   const musicPlayer = document.getElementById('musicPlayer');
 
-  // Link diretto ai file su GitHub (come già salvati, senza encode)
   const baseURL = 'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/';
-
   audioSource.src = baseURL + songFilename;
   audioPlayer.load();
   audioPlayer.play();
 
+  // Mostra il lettore musicale
   musicMenu.style.display = 'none';
   musicPlayer.style.display = 'flex';
+
+  // Aggiorna titolo e artista
+  document.querySelector('.song-title').textContent = title;
+  document.querySelector('.song-artist').textContent = artist;
 }
 
 function showMenu() {
