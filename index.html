@@ -1106,57 +1106,6 @@ h2 {
     </div>
 
 <script>
-    function toggleSettings() {
-    var settings = document.getElementById('settings');
-    var settingsButton = document.getElementById('settingsButton');
-    var overlay = document.getElementById('overlay');
-    var music = document.getElementById('music');
-    var musicButton = document.getElementById('musicButton');
-    if (settings.style.display === 'none' || settings.style.display === '') {
-        settings.style.display = 'block';
-        settingsButton.style.display = 'none';
-        overlay.style.display = 'block';
-        music.style.display = 'none';
-        musicButton.style.display = 'flex';
-    } else {
-        settings.style.display = 'none';
-        settingsButton.style.display = 'flex';
-        overlay.style.display = 'none';
-    }
-}
-
-function toggleMusic() {
-    var music = document.getElementById('music');
-    var musicButton = document.getElementById('musicButton');
-    var overlay = document.getElementById('overlay');
-    var settings = document.getElementById('settings');
-    var settingsButton = document.getElementById('settingsButton');
-    if (music.style.display === 'none' || music.style.display === '') {
-        music.style.display = 'block';
-        musicButton.style.display = 'none';
-        overlay.style.display = 'block';
-        settings.style.display = 'none';
-        settingsButton.style.display = 'flex';
-    } else {
-        music.style.display = 'none';
-        musicButton.style.display = 'flex';
-        overlay.style.display = 'none';
-    }
-}
-
-function closeWindows() {
-    var settings = document.getElementById('settings');
-    var settingsButton = document.getElementById('settingsButton');
-    var music = document.getElementById('music');
-    var musicButton = document.getElementById('musicButton');
-    var overlay = document.getElementById('overlay');
-    settings.style.display = 'none';
-    settingsButton.style.display = 'flex';
-    music.style.display = 'none';
-    musicButton.style.display = 'flex';
-    overlay.style.display = 'none';
-}
-
 // --- FUNZIONI PER IL MUSIC PLAYER ---
 
 // Funzione principale per riprodurre una canzone
@@ -1171,22 +1120,21 @@ function playSong(songFileName) {
     // per recuperare l'URL dell'immagine, il titolo e l'artista
     const musicItems = document.querySelectorAll('.music-item');
     let selectedSongData = {
-        src: 'percorso/alla/tua/icona_musica_predefinita.png', // Fallback predefinito
+        src: 'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/music-icon-default.png', // <-- CAMBIA QUESTO CON IL TUO PATH DI DEFAULT SE NON CE L'HAI
         title: "Canzone Sconosciuta",
         artist: "Artista Sconosciuto"
     };
 
-    musicItems.forEach(item => {
-        // Estrai il nome del file dalla funzione onclick
+    // Usiamo for...of per poter uscire dal ciclo con break una volta trovata la canzone
+    for (const item of musicItems) {
         const onclickAttr = item.getAttribute('onclick');
         if (onclickAttr && onclickAttr.includes(`'${songFileName}'`)) {
             selectedSongData.src = item.querySelector('.music-icon').src;
             selectedSongData.title = item.querySelector('.song-title span').innerText;
             selectedSongData.artist = item.querySelector('.song-artist').innerText;
-            // Interrompi l'iterazione una volta trovata la canzone
-            return;
+            break; // Esci dal ciclo una volta trovata la canzone
         }
-    });
+    }
 
     // Aggiorna l'immagine e le informazioni nel player
     currentSongImage.src = selectedSongData.src;
@@ -1200,172 +1148,249 @@ function playSong(songFileName) {
 
     // Mostra il player e nascondi il menu delle canzoni
     document.getElementById('musicMenu').style.display = 'none';
-    document.getElementById('musicPlayer').style.display = 'flex'; // Usa 'flex' come nel CSS per il player
+    document.getElementById('musicPlayer').style.display = 'flex'; // Usa 'flex'
 }
 
 // Funzione per mostrare il menu delle canzoni e nascondere il player
 function showMenu() {
-    document.getElementById('musicMenu').style.display = 'block';
+    document.getElementById('musicMenu').style.display = 'block'; // O 'flex' se usi flexbox per il menu
     document.getElementById('musicPlayer').style.display = 'none';
 }
 
 // Funzione per aprire/chiudere la finestra della musica
 function toggleMusic() {
-    const musicWindow = document.getElementById('music');
-    const overlay = document.getElementById('overlay');
+    var musicWindow = document.getElementById('music');
+    var musicButton = document.getElementById('musicButton');
+    var overlay = document.getElementById('overlay');
+    var settingsWindow = document.getElementById('settings'); // Aggiunto per gestire le impostazioni
+    var settingsButton = document.getElementById('settingsButton'); // Aggiunto per gestire il pulsante impostazioni
 
-    if (musicWindow.style.display === 'block') {
-        // Se la finestra della musica è aperta, chiudila completamente
-        musicWindow.style.display = 'none';
-        overlay.style.display = 'none';
-        // Metti in pausa la canzone quando chiudi il player
-        document.getElementById('audioPlayer').pause();
-    } else {
-        // Se la finestra della musica è chiusa, aprila e mostra il menu
+    if (musicWindow.style.display === 'none' || musicWindow.style.display === '') {
+        // Apri la finestra della musica
         musicWindow.style.display = 'block';
+        musicButton.style.display = 'none'; // Nascondi il pulsante musica
         overlay.style.display = 'block';
+        
+        // Chiudi la finestra delle impostazioni se aperta
+        if (settingsWindow) {
+            settingsWindow.style.display = 'none';
+        }
+        // Mostra il pulsante delle impostazioni se era nascosto
+        if (settingsButton) {
+            settingsButton.style.display = 'flex';
+        }
+
         showMenu(); // Assicurati che si veda sempre il menu all'apertura
+    } else {
+        // Chiudi la finestra della musica
+        musicWindow.style.display = 'none';
+        musicButton.style.display = 'flex'; // Mostra il pulsante musica
+        overlay.style.display = 'none';
+        document.getElementById('audioPlayer').pause(); // Metti in pausa la canzone
     }
 }
 
 // --- FUNZIONI PER L'OVERLAY E ALTRI PULSANTI ---
 
-// Funzione per mostrare/nascondere le impostazioni (se presenti)
+// Funzione per mostrare/nascondere le impostazioni
 function toggleSettings() {
-    const settingsWindow = document.getElementById('settings');
-    const overlay = document.getElementById('overlay');
+    var settingsWindow = document.getElementById('settings');
+    var settingsButton = document.getElementById('settingsButton');
+    var overlay = document.getElementById('overlay');
+    var musicWindow = document.getElementById('music'); // Aggiunto per gestire la musica
+    var musicButton = document.getElementById('musicButton'); // Aggiunto per gestire il pulsante musica
 
-    // Assicurati che l'elemento 'settings' esista prima di provare a manipolarlo
+    // Assicurati che l'elemento 'settings' esista
     if (!settingsWindow) {
         console.warn("Elemento con ID 'settings' non trovato.");
         return;
     }
 
-    if (settingsWindow.style.display === 'block') {
-        settingsWindow.style.display = 'none';
-        overlay.style.display = 'none';
-    } else {
+    if (settingsWindow.style.display === 'none' || settingsWindow.style.display === '') {
+        // Apri la finestra delle impostazioni
         settingsWindow.style.display = 'block';
+        settingsButton.style.display = 'none'; // Nascondi il pulsante impostazioni
         overlay.style.display = 'block';
-        // Chiudi la finestra della musica se le impostazioni si aprono
-        document.getElementById('music').style.display = 'none';
-        document.getElementById('audioPlayer').pause(); // Metti in pausa la musica
+        
+        // Chiudi la finestra della musica se aperta e metti in pausa
+        if (musicWindow) {
+            musicWindow.style.display = 'none';
+            document.getElementById('audioPlayer').pause();
+        }
+        // Mostra il pulsante della musica se era nascosto
+        if (musicButton) {
+            musicButton.style.display = 'flex';
+        }
+
+    } else {
+        // Chiudi la finestra delle impostazioni
+        settingsWindow.style.display = 'none';
+        settingsButton.style.display = 'flex'; // Mostra il pulsante impostazioni
+        overlay.style.display = 'none';
     }
 }
 
-// Funzione per chiudere tutte le finestre e l'overlay
+// Funzione per chiudere tutte le finestre e l'overlay (quando clicchi sull'overlay)
 function closeWindows() {
-    document.getElementById('overlay').style.display = 'none';
+    var settingsWindow = document.getElementById('settings');
+    var settingsButton = document.getElementById('settingsButton');
+    var musicWindow = document.getElementById('music');
+    var musicButton = document.getElementById('musicButton');
+    var overlay = document.getElementById('overlay');
 
-    const musicWindow = document.getElementById('music');
+    // Nascondi tutte le finestre e mostra i pulsanti
+    if (settingsWindow) {
+        settingsWindow.style.display = 'none';
+    }
+    if (settingsButton) {
+        settingsButton.style.display = 'flex';
+    }
+
     if (musicWindow) {
         musicWindow.style.display = 'none';
         document.getElementById('audioPlayer').pause(); // Metti in pausa la canzone
     }
-
-    const settingsWindow = document.getElementById('settings');
-    if (settingsWindow) {
-        settingsWindow.style.display = 'none';
+    if (musicButton) {
+        musicButton.style.display = 'flex';
     }
-}
-    const settingsWindow = document.getElementById('settings'); // Assicurati di avere un elemento con id="settings"
-    if (settingsWindow) {
-        settingsWindow.style.display = 'none';
-    }
+
+    overlay.style.display = 'none';
 }
 
-function showMenu() {
-    var musicMenu = document.getElementById('musicMenu');
-    var musicPlayer = document.getElementById('musicPlayer');
 
-    // Mostra il menu e nascondi il lettore musicale
-    musicMenu.style.display = 'flex';
-    musicPlayer.style.display = 'none';
-}
-
+// --- FUNZIONI DI INIZIALIZZAZIONE E CAMBIO STILE ---
 document.addEventListener('DOMContentLoaded', function() {
     // Imposta il colore iniziale per i color picker
-    document.getElementById('colorPicker').value = rgb2hex(getComputedStyle(document.body).backgroundColor);
-    document.getElementById('textColorPicker').value = rgb2hex(getComputedStyle(document.body).color);
-    document.getElementById('buttonColorPicker').value = rgb2hex(getComputedStyle(document.querySelector('.settings-button')).backgroundColor);
+    // Assicurati che gli elementi esistano prima di tentare di leggerli/modificarli
+    const body = document.body;
+    const settingsButton = document.querySelector('.settings-button');
+    const mainBox = document.querySelector('.main-box');
 
-    document.getElementById('fontSelect').addEventListener('change', function() {
-        document.body.style.fontFamily = this.value;
-    });
+    if (document.getElementById('colorPicker')) {
+        document.getElementById('colorPicker').value = rgb2hex(getComputedStyle(body).backgroundColor);
+    }
+    if (document.getElementById('textColorPicker')) {
+        document.getElementById('textColorPicker').value = rgb2hex(getComputedStyle(body).color);
+    }
+    if (document.getElementById('buttonColorPicker') && settingsButton) {
+        document.getElementById('buttonColorPicker').value = rgb2hex(getComputedStyle(settingsButton).backgroundColor);
+    }
 
-    document.getElementById('colorPicker').addEventListener('input', function() {
-        document.body.style.backgroundColor = this.value;
-    });
-
-    document.getElementById('textColorPicker').addEventListener('input', function() {
-        document.body.style.color = this.value;
-    });
-
-    document.getElementById('buttonColorPicker').addEventListener('input', function() {
-        var buttons = document.querySelectorAll('.settings-button, .music-button');
-        buttons.forEach(function(button) {
-            button.style.backgroundColor = document.getElementById('buttonColorPicker').value;
+    if (document.getElementById('fontSelect')) {
+        document.getElementById('fontSelect').addEventListener('change', function() {
+            body.style.fontFamily = this.value;
         });
-    });
+    }
+
+    if (document.getElementById('colorPicker')) {
+        document.getElementById('colorPicker').addEventListener('input', function() {
+            body.style.backgroundColor = this.value;
+        });
+    }
+
+    if (document.getElementById('textColorPicker')) {
+        document.getElementById('textColorPicker').addEventListener('input', function() {
+            body.style.color = this.value;
+        });
+    }
+
+    if (document.getElementById('buttonColorPicker')) {
+        document.getElementById('buttonColorPicker').addEventListener('input', function() {
+            var buttons = document.querySelectorAll('.settings-button, .music-button');
+            buttons.forEach(function(button) {
+                button.style.backgroundColor = document.getElementById('buttonColorPicker').value;
+            });
+        });
+    }
 
     // Nuovi color picker
-    document.getElementById('titleColorPicker').addEventListener('input', function() {
-        document.querySelectorAll('h2').forEach(title => {
-            title.style.color = this.value;
+    if (document.getElementById('titleColorPicker')) {
+        document.getElementById('titleColorPicker').addEventListener('input', function() {
+            document.querySelectorAll('h2').forEach(title => {
+                title.style.color = this.value;
+            });
         });
-    });
+    }
 
-    document.getElementById('mainBoxColorPicker').addEventListener('input', function() {
-        document.querySelector('.main-box').style.backgroundColor = this.value;
-    });
-
-    document.getElementById('paragraphBoxColorPicker').addEventListener('input', function() {
-        document.querySelectorAll('.paragraph-box').forEach(box => {
-            box.style.backgroundColor = this.value;
+    if (document.getElementById('mainBoxColorPicker') && mainBox) { // Controlla se .main-box esiste
+        document.getElementById('mainBoxColorPicker').addEventListener('input', function() {
+            mainBox.style.backgroundColor = this.value;
         });
-    });
+    }
 
-    document.getElementById('windowColorPicker').addEventListener('input', function() {
-        document.querySelectorAll('.window').forEach(window => {
-            window.style.backgroundColor = this.value;
+    if (document.getElementById('paragraphBoxColorPicker')) {
+        document.getElementById('paragraphBoxColorPicker').addEventListener('input', function() {
+            document.querySelectorAll('.paragraph-box').forEach(box => {
+                box.style.backgroundColor = this.value;
+            });
         });
-    });
+    }
 
-    document.getElementById('musicPlayerColorPicker').addEventListener('input', function() {
-        document.querySelector('.music-player').style.backgroundColor = this.value;
-    });
-
-    document.getElementById('dateColorPicker').addEventListener('input', function() {
-        document.querySelectorAll('.date').forEach(date => {
-            date.style.color = this.value;
+    if (document.getElementById('windowColorPicker')) {
+        document.getElementById('windowColorPicker').addEventListener('input', function() {
+            document.querySelectorAll('.window').forEach(windowElem => { // Rinominato "window" in "windowElem" per evitare conflitti con l'oggetto globale window
+                windowElem.style.backgroundColor = this.value;
+            });
         });
-    });
+    }
 
+    if (document.getElementById('musicPlayerColorPicker')) {
+        document.getElementById('musicPlayerColorPicker').addEventListener('input', function() {
+            const musicPlayer = document.querySelector('.music-player');
+            if (musicPlayer) { // Controlla se il music player esiste
+                musicPlayer.style.backgroundColor = this.value;
+            }
+        });
+    }
+
+    if (document.getElementById('dateColorPicker')) {
+        document.getElementById('dateColorPicker').addEventListener('input', function() {
+            document.querySelectorAll('.date').forEach(date => {
+                date.style.color = this.value;
+            });
+        });
+    }
+
+    // Funzione per convertire RGB in HEX (utile per i color picker)
     function rgb2hex(rgb) {
         if (/^#[0-9A-F]{6}$/i.test(rgb)) {
             return rgb;
         }
-        rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+        const rgbMatch = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+        if (!rgbMatch) { // Se non è un formato rgb valido, ritorna nero o un default
+            return "#000000";
+        }
         function hex(x) {
             return ("0" + parseInt(x).toString(16)).slice(-2);
         }
-        return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+        return "#" + hex(rgbMatch[1]) + hex(rgbMatch[2]) + hex(rgbMatch[3]);
     }
 });
 
-document.querySelectorAll('.music-item p span').forEach(span => {
-    const parentWidth = span.parentElement.offsetWidth;
-    const spanWidth = span.offsetWidth;
 
-    if (spanWidth > parentWidth) {
-        span.style.animation = 'scrolling-text 10s linear infinite';
-    }
-});
-
+// Funzione per aggiornare le info della canzone (già inclusa in playSong, ma tenuta per chiarezza)
 function updateSongInfo(songTitle, songArtist) {
-    document.querySelector('.song-title').textContent = songTitle;
-    document.querySelector('.song-artist').textContent = songArtist;
+    const songTitleElement = document.querySelector('.song-title');
+    const songArtistElement = document.querySelector('.song-artist');
+    if (songTitleElement) songTitleElement.textContent = songTitle;
+    if (songArtistElement) songArtistElement.textContent = songArtist;
 }
+
+// Scorrimento del testo se troppo lungo (solo se .music-item p span esiste)
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.music-item p span').forEach(span => {
+        // Assicurati che l'elemento genitore esista e abbia una larghezza
+        const parentElement = span.parentElement;
+        if (parentElement) {
+            const parentWidth = parentElement.offsetWidth;
+            const spanWidth = span.offsetWidth;
+
+            if (spanWidth > parentWidth) {
+                span.style.animation = 'scrolling-text 10s linear infinite';
+            }
+        }
+    });
+});
 </script>
 </body>
 </html>
