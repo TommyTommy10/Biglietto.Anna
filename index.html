@@ -628,6 +628,42 @@ h2 {
             padding: 5px; /* Ridotto il padding per dispositivi più piccoli */
         }
     }
+/* Aggiungi o modifica queste regole nel tuo file CSS */
+
+.music-player .current-song-icon {
+    width: 200px; /* O la dimensione che preferisci, ad esempio 250px, 300px */
+    height: 200px; /* Mantieni la stessa altezza della larghezza per un'immagine quadrata */
+    object-fit: cover; /* Assicura che l'immagine copra l'area senza deformarsi */
+    border-radius: 10px; /* Se vuoi gli angoli arrotondati come nel menu */
+    margin-bottom: 20px; /* Spazio sotto l'immagine */
+}
+
+/* Potrebbe essere utile anche per le icone nel menu, se non sono già così */
+.music-menu .music-icon {
+    width: 70px; /* Esempio, adatta alle tue esigenze */
+    height: 70px; /* Esempio */
+    object-fit: cover;
+    border-radius: 50%; /* Se vuoi che siano cerchi perfetti come sembra nei tuoi screenshot */
+}
+
+/* Regola lo stile del player per centrare gli elementi */
+.music-player {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra orizzontalmente gli elementi */
+    justify-content: center; /* Centra verticalmente se il container ha un'altezza definita */
+    text-align: center; /* Centra il testo sotto l'immagine */
+    padding: 20px;
+}
+
+.music-player .song-info {
+    margin-bottom: 20px; /* Spazio tra le info e il player audio */
+}
+
+.music-player audio {
+    width: 80%; /* O un'altra percentuale/valore fisso per il player audio */
+    max-width: 400px; /* Evita che diventi troppo grande su schermi ampi */
+}
 </style>
 </head>
 <body>
@@ -1121,88 +1157,117 @@ function closeWindows() {
     overlay.style.display = 'none';
 }
 
+// --- FUNZIONI PER IL MUSIC PLAYER ---
+
+// Funzione principale per riprodurre una canzone
 function playSong(songFileName) {
-    // Ottieni l'elemento audio e l'elemento immagine del player
     const audioPlayer = document.getElementById('audioPlayer');
     const audioSource = document.getElementById('audioSource');
     const currentSongImage = document.getElementById('currentSongImage');
-    const songTitleElement = document.querySelector('.music-player .song-info .song-title');
-    const songArtistElement = document.querySelector('.music-player .song-info .song-artist');
+    const songTitleElement = document.querySelector('.music-player .song-info h3');
+    const songArtistElement = document.querySelector('.music-player .song-info p');
 
     // Trova l'elemento della canzone nel menu che è stato cliccato
-    // Questo è un modo per recuperare le informazioni della canzone
+    // per recuperare l'URL dell'immagine, il titolo e l'artista
     const musicItems = document.querySelectorAll('.music-item');
-    let selectedSongData = {};
+    let selectedSongData = {
+        src: 'percorso/alla/tua/icona_musica_predefinita.png', // Fallback predefinito
+        title: "Canzone Sconosciuta",
+        artist: "Artista Sconosciuto"
+    };
 
     musicItems.forEach(item => {
+        // Estrai il nome del file dalla funzione onclick
         const onclickAttr = item.getAttribute('onclick');
         if (onclickAttr && onclickAttr.includes(`'${songFileName}'`)) {
             selectedSongData.src = item.querySelector('.music-icon').src;
             selectedSongData.title = item.querySelector('.song-title span').innerText;
             selectedSongData.artist = item.querySelector('.song-artist').innerText;
+            // Interrompi l'iterazione una volta trovata la canzone
+            return;
         }
     });
 
     // Aggiorna l'immagine e le informazioni nel player
-    if (selectedSongData.src) {
-        currentSongImage.src = selectedSongData.src;
-        songTitleElement.innerText = selectedSongData.title;
-        songArtistElement.innerText = selectedSongData.artist;
-    } else {
-        // Fallback se l'immagine non viene trovata (es. imposta un'icona predefinita)
-        currentSongImage.src = 'percorso/alla/tua/icona_musica_predefinita.png'; // *** IMPORTANTE: CAMBIA QUESTO PERCORSO ***
-        songTitleElement.innerText = "Canzone Sconosciuta";
-        songArtistElement.innerText = "Artista Sconosciuto";
-    }
+    currentSongImage.src = selectedSongData.src;
+    songTitleElement.innerText = selectedSongData.title;
+    songArtistElement.innerText = selectedSongData.artist;
 
-    // Imposta la sorgente audio e riproduci
+    // Imposta la sorgente audio, ricarica e riproduci
     audioSource.src = songFileName;
     audioPlayer.load(); // Carica la nuova sorgente
     audioPlayer.play();
 
     // Mostra il player e nascondi il menu delle canzoni
     document.getElementById('musicMenu').style.display = 'none';
-    document.getElementById('musicPlayer').style.display = 'flex'; // O 'block', a seconda del tuo CSS
+    document.getElementById('musicPlayer').style.display = 'flex'; // Usa 'flex' come nel CSS per il player
 }
 
+// Funzione per mostrare il menu delle canzoni e nascondere il player
 function showMenu() {
     document.getElementById('musicMenu').style.display = 'block';
     document.getElementById('musicPlayer').style.display = 'none';
 }
 
+// Funzione per aprire/chiudere la finestra della musica
 function toggleMusic() {
     const musicWindow = document.getElementById('music');
     const overlay = document.getElementById('overlay');
+
     if (musicWindow.style.display === 'block') {
+        // Se la finestra della musica è aperta, chiudila completamente
         musicWindow.style.display = 'none';
         overlay.style.display = 'none';
+        // Metti in pausa la canzone quando chiudi il player
+        document.getElementById('audioPlayer').pause();
     } else {
+        // Se la finestra della musica è chiusa, aprila e mostra il menu
         musicWindow.style.display = 'block';
         overlay.style.display = 'block';
-        // Quando apri il music player, assicurati che sia il menu a essere visibile inizialmente
-        showMenu();
+        showMenu(); // Assicurati che si veda sempre il menu all'apertura
     }
 }
 
-// Funzioni per le impostazioni, se le hai definite altrove
+// --- FUNZIONI PER L'OVERLAY E ALTRI PULSANTI ---
+
+// Funzione per mostrare/nascondere le impostazioni (se presenti)
 function toggleSettings() {
-    const settingsWindow = document.getElementById('settings'); // Assicurati di avere un elemento con id="settings"
+    const settingsWindow = document.getElementById('settings');
     const overlay = document.getElementById('overlay');
-    if (settingsWindow && settingsWindow.style.display === 'block') {
+
+    // Assicurati che l'elemento 'settings' esista prima di provare a manipolarlo
+    if (!settingsWindow) {
+        console.warn("Elemento con ID 'settings' non trovato.");
+        return;
+    }
+
+    if (settingsWindow.style.display === 'block') {
         settingsWindow.style.display = 'none';
         overlay.style.display = 'none';
-    } else if (settingsWindow) {
+    } else {
         settingsWindow.style.display = 'block';
         overlay.style.display = 'block';
+        // Chiudi la finestra della musica se le impostazioni si aprono
+        document.getElementById('music').style.display = 'none';
+        document.getElementById('audioPlayer').pause(); // Metti in pausa la musica
     }
 }
 
+// Funzione per chiudere tutte le finestre e l'overlay
 function closeWindows() {
     document.getElementById('overlay').style.display = 'none';
+
     const musicWindow = document.getElementById('music');
     if (musicWindow) {
         musicWindow.style.display = 'none';
+        document.getElementById('audioPlayer').pause(); // Metti in pausa la canzone
     }
+
+    const settingsWindow = document.getElementById('settings');
+    if (settingsWindow) {
+        settingsWindow.style.display = 'none';
+    }
+}
     const settingsWindow = document.getElementById('settings'); // Assicurati di avere un elemento con id="settings"
     if (settingsWindow) {
         settingsWindow.style.display = 'none';
