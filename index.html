@@ -1105,94 +1105,73 @@ h2 {
 <script>
 function toggleSettings() {
   const settings = document.getElementById('settings');
-  const settingsButton = document.getElementById('settingsButton');
   const overlay = document.getElementById('overlay');
   const music = document.getElementById('music');
-  const musicButton = document.getElementById('musicButton');
 
-  const isHidden = settings.style.display === 'none' || settings.style.display === '';
-  settings.style.display = isHidden ? 'block' : 'none';
-  settingsButton.style.display = isHidden ? 'none' : 'flex';
-  overlay.style.display = isHidden ? 'block' : 'none';
-
-  if (isHidden) {
-    music.style.display = 'none';
-    musicButton.style.display = 'flex';
-  }
+  const isVisible = settings.style.display === 'block';
+  settings.style.display = isVisible ? 'none' : 'block';
+  overlay.style.display = isVisible ? 'none' : 'block';
+  music.style.display = 'none';
 }
 
 function toggleMusic() {
   const music = document.getElementById('music');
-  const musicButton = document.getElementById('musicButton');
   const overlay = document.getElementById('overlay');
   const settings = document.getElementById('settings');
-  const settingsButton = document.getElementById('settingsButton');
 
-  const isHidden = music.style.display === 'none' || music.style.display === '';
-  music.style.display = isHidden ? 'block' : 'none';
-  musicButton.style.display = isHidden ? 'none' : 'flex';
-  overlay.style.display = isHidden ? 'block' : 'none';
-
-  if (isHidden) {
-    settings.style.display = 'none';
-    settingsButton.style.display = 'flex';
-    showMenu();
-  }
+  const isVisible = music.style.display === 'block';
+  music.style.display = isVisible ? 'none' : 'block';
+  overlay.style.display = isVisible ? 'none' : 'block';
+  settings.style.display = 'none';
+  showMenu();
 }
 
 function closeWindows() {
+  document.getElementById('music').style.display = 'none';
+  document.getElementById('settings').style.display = 'none';
   document.getElementById('overlay').style.display = 'none';
-  const music = document.getElementById('music');
-  const musicButton = document.getElementById('musicButton');
-  const settings = document.getElementById('settings');
-  const settingsButton = document.getElementById('settingsButton');
-
-  music.style.display = 'none';
-  musicButton.style.display = 'flex';
-  settings.style.display = 'none';
-  settingsButton.style.display = 'flex';
 }
 
 function playSong(songFileName) {
+  const baseURL = 'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/';
   const audioPlayer = document.getElementById('audioPlayer');
   const audioSource = document.getElementById('audioSource');
   const currentSongImage = document.getElementById('currentSongImage');
-  const songTitleElement = document.querySelector('.music-player .song-info .song-title');
-  const songArtistElement = document.querySelector('.music-player .song-info .song-artist');
+  const songTitleElement = document.querySelector('.song-title');
+  const songArtistElement = document.querySelector('.song-artist');
+
   const musicMenu = document.getElementById('musicMenu');
   const musicPlayer = document.getElementById('musicPlayer');
 
-  // Trova l'elemento cliccato e aggiorna dati
+  // Trova i dati della canzone
   const musicItems = document.querySelectorAll('.music-item');
   let found = false;
-
   musicItems.forEach(item => {
     const onclickAttr = item.getAttribute('onclick');
     if (onclickAttr && onclickAttr.includes(`'${songFileName}'`)) {
-      const image = item.querySelector('.music-icon')?.src;
+      const img = item.querySelector('.music-icon')?.src;
       const title = item.querySelector('.song-title span')?.innerText;
       const artist = item.querySelector('.song-artist')?.innerText;
 
-      currentSongImage.src = image || 'https://via.placeholder.com/300x300?text=Canzone';
-      songTitleElement.innerText = title || 'Titolo sconosciuto';
-      songArtistElement.innerText = artist || 'Artista sconosciuto';
+      if (img) currentSongImage.src = img;
+      if (songTitleElement) songTitleElement.innerText = title || 'Titolo sconosciuto';
+      if (songArtistElement) songArtistElement.innerText = artist || 'Artista sconosciuto';
+
       found = true;
     }
   });
 
   if (!found) {
-    currentSongImage.src = 'https://via.placeholder.com/300x300?text=Canzone';
-    songTitleElement.innerText = 'Titolo sconosciuto';
-    songArtistElement.innerText = 'Artista sconosciuto';
+    currentSongImage.src = 'https://via.placeholder.com/300?text=Canzone';
+    if (songTitleElement) songTitleElement.innerText = 'Titolo sconosciuto';
+    if (songArtistElement) songArtistElement.innerText = 'Artista sconosciuto';
   }
 
-  // Imposta e riproduce l’audio
-  const audioPath = 'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/' + songFileName;
-  audioSource.src = audioPath;
+  audioSource.src = baseURL + songFileName;
   audioPlayer.pause();
   audioPlayer.load();
   audioPlayer.oncanplaythrough = () => {
-    audioPlayer.play().catch(e => console.warn('Errore riproduzione:', e));
+    audioPlayer.play().catch(e => console.warn('Riproduzione bloccata:', e));
   };
 
   musicMenu.style.display = 'none';
@@ -1206,9 +1185,9 @@ function showMenu() {
 
   musicMenu.style.display = 'flex';
   musicPlayer.style.display = 'none';
-
   audioPlayer.pause();
   audioPlayer.currentTime = 0;
+
   document.querySelector('.song-title').textContent = '';
   document.querySelector('.song-artist').textContent = '';
 }
