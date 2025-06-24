@@ -1155,15 +1155,15 @@ function closeWindows() {
 }
 
 function playSong(songFileName) {
-    // Ottieni l'elemento audio e l'elemento immagine del player
     const audioPlayer = document.getElementById('audioPlayer');
     const audioSource = document.getElementById('audioSource');
     const currentSongImage = document.getElementById('currentSongImage');
     const songTitleElement = document.querySelector('.music-player .song-info .song-title');
     const songArtistElement = document.querySelector('.music-player .song-info .song-artist');
+    const musicMenu = document.getElementById('musicMenu');
+    const musicPlayer = document.getElementById('musicPlayer');
 
-    // Trova l'elemento della canzone nel menu che è stato cliccato
-    // Questo è un modo per recuperare le informazioni della canzone
+    // Trova il brano corrispondente per recuperare immagine, titolo e artista
     const musicItems = document.querySelectorAll('.music-item');
     let selectedSongData = {};
 
@@ -1176,24 +1176,26 @@ function playSong(songFileName) {
         }
     });
 
-    // Aggiorna l'immagine e le informazioni nel player
+    // Imposta l'immagine e il testo
     if (selectedSongData.src) {
         currentSongImage.src = selectedSongData.src;
-        songTitleElement.innerText = selectedSongData.title;
-        songArtistElement.innerText = selectedSongData.artist;
-    } else {
-        // Fallback se l'immagine non viene trovata (es. imposta un'icona predefinita)
-        currentSongImage.src = 'percorso/alla/tua/icona_musica_predefinita.png'; // *** IMPORTANTE: CAMBIA QUESTO PERCORSO ***
-        songTitleElement.innerText = "Canzone Sconosciuta";
-        songArtistElement.innerText = "Artista Sconosciuto";
+        songTitleElement.innerText = selectedSongData.title || "Titolo sconosciuto";
+        songArtistElement.innerText = selectedSongData.artist || "Artista sconosciuto";
     }
 
-    // Imposta la sorgente audio e riproduci
-    audioSource.src = 'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/' + songFileName;
+    // Imposta il file audio e avvia quando pronto
+    const audioPath = 'https://github.com/TommyTommy10/Biglietto.Anna/raw/main/Song/' + songFileName;
+    audioSource.src = audioPath;
     audioPlayer.pause();
-    audioPlayer.currentTime = 0;
-    audioPlayer.load(); // Carica la nuova sorgente
-    audioPlayer.play();
+    audioPlayer.load();
+    audioPlayer.oncanplaythrough = () => {
+        audioPlayer.play().catch(e => console.warn('Riproduzione bloccata:', e));
+    };
+
+    // Mostra il player, nascondi il menu
+    musicMenu.style.display = 'none';
+    musicPlayer.style.display = 'flex';
+}
 
     // Mostra il player e nascondi il menu delle canzoni
     document.getElementById('musicMenu').style.display = 'none';
@@ -1201,8 +1203,20 @@ function playSong(songFileName) {
 }
 
 function showMenu() {
-    document.getElementById('musicMenu').style.display = 'block';
-    document.getElementById('musicPlayer').style.display = 'none';
+    const musicMenu = document.getElementById('musicMenu');
+    const musicPlayer = document.getElementById('musicPlayer');
+    const audioPlayer = document.getElementById('audioPlayer');
+
+    // Pulisce e torna indietro
+    musicMenu.style.display = 'flex';
+    musicPlayer.style.display = 'none';
+
+    audioPlayer.pause();
+    audioPlayer.currentTime = 0;
+
+    // Pulisce i testi
+    document.querySelector('.song-title').textContent = '';
+    document.querySelector('.song-artist').textContent = '';
 }
 
 function toggleMusic() {
